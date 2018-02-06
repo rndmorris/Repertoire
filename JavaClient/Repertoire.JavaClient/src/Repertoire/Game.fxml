@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
@@ -9,9 +10,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcardgame.GameController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Repertoire.GameController">
    <children>
-       <ImageView fitHeight="450.0" fitWidth="800.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true">
+      <ImageView fitHeight="450.0" fitWidth="800.0" nodeOrientation="INHERIT" pickOnBounds="true" StackPane.alignment="BOTTOM_CENTER">
          <StackPane.margin>
             <Insets />
          </StackPane.margin>
@@ -33,11 +34,20 @@
                   <MenuItem mnemonicParsing="false" onAction="#profileMenuItem" text="Profile" />
                   <MenuItem mnemonicParsing="false" onAction="#studyMenuItem" text="Study" />
                   <MenuItem mnemonicParsing="false" onAction="#libraryMenuItem" text="Library" />
-                  <MenuItem mnemonicParsing="false" onMenuValidation="#settingsMenuItem" text="Settings" />
+                  <MenuItem mnemonicParsing="false" onAction="#settingsMenuItem" text="Settings" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9baab9" height="300.0" layoutX="275.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="250.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9baab9" height="100.0" layoutX="30.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="150.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9baab9" height="150.0" layoutX="664.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9baab9" height="150.0" layoutX="667.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9baab9" height="150.0" layoutX="670.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9baab9" height="100.0" layoutX="30.0" layoutY="297.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="150.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9baab9" height="100.0" layoutX="30.0" layoutY="294.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="150.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="125.0" layoutX="300.0" layoutY="125.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 25; -fx-arc-width: 25;" width="200.0" />
+         
    </children>
 </AnchorPane>
    </children>
