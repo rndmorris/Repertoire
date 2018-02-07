@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.*?>
 
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcardgame.ProfileController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Repertoire.ProfileController">
    <children>
-       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_CENTER">
+      <ImageView fitHeight="450.0" fitWidth="800.0" nodeOrientation="INHERIT" pickOnBounds="true" StackPane.alignment="BOTTOM_CENTER">
          <StackPane.margin>
             <Insets />
          </StackPane.margin>
@@ -34,7 +34,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#deckMenuItem" text="Deck" />
                   <MenuItem mnemonicParsing="false" onAction="#studyMenuItem" text="Study" />
                   <MenuItem mnemonicParsing="false" onAction="#libraryMenuItem" text="Library" />
-                  <MenuItem mnemonicParsing="false" onMenuValidation="#settingsMenuItem" text="Settings" />
+                  <MenuItem mnemonicParsing="false" onAction="#settingsMenuItem" text="Settings" />
             </items>
           </Menu>
         </menus>

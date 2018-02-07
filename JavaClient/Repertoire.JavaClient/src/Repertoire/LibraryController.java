@@ -60,6 +60,7 @@ public class LibraryController implements Initializable, ControlledScreen {
     @FXML
     void settingsMenuItem(ActionEvent event) {
         myController.setScreen(Program.screen7ID);
+        System.out.println("TEST");
     }
     
 }

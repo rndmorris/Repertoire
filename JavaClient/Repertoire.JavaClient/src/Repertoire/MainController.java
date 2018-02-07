@@ -60,6 +60,7 @@ public class MainController implements Initializable, ControlledScreen {
     void settingsMenuItem(ActionEvent event) {
         myController.setScreen(Program.screen7ID);
     }
-
+    
+     
     
 }
