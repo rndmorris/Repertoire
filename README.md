@@ -18,7 +18,9 @@ Target Audience
 - [ ] TODO
 
 Feature List
-- [ ] TODO
+- [ ] Main Menu
+  - [ ] user should be able to navigate between multiple screens
+
 
 
 Use Cases
