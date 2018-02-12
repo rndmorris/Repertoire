@@ -1,0 +1,27 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 7, 2018, 7:51:05 PM
+    Author     : Tucker
+*/
+
+ #AnchorPane {
+    -fx-background-image: url('black-background-texture-pattern-light-480x270.jpg');
+}
+
+
+/*#AnchorPane {
+    -fx-background-color: rgb(225, 228, 203);
+        
+}
+*/
+
+.button {
+    -fx-font-family: "Arial";
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-background-color: lightskyblue;
+}
