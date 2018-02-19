@@ -115,10 +115,10 @@ public class GameController implements Initializable, ControlledScreen {
       // temp = Program.
        //Program.user.getRandomKey();
        temp = Program.user.getRandomKey();
-       character.setText(temp.character);
-       readingOne.setText(temp.readingOne);
-       readingTwo.setText(temp.readingTwo);
-       meaning.setText(temp.meaning);
+       character.setText(temp.getCharacter());
+       readingOne.setText(temp.getReadingOne());
+       readingTwo.setText(temp.getReadingTwo());
+       meaning.setText(temp.getMeaning());
 
     }
     

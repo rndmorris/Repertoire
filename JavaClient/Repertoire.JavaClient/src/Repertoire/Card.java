@@ -10,12 +10,14 @@ package Repertoire;
  * @author Tucker
  */
 public class Card {
+
     
-    public String character;
-    public String difficulty;
-    public String readingOne;
-    public String readingTwo;
-    public String meaning;
+    
+    private String character;
+    private String difficulty;
+    private String readingOne;
+    private String readingTwo;
+    private String meaning;
     
     public Card() {
         
@@ -30,4 +32,76 @@ public class Card {
         this.readingTwo = two;
        
     }
+    
+    /**
+     * @return the character
+     */
+    public String getCharacter() {
+        return character;
+    }
+
+    /**
+     * @param character the character to set
+     */
+    public void setCharacter(String character) {
+        this.character = character;
+    }
+
+    /**
+     * @return the difficulty
+     */
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    /**
+     * @param difficulty the difficulty to set
+     */
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    /**
+     * @return the readingOne
+     */
+    public String getReadingOne() {
+        return readingOne;
+    }
+
+    /**
+     * @param readingOne the readingOne to set
+     */
+    public void setReadingOne(String readingOne) {
+        this.readingOne = readingOne;
+    }
+
+    /**
+     * @return the readingTwo
+     */
+    public String getReadingTwo() {
+        return readingTwo;
+    }
+
+    /**
+     * @param readingTwo the readingTwo to set
+     */
+    public void setReadingTwo(String readingTwo) {
+        this.readingTwo = readingTwo;
+    }
+
+    /**
+     * @return the meaning
+     */
+    public String getMeaning() {
+        return meaning;
+    }
+
+    /**
+     * @param meaning the meaning to set
+     */
+    public void setMeaning(String meaning) {
+        this.meaning = meaning;
+    }
+    
+    
 }

@@ -11,6 +11,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.json.simple.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -26,7 +28,7 @@ public class Dictionary {
     
     public String file = "testDictionary.JSON";
     
-    
+    public static ObservableList<Card> data = FXCollections.observableArrayList();
     
     public Dictionary() {
         
@@ -72,6 +74,8 @@ public class Dictionary {
             
             Card c = new Card(character, difficulty, readingOne, readingTwo, meaning);
             set.put(Integer.toString(count), c);
+            data.add(c);
+            
             
             
             System.out.println(difficulty + " " + character + " " + readingOne + " " +
@@ -97,6 +101,8 @@ public class Dictionary {
         
     return true;
     }
+
+    
 }
    
 
