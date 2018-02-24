@@ -5,11 +5,16 @@
  */
 package Repertoire;
 
+import java.awt.Button;
 import javafx.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -25,6 +30,8 @@ public class MainController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+      
     }  
     
     public void setScreenParent(ScreensController screenParent) {
@@ -61,6 +68,22 @@ public class MainController implements Initializable, ControlledScreen {
         myController.setScreen(Program.screen7ID);
     }
     
+    
+   
+    // set to full screen
+    @FXML
+    void testButtonClicked(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        
+        if (!stage.isFullScreen())
+        {
+            stage.setFullScreen(true);
+        }
+        }
+        
+    }
+
      
     
-}
+
