@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
@@ -25,7 +26,18 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Button layoutX="156.0" layoutY="148.0" mnemonicParsing="false" onAction="#testButtonClicked" text="Test" />
+        <Button layoutX="14.0" layoutY="385.0" mnemonicParsing="false" onAction="#testButtonClicked" text="Test" />
+      <Label layoutX="224.0" layoutY="173.0" text="Repertoire">
+         <font>
+            <Font size="73.0" />
+         </font>
+      </Label>
+      <Button layoutX="52.0" layoutY="129.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="118.0" text="Library" />
+      <Button layoutX="52.0" layoutY="272.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="118.0" text="Settings" />
+      <Button layoutX="634.0" layoutY="129.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="105.0" text="Master" />
+      <Button layoutX="634.0" layoutY="272.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="105.0" text="Deck" />
+      <Button layoutX="52.0" layoutY="201.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="118.0" text="Profile" />
+      <Button layoutX="634.0" layoutY="201.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="105.0" text="Study" />
    
     </children>
     <opaqueInsets>

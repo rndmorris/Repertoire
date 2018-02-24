@@ -85,7 +85,7 @@ public class Program extends Application  {
         root.getTransforms().add(scale);
         
         String css = Program.class.getResource("RepTheme.css").toExternalForm();
-        scene.getStylesheets().add(css);
+        //scene.getStylesheets().add(css);
         
         // stage.setTitle("Repertoire");
         // stage.getIcons()
@@ -116,7 +116,7 @@ public class Program extends Application  {
         //Testing JSON file for validity
         Dictionary test = new Dictionary();
         try {
-        test.isJsonValid(testFile);
+        test.dataInit(testFile);
         }catch (Exception e)
         {
             System.out.println(e.getMessage());
