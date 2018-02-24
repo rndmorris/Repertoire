@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
@@ -10,36 +9,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Repertoire.MainController">
-   <children>
-      <ImageView fitHeight="450.0" fitWidth="800.0" nodeOrientation="INHERIT" pickOnBounds="true" StackPane.alignment="BOTTOM_CENTER">
-         <StackPane.margin>
-            <Insets />
-         </StackPane.margin>
-         <image>
-            <Image url="@black-background-texture-pattern-light-480x270.jpg" />
-         </image>
-         <effect>
-            <GaussianBlur radius="8.0" />
-         </effect>
-      </ImageView>
-      <AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0">
-         <children>
-            <MenuBar layoutX="284.0" layoutY="56.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <menus>
-                  <Menu mnemonicParsing="false" text="File">
-                     <items>
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Repertoire.MainController">
+    <children>
+        <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
                         <MenuItem mnemonicParsing="false" onAction="#playMenuItem" text="Play" />
                         <MenuItem mnemonicParsing="false" onAction="#deckMenuItem" text="Deck" />
                         <MenuItem mnemonicParsing="false" onAction="#profileMenuItem" text="Profile" />
                         <MenuItem mnemonicParsing="false" onAction="#studyMenuItem" text="Study" />
                         <MenuItem mnemonicParsing="false" onAction="#libraryMenuItem" text="Library" />
                         <MenuItem mnemonicParsing="false" onAction="#settingsMenuItem" text="Settings" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
-            </children>
-      </AnchorPane>
-   </children>
-</StackPane>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Button layoutX="156.0" layoutY="148.0" mnemonicParsing="false" onAction="#testButtonClicked" text="Test" />
+   
+    </children>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+</AnchorPane>
