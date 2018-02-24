@@ -19,9 +19,25 @@ and open the template in the editor.
 }
 */
 
+
+
 .button {
     -fx-font-family: "Arial";
     -fx-font-size: 30px;
     -fx-font-weight: bold;
-    -fx-background-color: lightskyblue;
+    /* -fx-background-color: lightskyblue; */
+    -fx-background-image: url('cardBack.jpg');
+    -fx-background-size: cover, auto;
+    -fx-background-insets: -10,-10;
+
+} 
+#c {
+    -fx-background-image: null ;
+    -fx-background-color: blue ;
+    -fx-background-size: cover;
+}
+
+
+.Rectangle {
+    -fx-background-image: url('cardBack.jpg');
 }

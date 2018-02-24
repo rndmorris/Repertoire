@@ -22,6 +22,8 @@ public class User {
     
     public String accountName;
     public String username;
+    private int unmastCount;
+    private int mastCount = 0;
     
     String randomKey;
     Random random = new Random();
@@ -49,7 +51,7 @@ public class User {
         this.Unmastered = set;
     }
     
-    public Card getRandomKey() {
+    public String getRandomKey() {
        /*   int size = Unmastered.keySet().size();
        System.out.println(size);
        randomKey = Integer.toString(random.nextInt(size));
@@ -59,7 +61,7 @@ public class User {
        
               randomKey = (String) Unmastered.keySet().toArray()
                [new Random().nextInt(Unmastered.keySet().toArray().length)]; //Doesn't Work right
-       return Unmastered.get(randomKey); 
+       return randomKey; 
         
     }
           
@@ -89,5 +91,33 @@ public class User {
      */
     public void setMastered(HashMap<String, Card> Mastered) {
         this.Mastered = Mastered;
+    }
+
+    /**
+     * @return the unmastCount
+     */
+    public int getUnmastCount() {
+        return unmastCount;
+    }
+
+    /**
+     * @param unmastCount the unmastCount to set
+     */
+    public void setUnmastCount(int unmastCount) {
+        this.unmastCount = unmastCount;
+    }
+
+    /**
+     * @return the mastCount
+     */
+    public int getMastCount() {
+        return mastCount;
+    }
+
+    /**
+     * @param mastCount the mastCount to set
+     */
+    public void setMastCount(int mastCount) {
+        this.mastCount = mastCount;
     }
 }

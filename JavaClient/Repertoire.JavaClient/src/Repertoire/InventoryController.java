@@ -6,10 +6,14 @@
 package Repertoire;
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.layout.GridPane;
 
 /**
  * FXML Controller class
@@ -17,8 +21,11 @@ import javafx.fxml.Initializable;
  * @author Tucker
  */
 public class InventoryController implements Initializable, ControlledScreen {
-    
+
     ScreensController myController;
+    static int colCount = 0;
+    static int rowCount = 0;
+    private Insets pad = new Insets(50, 0, 0, 0);
 
     /**
      * Initializes the controller class.
@@ -26,12 +33,40 @@ public class InventoryController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+        update();
+        // Must be run at switching of screens vvvvvvvvvv
+        // Draw All Mastered Cards
+
+    }
+
+    public void update() {
+        colCount = 0;
+        rowCount = 0;
+        for (int i = 0; i < Program.user.getMastCount(); i++) {
+            Group temp;
+            temp = Program.user.getMastered().get(Integer.toString(i)).getCard();
+
+            gridPane.add(temp, colCount % 3, rowCount);
+
+            colCount++;
+            if (colCount % 3 == 0) {
+                rowCount++;
+            }
+            if (Program.user.getMastCount() > 3) {
+                gridPane.setPadding(pad);
+            }
+
+        }
+
+    }
+
     public void setScreenParent(ScreensController screenParent) {
         myController = screenParent;
     }
-    
+
+    @FXML
+    private GridPane gridPane;
+
     @FXML
     void mainMenuItem(ActionEvent event) {
         myController.setScreen(Program.screen1ID);
@@ -61,5 +96,37 @@ public class InventoryController implements Initializable, ControlledScreen {
     void settingsMenuItem(ActionEvent event) {
         myController.setScreen(Program.screen7ID);
     }
-    
+
+    @FXML
+    void testButtonOnAction(ActionEvent event) {
+
+        for (int i = 0; i < Program.user.getMastCount(); i++) {
+            Group temp;
+            temp = Program.user.getMastered().get(Integer.toString(i)).getCard();
+
+            getGridPane().add(temp, colCount % 3, rowCount);
+
+            colCount++;
+            if (colCount % 3 == 0) {
+                rowCount++;
+            }
+
+        }
+
+    }
+
+    /**
+     * @return the gridPane
+     */
+    public GridPane getGridPane() {
+        return gridPane;
+    }
+
+    /**
+     * @param gridPane the gridPane to set
+     */
+    public void setGridPane(GridPane gridPane) {
+        this.gridPane = gridPane;
+    }
+
 }

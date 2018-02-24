@@ -28,11 +28,12 @@ public class ScreensController extends StackPane {
     
     private HashMap<String, Node> screens = new HashMap<>();
     
+    
     public ScreensController() {
         super();
     }
     
-     
+    
     
     //Add the screen to the collection
     public void addScreen(String name, Node screen) {
@@ -95,6 +96,7 @@ public class ScreensController extends StackPane {
                         new KeyFrame(new Duration(2000), new KeyValue(opacity, 1.0)));
                 fadeIn.play();
             }
+            
             return true;
         } else {
             System.out.println("The screen cannot be set because it has not been loaded.");
