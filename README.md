@@ -99,4 +99,3 @@ Use Cases
   - [ ] the user shall be presented with a user-friendly display of the game's settings including:
     - [ ] viewable font
     - [ ] in-game volume
->>>>>>> ReadMe
