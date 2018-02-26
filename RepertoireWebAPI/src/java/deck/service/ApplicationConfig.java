@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package api.service;
+package deck.service;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
@@ -12,7 +12,7 @@ import javax.ws.rs.core.Application;
  *
  * @author rndmorris
  */
-@javax.ws.rs.ApplicationPath("")
+@javax.ws.rs.ApplicationPath("decks")
 public class ApplicationConfig extends Application {
 
     @Override
@@ -29,7 +29,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(api.service.AvailableDecksFacadeREST.class);
+        resources.add(deck.service.AvailableDecksFacadeREST.class);
     }
     
 }

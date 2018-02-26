@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package api.service;
+package deck.service;
 
-import api.AvailableDecks;
+import deck.AvailableDecks;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author rndmorris
  */
 @Stateless
-@Path("availabledecks")
+@Path("available")
 public class AvailableDecksFacadeREST extends AbstractFacade<AvailableDecks> {
 
     @PersistenceContext(unitName = "RepertoireWebAPIPU")

@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package api;
+package deck;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -33,9 +34,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "AvailableDecks.findByDeckName", query = "SELECT a FROM AvailableDecks a WHERE a.deckName = :deckName")
     , @NamedQuery(name = "AvailableDecks.findByCreatedBy", query = "SELECT a FROM AvailableDecks a WHERE a.createdBy = :createdBy")
     , @NamedQuery(name = "AvailableDecks.findByDescription", query = "SELECT a FROM AvailableDecks a WHERE a.description = :description")
-    , @NamedQuery(name = "AvailableDecks.findByDeckVersion", query = "SELECT a FROM AvailableDecks a WHERE a.deckVersion = :deckVersion")
-    , @NamedQuery(name = "AvailableDecks.findByLastUpdated", query = "SELECT a FROM AvailableDecks a WHERE a.lastUpdated = :lastUpdated")
-    , @NamedQuery(name = "AvailableDecks.findByDownloadURL", query = "SELECT a FROM AvailableDecks a WHERE a.downloadURL = :downloadURL")})
+    , @NamedQuery(name = "AvailableDecks.findByDefinitionUpdatedOn", query = "SELECT a FROM AvailableDecks a WHERE a.definitionUpdatedOn = :definitionUpdatedOn")
+    , @NamedQuery(name = "AvailableDecks.findByFileUpdatedOn", query = "SELECT a FROM AvailableDecks a WHERE a.fileUpdatedOn = :fileUpdatedOn")
+    , @NamedQuery(name = "AvailableDecks.findByVersionId", query = "SELECT a FROM AvailableDecks a WHERE a.versionId = :versionId")
+    , @NamedQuery(name = "AvailableDecks.findByLatestVersion", query = "SELECT a FROM AvailableDecks a WHERE a.latestVersion = :latestVersion")})
 public class AvailableDecks implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,14 +57,18 @@ public class AvailableDecks implements Serializable {
     @Size(max = 2048)
     @Column(name = "Description")
     private String description;
-    @Column(name = "DeckVersion")
-    private Integer deckVersion;
-    @Column(name = "LastUpdated")
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "DefinitionUpdatedOn")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdated;
-    @Size(max = 255)
-    @Column(name = "DownloadURL")
-    private String downloadURL;
+    private Date definitionUpdatedOn;
+    @Column(name = "FileUpdatedOn")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fileUpdatedOn;
+    @Column(name = "VersionId")
+    private BigInteger versionId;
+    @Column(name = "LatestVersion")
+    private Integer latestVersion;
 
     public AvailableDecks() {
     }
@@ -99,28 +105,36 @@ public class AvailableDecks implements Serializable {
         this.description = description;
     }
 
-    public Integer getDeckVersion() {
-        return deckVersion;
+    public Date getDefinitionUpdatedOn() {
+        return definitionUpdatedOn;
     }
 
-    public void setDeckVersion(Integer deckVersion) {
-        this.deckVersion = deckVersion;
+    public void setDefinitionUpdatedOn(Date definitionUpdatedOn) {
+        this.definitionUpdatedOn = definitionUpdatedOn;
     }
 
-    public Date getLastUpdated() {
-        return lastUpdated;
+    public Date getFileUpdatedOn() {
+        return fileUpdatedOn;
     }
 
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
+    public void setFileUpdatedOn(Date fileUpdatedOn) {
+        this.fileUpdatedOn = fileUpdatedOn;
     }
 
-    public String getDownloadURL() {
-        return downloadURL;
+    public BigInteger getVersionId() {
+        return versionId;
     }
 
-    public void setDownloadURL(String downloadURL) {
-        this.downloadURL = downloadURL;
+    public void setVersionId(BigInteger versionId) {
+        this.versionId = versionId;
+    }
+
+    public Integer getLatestVersion() {
+        return latestVersion;
+    }
+
+    public void setLatestVersion(Integer latestVersion) {
+        this.latestVersion = latestVersion;
     }
     
 }
