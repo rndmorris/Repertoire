@@ -20,3 +20,5 @@ CALL rprtr_DeckVersion_AddNew(2,1);
 CALL rprtr_DeckVersion_AddNew(2,1);
 CALL rprtr_DeckVersion_AddNew(2,1);
 CALL rprtr_DeckVersion_AddNew(3,1);
+
+UPDATE DeckDefinition SET Description = 'An example deck';

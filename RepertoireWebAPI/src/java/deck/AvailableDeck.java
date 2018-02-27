@@ -26,19 +26,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author rndmorris
  */
 @Entity
-@Table(name = "AvailableDecks")
+@Table(name = "AvailableDeck")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "AvailableDecks.findAll", query = "SELECT a FROM AvailableDecks a")
-    , @NamedQuery(name = "AvailableDecks.findByDeckId", query = "SELECT a FROM AvailableDecks a WHERE a.deckId = :deckId")
-    , @NamedQuery(name = "AvailableDecks.findByDeckName", query = "SELECT a FROM AvailableDecks a WHERE a.deckName = :deckName")
-    , @NamedQuery(name = "AvailableDecks.findByCreatedBy", query = "SELECT a FROM AvailableDecks a WHERE a.createdBy = :createdBy")
-    , @NamedQuery(name = "AvailableDecks.findByDescription", query = "SELECT a FROM AvailableDecks a WHERE a.description = :description")
-    , @NamedQuery(name = "AvailableDecks.findByDefinitionUpdatedOn", query = "SELECT a FROM AvailableDecks a WHERE a.definitionUpdatedOn = :definitionUpdatedOn")
-    , @NamedQuery(name = "AvailableDecks.findByFileUpdatedOn", query = "SELECT a FROM AvailableDecks a WHERE a.fileUpdatedOn = :fileUpdatedOn")
-    , @NamedQuery(name = "AvailableDecks.findByVersionId", query = "SELECT a FROM AvailableDecks a WHERE a.versionId = :versionId")
-    , @NamedQuery(name = "AvailableDecks.findByLatestVersion", query = "SELECT a FROM AvailableDecks a WHERE a.latestVersion = :latestVersion")})
-public class AvailableDecks implements Serializable {
+    @NamedQuery(name = "AvailableDeck.findAll", query = "SELECT a FROM AvailableDeck a")
+    , @NamedQuery(name = "AvailableDeck.findByDeckId", query = "SELECT a FROM AvailableDeck a WHERE a.deckId = :deckId")
+    , @NamedQuery(name = "AvailableDeck.findByDeckName", query = "SELECT a FROM AvailableDeck a WHERE a.deckName = :deckName")
+    , @NamedQuery(name = "AvailableDeck.findByCreatedBy", query = "SELECT a FROM AvailableDeck a WHERE a.createdBy = :createdBy")
+    , @NamedQuery(name = "AvailableDeck.findByDescription", query = "SELECT a FROM AvailableDeck a WHERE a.description = :description")
+    , @NamedQuery(name = "AvailableDeck.findByDefinitionUpdatedOn", query = "SELECT a FROM AvailableDeck a WHERE a.definitionUpdatedOn = :definitionUpdatedOn")
+    , @NamedQuery(name = "AvailableDeck.findByFileUpdatedOn", query = "SELECT a FROM AvailableDeck a WHERE a.fileUpdatedOn = :fileUpdatedOn")
+    , @NamedQuery(name = "AvailableDeck.findByVersionId", query = "SELECT a FROM AvailableDeck a WHERE a.versionId = :versionId")
+    , @NamedQuery(name = "AvailableDeck.findByCurrentVersion", query = "SELECT a FROM AvailableDeck a WHERE a.currentVersion = :currentVersion")})
+public class AvailableDeck implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
@@ -67,10 +67,10 @@ public class AvailableDecks implements Serializable {
     private Date fileUpdatedOn;
     @Column(name = "VersionId")
     private BigInteger versionId;
-    @Column(name = "LatestVersion")
-    private Integer latestVersion;
+    @Column(name = "CurrentVersion")
+    private Integer currentVersion;
 
-    public AvailableDecks() {
+    public AvailableDeck() {
     }
 
     public long getDeckId() {
@@ -129,12 +129,12 @@ public class AvailableDecks implements Serializable {
         this.versionId = versionId;
     }
 
-    public Integer getLatestVersion() {
-        return latestVersion;
+    public Integer getCurrentVersion() {
+        return currentVersion;
     }
 
-    public void setLatestVersion(Integer latestVersion) {
-        this.latestVersion = latestVersion;
+    public void setCurrentVersion(Integer currentVersion) {
+        this.currentVersion = currentVersion;
     }
     
 }

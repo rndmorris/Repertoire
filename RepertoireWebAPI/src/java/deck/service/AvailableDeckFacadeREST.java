@@ -5,7 +5,7 @@
  */
 package deck.service;
 
-import deck.AvailableDecks;
+import deck.AvailableDeck;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -26,26 +26,26 @@ import javax.ws.rs.core.MediaType;
  */
 @Stateless
 @Path("available")
-public class AvailableDecksFacadeREST extends AbstractFacade<AvailableDecks> {
+public class AvailableDeckFacadeREST extends AbstractFacade<AvailableDeck> {
 
     @PersistenceContext(unitName = "RepertoireWebAPIPU")
     private EntityManager em;
 
-    public AvailableDecksFacadeREST() {
-        super(AvailableDecks.class);
+    public AvailableDeckFacadeREST() {
+        super(AvailableDeck.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(AvailableDecks entity) {
+    public void create(AvailableDeck entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") String id, AvailableDecks entity) {
+    public void edit(@PathParam("id") String id, AvailableDeck entity) {
         super.edit(entity);
     }
 
@@ -58,21 +58,21 @@ public class AvailableDecksFacadeREST extends AbstractFacade<AvailableDecks> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public AvailableDecks find(@PathParam("id") String id) {
+    public AvailableDeck find(@PathParam("id") String id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<AvailableDecks> findAll() {
+    public List<AvailableDeck> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<AvailableDecks> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<AvailableDeck> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

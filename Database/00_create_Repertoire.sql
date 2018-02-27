@@ -42,10 +42,8 @@ ALTER TABLE DeckDefinition
 	ADD CONSTRAINT fk_ModifiedByUserId FOREIGN KEY (ModifiedByUserId) REFERENCES User(Id);
 ALTER TABLE DeckDefinition
 	ADD CONSTRAINT fk_VisibilitySettingId FOREIGN KEY (VisibilitySettingId) REFERENCES VisibilitySetting(Id);
-ALTER TABLE DeckDefinition 
-	ADD CONSTRAINT fk_DeckVersionId FOREIGN KEY (DeckVersionId) REFERENCES DeckVersion(Id);
 
-SELECT '' AS 'Creating view LatestDeckVersions';
+SELECT '' AS 'Creating view LatestDeckVersion';
 CREATE VIEW Repertoire.LatestDeckVersion AS
 	SELECT	 DeckDefinitionId
 			,Id
@@ -54,8 +52,8 @@ CREATE VIEW Repertoire.LatestDeckVersion AS
 	FROM DeckVersion
 	GROUP BY DeckDefinitionId;
 
-SELECT '' AS 'Creating view AvailableDecks';
-CREATE VIEW Repertoire.AvailableDecks AS
+SELECT '' AS 'Creating view AvailableDeck';
+CREATE VIEW Repertoire.AvailableDeck AS
 	SELECT	 def.Id AS 'DeckId'
 			,def.DisplayName AS 'DeckName'
 			,u.UserName AS 'CreatedBy'
@@ -63,7 +61,7 @@ CREATE VIEW Repertoire.AvailableDecks AS
 			,def.ModifiedOn AS 'DefinitionUpdatedOn'
 			,ver.ModifiedOn AS 'FileUpdatedOn'
 			,ver.Id AS 'VersionId'
-			,ver.Version AS 'LatestVersion'
+			,ver.Version AS 'CurrentVersion'
 	FROM DeckDefinition AS def
 	LEFT JOIN (User AS u) ON (def.OwnerUserId = u.Id)
 	LEFT JOIN (LatestDeckVersion AS ver) ON (def.Id = ver.DeckDefinitionId)
