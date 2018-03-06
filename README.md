@@ -46,12 +46,12 @@
     - Trigger: The user decided to log into the application
     - Precondition1: The user has created a profile
     - Basic Flow: This scenario outlines the login process state if the user has an existing profile
-	1: The user chooses to use the application
-	2: As the cursor defaults to the Username field, the user enters their username in the Username field
-	3: The user moves the cursor to the Password field via the mouse or the Tab key
-	4: The user enters their password in the Password field via the keyboard
-	5: The Password field is enabled to enter the password via the Enter key.  Alternately, the user can click on the OK button
-	6: The user is logged into the application
+	1. The user chooses to use the application
+	2. As the cursor defaults to the Username field, the user enters their username in the Username field
+	3. The user moves the cursor to the Password field via the mouse or the Tab key
+	4. The user enters their password in the Password field via the keyboard
+	5. The Password field is enabled to enter the password via the Enter key.  Alternately, the user can click on the OK button
+	6. The user is logged into the application
     - Termination Outcome: The user is taken to the main menu screen.
 
     - Alternative Flow 2a: The user elects to create a profile.
@@ -63,26 +63,26 @@
     - Alternative Flow 2d: The user clicks on the Cancel button.
 
     - Alternative Flow 6a: The user's username is incorrect.  This scenario outlines the steps in the event that the user enters their username incorrectly.
-	6a1: The user is presented with a pop-up window containing a message that the username is incorrect
-	6a2: The user acknowledges the message by clicking on an OK button
-	6a3: The Username and Password fields are cleared by the application
-	6a4: The user enters the login information
-	6a5: The user clicks on the OK button or uses the Enter key to have the application reassess their credentials
-	6a6: The user is logged into the application
+	1. 6a1: The user is presented with a pop-up window containing a message that the username is incorrect
+	1. 6a2: The user acknowledges the message by clicking on an OK button
+	1. 6a3: The Username and Password fields are cleared by the application
+	1. 6a4: The user enters the login information
+	1. 6a5: The user clicks on the OK button or uses the Enter key to have the application reassess their credentials
+	1. 6a6: The user is logged into the application
     - Termination Outcome: The user is taken to the main menu screen.
 
     - Alternative Flow 6b: The user's password is incorrect.  This scenario outlines the steps in the event that the user enters their password incorrectly once.
-	6b1a: The user is presented with a pop-up window containing a message that the password is incorrect and they have two attempts remaining to enter it correctly before the password must be reset.
-	6b1b: The user acknowledges the message by clicking on an OK button
-	6b1c: The Username and Password fields are cleared by the application
-	6b1d: The user enters the login information
-	6b1e: The user clicks on the OK button or uses the Enter key to have the application reassess their credentials
-	6b1f: The user is logged into the application
+	1. 6b1a: The user is presented with a pop-up window containing a message that the password is incorrect and they have two attempts remaining to enter it correctly before the password must be reset.
+	1. 6b1b: The user acknowledges the message by clicking on an OK button
+	1. 6b1c: The Username and Password fields are cleared by the application
+	1. 6b1d: The user enters the login information
+	1. 6b1e: The user clicks on the OK button or uses the Enter key to have the application reassess their credentials
+	1. 6b1f: The user is logged into the application
     - Termination Outcome: The user is taken to the main menu screen.
 
     - Alternative Flow 6b2: The user's password is entered incorrectly twice.
-	6b2a: The user is presented with a pop-up window containing a message that the password is incorrect and they have one attempt remaining to enter it correctly before the password must be reset.
-	6b2b: 
+	1. 6b2a: The user is presented with a pop-up window containing a message that the password is incorrect and they have one attempt remaining to enter it correctly before the password must be reset.
+	1. 6b2b: 
 
     - Alternative Flow 6b3: The user's password is entered incorrectly three times.
 
@@ -110,27 +110,27 @@
     - Precondition2: The user has loaded a deck
     - Precondition3: There is at least one unmastered card in the deck
     - Basic Flow: This scenario outlines normal game state flow with at least one unmastered card in the unmastered deck
-        1: The user chooses to play the game via the menu
-        2: The user draws a card by clicking on the unmastered deck
-        3: The user enters an answer
-        4: The user's answer is correct
-        5: The mastery bar is incremented
-        6: The user selects another card
+        1. The user chooses to play the game via the menu
+        2. The user draws a card by clicking on the unmastered deck
+        3. The user enters an answer
+        4. The user's answer is correct
+        5. The mastery bar is incremented
+        6. The user selects another card
     - Termination Outcome: The deck is mastered
 
     - Alternative Flow 4a: The user's answer is incorrect.  This scenario outlines the steps in the event that the user does not correctly identify the card.
-        4a1: The mastery bar is cleared
-        4a2: The card is returned to the unmastered deck
+        1. 4a1: The mastery bar is cleared
+        1. 4a2: The card is returned to the unmastered deck
     - Termination Outcome: The user proceeds by selecting a card from the unmastered deck
 
     - Alternative Flow 5a: After incrementing, the mastery bar is full.  This scenario outlines the steps in the event that the user has mastered an unmastered card.
-        5a1: The card is moved to the mastered deck
+        1. 5a1: The card is moved to the mastered deck
     - Termination Outcome: The user proceeds by selecting a card from the unmastered deck
      
     - Alternative Flow 6a: There are no more unmastered cards in the unmastered deck.
-        6a1: There are no more cards in the unmastered deck
-        6a2: The application provides a summary report (?)
-        6a3: The user is returned to the main menu
+        1. 6a1: There are no more cards in the unmastered deck
+        1. 6a2: The application provides a summary report (?)
+        1. 6a3: The user is returned to the main menu
     - Termination Outcome: The user mastered the entire deck
 
     - Post condition: No cards remain in the unmastered deck
@@ -147,10 +147,10 @@
     - Precondition1: The user has created a profile
     - Precondition2: The user has loaded a deck
     - Basic Flow: This scenario outlines normal study state flow
-        1: The user chooses to study via the menu
-        2: The user browses the cards in a grid-type view
-        3: The user zooms in on a card by clicking on it
-        4: The user returns to the grid-type view by clicking on the card a second time
+        1. The user chooses to study via the menu
+        2. The user browses the cards in a grid-type view
+        3. The user zooms in on a card by clicking on it
+        4. The user returns to the grid-type view by clicking on the card a second time
     - Termination Outcome: The user decides to exit the study state by clicking on the menu
 
     - Post condition: The study state does not change.
@@ -167,18 +167,18 @@
     - Precondition2: The user has loaded a deck
     - Precondition3: The user has mastered at least one card from the loaded deck
     - Basic Flow: This scenario outline the normal inventory flow
-        1: The user chooses to examine their inventory via the menu
-        2: The user is presented with their mastered cards fanned out from left to right
-	3: The user can scroll through the cards (_mouse wheel? arrow key? - djs)
-	4: The user can zoom in on a card by clicking on it
-	5: The user returns to the fanned card view by clicking on the selected card again
-	6: The user can scroll through the cards
-        7: The user selects another card
+        1. The user chooses to examine their inventory via the menu
+        2. The user is presented with their mastered cards fanned out from left to right
+	3. The user can scroll through the cards (_mouse wheel? arrow key? - djs)
+	4. The user can zoom in on a card by clicking on it
+	5. The user returns to the fanned card view by clicking on the selected card again
+	6. The user can scroll through the cards
+        7. The user selects another card
     - Termination Outcome: The user decides to exit the inventory state by clicking on the menu.
 
     - Alternative Flow 1a: The user does not have a mastered card in the loaded deck.  This scenario outlines the steps in the event that they do not have a single mastered card in their inventory.
-	1a1: The user chooses to examine their inventory via the menu
-	1a2: The user is returned to the main menu
+	1. 1a1: The user chooses to examine their inventory via the menu
+	1. 1a2: The user is returned to the main menu
     - Termination Outcome: The inventory state requires at least one mastered card to enable the user to choose it.
 
     - Post condition: The inventory state does not change.
