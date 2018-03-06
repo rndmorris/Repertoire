@@ -276,7 +276,7 @@ public class GameController implements Initializable, ControlledScreen {
                 diffValues.get(i).setVisible(false);
             }
 
-            errorLabel.setText("You Idiot!");
+            errorLabel.setText("Incorrect!");
             errorLabel.setVisible(true);
 
             temp = null;

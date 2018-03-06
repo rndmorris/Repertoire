@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.GridPane;
 
 /**
  * FXML Controller class
@@ -31,6 +32,9 @@ public class LibraryController implements Initializable, ControlledScreen {
     public void setScreenParent(ScreensController screenParent) {
         myController = screenParent;
     }
+    
+        @FXML
+    private GridPane gridPane;
     
     @FXML
     void mainMenuItem(ActionEvent event) {
