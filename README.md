@@ -1,7 +1,7 @@
 # Repertoire
 ## A Digital Flashcard Learning Tool
 
-###Work Assignments
+### Work Assignments
 - Aaron
   - Database
   - Web-API
@@ -15,7 +15,7 @@
   - General Java client
   - Design
 
-###Target Audience
+### Target Audience
 - [ ] As a language learning support tool
   - With its pre-loaded libraries of language cards, Repertoire serves as an intuitive, enjoyable approach to reinforcement language instruction.  With a study mode - where the user can study virtual flash cards to help with memorizing non-phonetic ideograms - and a game mode - where the user can work on learning ideograms through a flash card game - users are empowered to choose how they learn a second, or subsequent, language.
 
@@ -26,13 +26,13 @@
     - For the advanced math student: create a derivative rules deck to help memorize how to take those pesky derivatives depending on the expressions being evaluated
     - For the nursing student: create an anatomy deck to help commit assorted organs and bones to memory
 
-###Feature List
+### Feature List
 - [ ] The application's feature include:
     - a game mode to work on subject mastery
     - a study mode to review your subject at your pace
     - customizable dictionaries, you can study any subject, any time
 
-###Use Cases
+### Use Cases
 
 - [ ] **Login Screen State**
   - user shall be able to enter their username and password to access the application
