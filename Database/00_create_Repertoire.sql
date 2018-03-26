@@ -1,7 +1,3 @@
-SELECT '' AS 'Creating database';
-CREATE DATABASE Repertoire;
-USE Repertoire;
-
 SELECT '' AS 'Creating tables';
 CREATE TABLE User (
 	 Id BIGINT NOT NULL AUTO_INCREMENT
@@ -47,10 +43,10 @@ SELECT '' AS 'Creating view LatestDeckVersion';
 CREATE VIEW Repertoire.LatestDeckVersion AS
 	SELECT	 DeckDefinitionId
 			,Id
-			,MAX(Version) AS 'Version'
+			,Version
 			,ModifiedOn
-	FROM DeckVersion
-	GROUP BY DeckDefinitionId;
+	FROM DeckVersion ver1
+	WHERE ver1.Version = (SELECT MAX(Version) FROM DeckVersion ver2 WHERE ver1.DeckDefinitionId = ver2.DeckDefinitionId);
 
 SELECT '' AS 'Creating view AvailableDeck';
 CREATE VIEW Repertoire.AvailableDeck AS
@@ -62,7 +58,7 @@ CREATE VIEW Repertoire.AvailableDeck AS
 			,ver.ModifiedOn AS 'FileUpdatedOn'
 			,ver.Id AS 'VersionId'
 			,ver.Version AS 'CurrentVersion'
-	FROM DeckDefinition AS def
+	FROM LatestDeckVersion AS ver
+	LEFT JOIN (DeckDefinition AS def) ON (def.Id = ver.DeckDefinitionId)
 	LEFT JOIN (User AS u) ON (def.OwnerUserId = u.Id)
-	LEFT JOIN (LatestDeckVersion AS ver) ON (def.Id = ver.DeckDefinitionId)
 	WHERE def.VisibilitySettingId = 0;

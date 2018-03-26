@@ -1,4 +1,3 @@
-USE Repertoire;
 DELIMITER //
 CREATE PROCEDURE rprtr_DeckVersion_AddNew
 (

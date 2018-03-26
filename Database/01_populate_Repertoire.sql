@@ -1,5 +1,3 @@
-use Repertoire;
-
 SELECT '' AS 'Populating User';
 INSERT INTO User VALUES
 (1,'AdminTeam');
