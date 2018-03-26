@@ -17,6 +17,8 @@ import org.json.simple.JSONObject;
  */
 public class User {
     
+    private ArrayList<Dictionary> libraries = new ArrayList<>();
+    
     private HashMap<String, Card> Unmastered = new HashMap<>();
     private HashMap<String, Card> Mastered = new HashMap<>();
     

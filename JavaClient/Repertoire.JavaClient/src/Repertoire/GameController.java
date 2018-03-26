@@ -5,6 +5,7 @@
  */
 package Repertoire;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -14,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Sphere;
@@ -177,7 +180,13 @@ public class GameController implements Initializable, ControlledScreen {
 
     @FXML
     void unmastDeckClicked(ActionEvent event) {
+        
+        String cardClick = "240776__f4ngy__card-flip.wav";
 
+        Media cardFlip = new Media(new File(cardClick).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(cardFlip);
+        mediaPlayer.play(); 
+                
         try {
 
             randomKey = Program.user.getRandomKey();
@@ -267,7 +276,7 @@ public class GameController implements Initializable, ControlledScreen {
                 diffValues.get(i).setVisible(false);
             }
 
-            errorLabel.setText("You Idiot!");
+            errorLabel.setText("Incorrect!");
             errorLabel.setVisible(true);
 
             temp = null;

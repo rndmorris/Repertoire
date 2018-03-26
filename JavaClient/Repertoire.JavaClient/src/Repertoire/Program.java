@@ -47,6 +47,10 @@ public class Program extends Application  {
     public static String screen6File = "Library.fxml";
     public static String screen7ID = "Settings";
     public static String screen7File = "Settings.fxml";
+    public static String screen8ID = "SignIn";
+    public static String screen8File = "SignIn.fxml";
+    public static String screen9ID = "Register";
+    public static String screen9File = "Register.fxml";
     
     final int initHeight = 450;
     final int initWidth = 800;
@@ -72,8 +76,11 @@ public class Program extends Application  {
         mainContainer.loadScreen(screen5ID, screen5File);
         mainContainer.loadScreen(screen6ID, screen6File);
         mainContainer.loadScreen(screen7ID, screen7File);
+        mainContainer.loadScreen(screen8ID, screen8File);
+        mainContainer.loadScreen(screen9ID, screen9File);
         
-        mainContainer.setScreen(screen1ID);
+        
+        mainContainer.setScreen(screen8ID);
         
         Pane root = new Pane();     //was GroupLayout
         root.getChildren().addAll(mainContainer);

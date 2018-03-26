@@ -12,53 +12,48 @@
 
 <AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Repertoire.MainController">
     <children>
-        <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <menus>
-                <Menu mnemonicParsing="false" text="File">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#playMenuItem" text="Play" />
-                        <MenuItem mnemonicParsing="false" onAction="#deckMenuItem" text="Deck" />
-                        <MenuItem mnemonicParsing="false" onAction="#profileMenuItem" text="Profile" />
-                        <MenuItem mnemonicParsing="false" onAction="#studyMenuItem" text="Study" />
-                        <MenuItem mnemonicParsing="false" onAction="#libraryMenuItem" text="Library" />
-                        <MenuItem mnemonicParsing="false" onAction="#settingsMenuItem" text="Settings" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
-        <Button layoutX="21.0" layoutY="406.0" mnemonicParsing="false" onAction="#testButtonClicked" prefHeight="20.0" prefWidth="120.0" text="Test">
+        <Button fx:id="exitClicked" layoutX="21.0" layoutY="406.0" mnemonicParsing="false" onAction="#exitClicked" prefHeight="20.0" prefWidth="120.0" text="Exit">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Label layoutX="231.0" layoutY="51.0" text="Repertoire">
+      <Label layoutX="231.0" text="Repertoire">
          <font>
             <Font size="73.0" />
          </font>
       </Label>
-      <Button layoutX="21.0" layoutY="326.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="120.0" text="Library">
+      <Button layoutX="21.0" layoutY="326.0" mnemonicParsing="false" onAction="#libraryClicked" prefHeight="20.0" prefWidth="120.0" text="Library">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="21.0" layoutY="366.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="120.0" text="Settings">
+      <Button layoutX="21.0" layoutY="366.0" mnemonicParsing="false" onAction="#settingsClicked" prefHeight="20.0" prefWidth="120.0" text="Settings">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="21.0" layoutY="146.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="120.0" text="Master">
+      <Button layoutX="21.0" layoutY="146.0" mnemonicParsing="false" onAction="#masterClicked" prefHeight="20.0" prefWidth="120.0" text="Master">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="21.0" layoutY="236.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="120.0" text="Deck">
+      <Button layoutX="21.0" layoutY="236.0" mnemonicParsing="false" onAction="#deckClicked" prefHeight="20.0" prefWidth="120.0" text="Deck">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="21.0" layoutY="196.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="120.0" text="Profile">
+      <Button layoutX="21.0" layoutY="196.0" mnemonicParsing="false" onAction="#profileClicked" prefHeight="20.0" prefWidth="120.0" text="Profile">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="21.0" layoutY="276.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="120.0" text="Study">
+      <Button layoutX="21.0" layoutY="276.0" mnemonicParsing="false" onAction="#studyClicked" prefHeight="20.0" prefWidth="120.0" text="Study">
          <font>
             <Font size="14.0" />
          </font></Button>
+      <Button fx:id="fullButton" layoutX="761.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fullscreenClicked" prefHeight="25.0" prefWidth="25.0">
+         <graphic>
+            <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@expand.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    
     </children>
     <opaqueInsets>
