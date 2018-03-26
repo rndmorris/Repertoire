@@ -5,6 +5,7 @@
  */
 package Repertoire;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
@@ -16,7 +17,7 @@ import javafx.scene.shape.Rectangle;
  *
  * @author Tucker
  */
-public class Card {
+public class Card implements Serializable{
 
     
     

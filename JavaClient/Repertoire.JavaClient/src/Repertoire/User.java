@@ -5,6 +5,7 @@
  */
 package Repertoire;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,26 @@ import org.json.simple.JSONObject;
  *
  * @author Tucker
  */
-public class User {
+public class User implements Serializable {
+    
+    private List<String> filesDone, filesToDo;
+    private String currentlyProcessingFile;
+    private ProcessState currentProcessState;
+    
+   //File to serialize object to
+    static String fileName = "applicationState.ser";
+    
+    enum ProcessState {
+        READ_DONE,
+        PROCESSING_STARTED,
+        PROCESSING_ENDED,
+        ANOTHER_STATE;
+        
+    }
+    
+    public String getFileName() {
+        return fileName;
+    }
     
     private ArrayList<Dictionary> libraries = new ArrayList<>();
     

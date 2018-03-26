@@ -6,6 +6,7 @@
 package Repertoire;
 
 import com.sun.glass.ui.Application;
+import java.io.FileOutputStream;
 
 import javafx.event.ActionEvent;
 import java.net.URL;
@@ -17,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.apache.commons.lang.SerializationUtils;
 
 /**
  * FXML Controller class
@@ -48,6 +50,23 @@ public class MainController implements Initializable, ControlledScreen {
     
     @FXML
     void exitClicked(ActionEvent event) {
+        
+        
+        try {
+            
+            
+            
+            String fileName = Program.user.getFileName();
+            
+            //New file output stream for the file
+            FileOutputStream fos = new FileOutputStream(fileName);
+            
+            //Serialize String
+           SerializationUtils.serialize(Program.user, fos);
+            fos.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         System.exit(0);
     }
 

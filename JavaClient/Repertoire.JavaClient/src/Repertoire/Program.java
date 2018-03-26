@@ -5,6 +5,8 @@
  */
 package Repertoire;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ResourceBundle.Control;
 import javafx.application.Application;
@@ -20,6 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import org.apache.commons.lang.SerializationUtils;
 //import org.json.JSONArray;
 //import org.json.JSONException;
 import org.json.simple.parser.ParseException;
@@ -63,6 +66,23 @@ public class Program extends Application  {
     
     @Override
     public void start(Stage stage) {
+        
+        try {
+            //Open FileInputStream to the file
+            FileInputStream fis = new FileInputStream(User.fileName);
+            
+            //Deserialize and cast into String
+            user =  (User)SerializationUtils.deserialize(fis);
+            
+            System.out.println(user.getMastCount());
+            fis.close();
+          
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("First Time User!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
         ScreensController mainContainer = new ScreensController();
         mainContainer.setPrefHeight(initHeight);

@@ -43,7 +43,7 @@ public class Dictionary {
     public boolean dataInit(String name) {
 
         JSONParser parser = new JSONParser();
-        HashMap<String, Card> set = new HashMap<>();
+        HashMap<String, Card> set = new HashMap<>(); //unmastered 
         int count = 0;
         try {
 
@@ -66,7 +66,10 @@ public class Dictionary {
                 int difficulty = convertDifficulty(category);
 
                 Card c = new Card(character, difficulty, readingOne, readingTwo, meaning);
+                
+                //add to an unmastered deck
                 set.put(Integer.toString(count), c);
+                
                 data.add(c);
 
                 System.out.println(difficulty + " " + character + " " + readingOne + " "
@@ -85,7 +88,8 @@ public class Dictionary {
             System.out.println(e.getMessage());
 
         }
-
+        
+        //set user unmastered deck to newly initialized unmastered deck
         Program.user.setUnmastered(set);
 
         return true;
