@@ -1,4 +1,4 @@
-SELECT '' AS 'Populating User';
+SELECT '' AS 'Populating Internal User';
 INSERT INTO User VALUES
 (1,'AdminTeam');
 

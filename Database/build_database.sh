@@ -17,3 +17,5 @@ mysql --database=Repertoire --execute="source $SCRIPT_DIRECTORY/sprocs/rprtr_Ava
 echo "Loading test data";
 mysql --database=Repertoire --execute="source $SCRIPT_DIRECTORY/01_populate_Repertoire.sql;"
 
+echo "Creating SQL Users"
+mysql --database=Repertoire --execute="source $SCRIPT_DIRECTORY/02_create_users.sql;";

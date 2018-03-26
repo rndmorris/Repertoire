@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package RepertoireWebAPI.Sql;
+package Repertoire.Shared.Sql;
 
 import Repertoire.Shared.EntityLists.AvailableDeckList;
 import Repertoire.Shared.Mapping.Sql.AvailableDeckSqlMapper;
@@ -14,7 +14,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.xml.bind.JAXBException;
-import org.w3c.dom.Document;
 
 /**
  *
@@ -22,18 +21,10 @@ import org.w3c.dom.Document;
  */
 public class RepertoireDB extends MysqlDataSource{
     
-    public static void main(String[] args) throws SQLException, JAXBException
+    @Override
+    public Connection getConnection()throws SQLException
     {
-        RepertoireDB db = new RepertoireDB();
-        Connection conn = db.getConnection("rndmorris", "");
-        PreparedStatement statement = conn.prepareStatement("select * from AvailableDeck;",new String[]{});
-        statement.executeQuery();
-        ResultSet results = statement.getResultSet();
-        
-        AvailableDeckList list = new AvailableDeckSqlMapper().MapEntityListFromResultSet(results);
-        String xml = new AvailableDeckXmlMapper().stringFromEntityList(list);
-        System.out.print(xml);
-        boolean t = true;
+        return super.getConnection(TempConstants.USERNAME,TempConstants.PASSWORD);
     }
     
     public RepertoireDB()
