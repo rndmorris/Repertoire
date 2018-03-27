@@ -1,33 +1,33 @@
 --	
 --	
 --	
-CREATE FUNCTION rprtr_AvailableDeck_select
+CREATE FUNCTION rprtr_AvailableDictionary_select
 (
 )
 RETURNS TABLE (
-	 DeckId BIGINT
-	,DeckName TEXT
+	 DictionaryId BIGINT
+	,DictionaryName TEXT
 	,CreatedBy TEXT
 	,Description TEXT
 	,DefinitionUpdatedOn TIMESTAMP WITH TIME ZONE
 	,FileUpdatedOn TIMESTAMP WITH TIME ZONE
 	,VersionId BIGINT
-	,CurrentDeckVersion INTEGER
+	,CurrentDictionaryVersion INTEGER
 )
 AS $$
 BEGIN
 	RETURN QUERY
-	SELECT	 def.Id AS DeckId
-			,def.DisplayName AS DeckName
+	SELECT	 def.Id AS DictionaryId
+			,def.DisplayName AS DictionaryName
 			,u.UserName AS CreatedBy
 			,def.Description AS Description
 			,def.ModifiedOn AS DefinitionUpdatedOn
 			,ver.ModifiedOn AS FileUpdatedOn
 			,ver.Id AS VersionId
-			,ver.DeckVersion AS CurrentDeckVersion
-	FROM DeckDefinition AS def
+			,ver.DictionaryVersion AS CurrentDictionaryVersion
+	FROM DictionaryDefinition AS def
 	LEFT JOIN RepUser u ON def.OwnerRepUserId = u.Id
-	LEFT JOIN LatestDeckVersion ver ON def.Id = ver.DeckDefinitionId
+	LEFT JOIN LatestDictionaryVersion ver ON def.Id = ver.DictionaryDefinitionId
 	WHERE def.VisibilitySettingId = 0;
 END;
 $$ LANGUAGE plpgsql;

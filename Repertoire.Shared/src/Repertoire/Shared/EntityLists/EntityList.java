@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
  */
 @XmlAccessorType(XmlAccessType.NONE)
 public abstract class EntityList<EntityType extends Entity>{
-    private List<EntityType> contents = null;
+    protected List<EntityType> contents = null;
     public EntityList()
     {
         this(new ArrayList<EntityType>());
@@ -27,11 +27,8 @@ public abstract class EntityList<EntityType extends Entity>{
     {
         setContents(contents);
     }
-    public List<EntityType> getContents()
-    {
-        return contents;
-    }
-    public void setContents(List<EntityType> value)
+    public abstract List<EntityType> getContents();
+    public final void setContents(List<EntityType> value)
     {
         if (value == null)
         {
@@ -39,6 +36,4 @@ public abstract class EntityList<EntityType extends Entity>{
         }
         contents = value;
     }
-    
-    public abstract Class getEntityListClass();
 }

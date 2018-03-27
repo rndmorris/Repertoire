@@ -5,15 +5,7 @@
  */
 package Repertoire.Shared.Sql;
 
-import Repertoire.Shared.EntityLists.AvailableDeckList;
-import Repertoire.Shared.Mapping.Sql.AvailableDeckSqlMapper;
-import Repertoire.Shared.Mapping.Xml.AvailableDeckXmlMapper;
-import java.sql.PreparedStatement;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.xml.bind.JAXBException;
 
 /**
  *
@@ -21,16 +13,8 @@ import javax.xml.bind.JAXBException;
  */
 public class RepertoireDB extends MysqlDataSource{
     
-    @Override
-    public Connection getConnection()throws SQLException
+    public RepertoireDB(String url)
     {
-        return super.getConnection(TempConstants.USERNAME,TempConstants.PASSWORD);
+        this.setURL(url);
     }
-    
-    public RepertoireDB()
-    {
-        this.setURL("jdbc:mysql://localhost:3306/Repertoire");
-        this.setDatabaseName("Repertoire");
-    }
-    
 }

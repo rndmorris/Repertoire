@@ -21,11 +21,9 @@ import java.util.List;
  * @author rndmorris
  */
 public class SqlHelper {
-    public static ResultSet CallStoredProcedure(String sprocName, List<SqlParameter> parameters)
+    public static ResultSet CallStoredProcedure(Connection useConnection, String sprocName, List<SqlParameter> parameters)
             throws SQLException, UnsupportedOperationException
     {
-        RepertoireDB db = new RepertoireDB();
-        Connection conn = db.getConnection();
         StringBuilder sb = new StringBuilder();
         sb.append("call ").append(sprocName).append('(');
         for (SqlParameter param : parameters) {
@@ -33,7 +31,7 @@ public class SqlHelper {
             sb.append(',');
         }
         sb.replace(sb.length()-1, sb.length(), ");");
-        PreparedStatement statement = conn.prepareStatement(sb.toString());
+        PreparedStatement statement = useConnection.prepareStatement(sb.toString());
         PopulatePreparedStatement(statement,parameters);
         
         statement.execute();
@@ -82,7 +80,7 @@ public class SqlHelper {
                     statement.setString(index, (String)val);
                     break;
                 default:
-                    throw new UnsupportedOperationException(param.getType().name() + "NOT SUPPORTED");
+                    throw new UnsupportedOperationException(param.getType().name() + "NOT YET SUPPORTED");
             }
         }
     }

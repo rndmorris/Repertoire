@@ -1,6 +1,6 @@
 \connect repertoire
 
-CREATE FUNCTIOn rprtr_DeckDefinition_AddNew
+CREATE FUNCTIOn rprtr_DictionaryDefinition_AddNew
 (
 	 p_DisplayName TEXT
 	,p_OwnerRepUserId BIGINT
@@ -11,7 +11,7 @@ RETURNS void AS $$
 DECLARE
 	p_currtime TIMESTAMP WITH TIME ZONE := current_timestamp;
 BEGIN
-	INSERT INTO DeckDefinition
+	INSERT INTO DictionaryDefinition
 	(
 		 CreatedOn
 		,DisplayName

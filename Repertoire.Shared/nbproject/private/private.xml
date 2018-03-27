@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/rndmorris/GitRepos/Repertoire/Repertoire.Shared/src/Repertoire/Shared/Mapping/Xml/XmlMapper.java</file>
-            <file>file:/home/rndmorris/GitRepos/Repertoire/Repertoire.Shared/src/Repertoire/Shared/Entities/AvailableDeck.java</file>
-            <file>file:/home/rndmorris/GitRepos/Repertoire/Repertoire.Shared/src/Repertoire/Shared/Mapping/Xml/Adapters/TimestampToDateAdapter.java</file>
-            <file>file:/home/rndmorris/GitRepos/Repertoire/Repertoire.Shared/src/Repertoire/Shared/Mapping/Xml/AvailableDeckXmlMapper.java</file>
-            <file>file:/home/rndmorris/GitRepos/Repertoire/Repertoire.Shared/src/Repertoire/Shared/EntityLists/EntityList.java</file>
-            <file>file:/home/rndmorris/GitRepos/Repertoire/Repertoire.Shared/src/Repertoire/Shared/Entities/Entity.java</file>
+            <file>file:/home/rndmorris/GitRepos/Repertoire/Repertoire.Shared/src/Repertoire/Shared/Sql/RepertoireDB.java</file>
+            <file>file:/home/rndmorris/GitRepos/Repertoire/Repertoire.Shared/src/Repertoire/Shared/EntityLists/AvailableDictionaryList.java</file>
         </group>
     </open-files>
 </project-private>

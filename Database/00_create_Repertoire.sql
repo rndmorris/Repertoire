@@ -10,7 +10,7 @@ CREATE TABLE VisibilitySetting (
 	,Description VARCHAR(256) DEFAULT NULL
 	,PRIMARY KEY (Id)
 );
-CREATE TABLE DeckDefinition (
+CREATE TABLE DictionaryDefinition (
 	 Id BIGINT NOT NULL AUTO_INCREMENT
 	,CreatedOn TIMESTAMP NOT NULL
 	,DisplayName VARCHAR(256) NOT NULL
@@ -21,9 +21,9 @@ CREATE TABLE DeckDefinition (
 	,ModifiedByUserId BIGINT NOT NULL
 	,PRIMARY KEY (Id)
 );
-CREATE TABLE DeckVersion (
+CREATE TABLE DictionaryVersion (
 	 Id BIGINT NOT NULL AUTO_INCREMENT
-	,DeckDefinitionId BIGINT NOT NULL
+	,DictionaryDefinitionId BIGINT NOT NULL
 	,FilePath VARCHAR(255)
 	,Version INT NOT NULL
 	,ModifiedOn TIMESTAMP NOT NULL
@@ -32,33 +32,33 @@ CREATE TABLE DeckVersion (
 );
 
 SELECT '' AS 'Creating foreign keys';
-ALTER TABLE DeckDefinition 
+ALTER TABLE DictionaryDefinition 
 	ADD CONSTRAINT fk_OwnerUserId FOREIGN KEY (OwnerUserId) REFERENCES User(Id);
-ALTER TABLE DeckDefinition
+ALTER TABLE DictionaryDefinition
 	ADD CONSTRAINT fk_ModifiedByUserId FOREIGN KEY (ModifiedByUserId) REFERENCES User(Id);
-ALTER TABLE DeckDefinition
+ALTER TABLE DictionaryDefinition
 	ADD CONSTRAINT fk_VisibilitySettingId FOREIGN KEY (VisibilitySettingId) REFERENCES VisibilitySetting(Id);
 
-SELECT '' AS 'Creating view LatestDeckVersion';
-CREATE VIEW Repertoire.LatestDeckVersion AS
-	SELECT	 DeckDefinitionId
+SELECT '' AS 'Creating view LatestDictionaryVersion';
+CREATE VIEW Repertoire.LatestDictionaryVersion AS
+	SELECT	 DictionaryDefinitionId
 			,Id
 			,Version
 			,ModifiedOn
-	FROM DeckVersion ver1
-	WHERE ver1.Version = (SELECT MAX(Version) FROM DeckVersion ver2 WHERE ver1.DeckDefinitionId = ver2.DeckDefinitionId);
+	FROM DictionaryVersion ver1
+	WHERE ver1.Version = (SELECT MAX(Version) FROM DictionaryVersion ver2 WHERE ver1.DictionaryDefinitionId = ver2.DictionaryDefinitionId);
 
-SELECT '' AS 'Creating view AvailableDeck';
-CREATE VIEW Repertoire.AvailableDeck AS
-	SELECT	 def.Id AS 'DeckId'
-			,def.DisplayName AS 'DeckName'
+SELECT '' AS 'Creating view AvailableDictionary';
+CREATE VIEW Repertoire.AvailableDictionary AS
+	SELECT	 def.Id AS 'DictionaryId'
+			,def.DisplayName AS 'DictionaryName'
 			,u.UserName AS 'CreatedBy'
 			,def.Description AS 'Description'
 			,def.ModifiedOn AS 'DefinitionUpdatedOn'
 			,ver.ModifiedOn AS 'FileUpdatedOn'
 			,ver.Id AS 'VersionId'
 			,ver.Version AS 'CurrentVersion'
-	FROM LatestDeckVersion AS ver
-	LEFT JOIN (DeckDefinition AS def) ON (def.Id = ver.DeckDefinitionId)
+	FROM LatestDictionaryVersion AS ver
+	LEFT JOIN (DictionaryDefinition AS def) ON (def.Id = ver.DictionaryDefinitionId)
 	LEFT JOIN (User AS u) ON (def.OwnerUserId = u.Id)
 	WHERE def.VisibilitySettingId = 0;

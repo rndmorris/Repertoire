@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Repertoire.StudyController">
+    <children>
+<MenuBar layoutX="284.0" layoutY="56.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+  <menus>
+    <Menu mnemonicParsing="false" text="File">
+      <items>
+        <MenuItem mnemonicParsing="false" onAction="#mainMenuItem" text="Main" />
+            <MenuItem mnemonicParsing="false" onAction="#gameMenuItem" text="Play" />
+            <MenuItem mnemonicParsing="false" onAction="#deckMenuItem" text="Deck" />
+            <MenuItem mnemonicParsing="false" onAction="#profileMenuItem" text="Profile" />
+            <MenuItem mnemonicParsing="false" onAction="#libraryMenuItem" text="Library" />
+            <MenuItem mnemonicParsing="false" onAction="#settingsMenuItem" text="Settings" />
+      </items>
+    </Menu>
+  </menus>
+</MenuBar>
+      <TableView fx:id="tableView" layoutX="119.0" layoutY="99.0" prefHeight="232.0" prefWidth="609.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+        <columns>
+          <TableColumn fx:id="charColumn" prefWidth="65.0" text="Character" />
+          <TableColumn fx:id="readOneColumn" prefWidth="150.0" text="Onyomi" />
+            <TableColumn fx:id="readTwoColumn" minWidth="0.0" prefWidth="150.0" text="Kunyomi" />
+            <TableColumn fx:id="meanColumn" minWidth="0.0" prefWidth="250.0" text="Meaning" />
+        </columns>
+      </TableView>
+</children>
+</AnchorPane>
