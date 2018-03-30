@@ -74,12 +74,6 @@ public class User implements Serializable {
     }
     
     public String getRandomKey() {
-       /*   int size = Unmastered.keySet().size();
-       System.out.println(size);
-       randomKey = Integer.toString(random.nextInt(size));
-       System.out.println(randomKey);
-       System.out.println(Unmastered.toString());
-       return Unmastered.get(randomKey);    */
        
               randomKey = (String) Unmastered.keySet().toArray()
                [new Random().nextInt(Unmastered.keySet().toArray().length)]; //Doesn't Work right

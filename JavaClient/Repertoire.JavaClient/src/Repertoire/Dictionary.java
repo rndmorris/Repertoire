@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import javafx.collections.FXCollections;
@@ -44,6 +45,7 @@ public class Dictionary {
 
         JSONParser parser = new JSONParser();
         HashMap<String, Card> set = new HashMap<>(); //unmastered 
+        ArrayList cards = new ArrayList();
         int count = 0;
         try {
 
@@ -71,6 +73,7 @@ public class Dictionary {
                 set.put(Integer.toString(count), c);
                 
                 data.add(c);
+                cards.add(c); // needs to be deck instead of full dictionary
 
                 System.out.println(difficulty + " " + character + " " + readingOne + " "
                         + readingTwo + " " + meaning);
@@ -89,8 +92,11 @@ public class Dictionary {
 
         }
         
-        //set user unmastered deck to newly initialized unmastered deck
+        //set user unmastered deck to newly initialized dictionary
         Program.user.setUnmastered(set);
+        
+        //set working game deck to newly initialized dictionary (should be a deck)
+        GameController.deck = cards;
 
         return true;
 
