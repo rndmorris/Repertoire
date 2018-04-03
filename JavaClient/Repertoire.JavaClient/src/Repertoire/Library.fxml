@@ -27,16 +27,12 @@
       </MenuBar>
       <ScrollPane layoutX="109.0" layoutY="127.0" prefHeight="231.0" prefViewportHeight="189.0" prefViewportWidth="549.0" prefWidth="565.0">
          <content>
-            <GridPane fx:id="gridPane" layoutX="109.0" layoutY="127.0" prefHeight="163.0" prefWidth="549.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-            </GridPane>
+            <VBox />
          </content>
       </ScrollPane>
+      <Button fx:id="searchBtn" layoutX="109.0" layoutY="88.0" mnemonicParsing="false" onAction="#doDictionarySearch" text="Search" textAlignment="CENTER" />
+      <ChoiceBox fx:id="pageSizeBox" layoutX="185.0" layoutY="88.0" prefHeight="25.0" prefWidth="53.0" />
+      <TextField fx:id="dictionaryNameField" layoutX="254.0" layoutY="88.0" promptText="Dictionary Name..." />
+      <TextField fx:id="authorNameField" layoutX="451.0" layoutY="88.0" promptText="Published By..." />
    </children>
 </AnchorPane>

@@ -10,6 +10,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -20,15 +23,25 @@ import javafx.scene.layout.GridPane;
 public class LibraryController implements Initializable, ControlledScreen {
 
     ScreensController myController;
+    @FXML
+    Button searchBtn;
+    @FXML
+    ChoiceBox pageSizeBox;
+    @FXML
+    TextField dictionaryNameField;
+    @FXML
+    TextField authorNameField;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        pageSizeBox = new ChoiceBox();
+        pageSizeBox.getItems().addAll("10","25","50","100");
     }   
     
+    @Override
     public void setScreenParent(ScreensController screenParent) {
         myController = screenParent;
     }
