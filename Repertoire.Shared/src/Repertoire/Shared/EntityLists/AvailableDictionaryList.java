@@ -6,6 +6,7 @@
 package Repertoire.Shared.EntityLists;
 
 import Repertoire.Shared.Entities.AvailableDictionary;
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -25,8 +26,8 @@ public class AvailableDictionaryList extends EntityList<AvailableDictionary>{
      */
     @XmlElement(name="availableDictionary")
     @Override
-    public List<AvailableDictionary> getContents()
+    protected List<AvailableDictionary> getContents()
     {
-        return contents;
+        return (List<AvailableDictionary>)this;
     }
 }

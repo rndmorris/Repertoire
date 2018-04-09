@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import Repertoire.Shared.Sql.SqlParameter;
 import Repertoire.Shared.Sql.SqlHelper;
 import Repertoire.Shared.Sql.SqlType;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -117,7 +119,7 @@ public class AvailableDictionaryServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private List<SqlParameter> BuildSqlParameters(HttpServletRequest request)
+    private List<SqlParameter> BuildSqlParameters(HttpServletRequest request) throws UnsupportedEncodingException
     {
         List<SqlParameter> returnList = new ArrayList<>();
         String paramValue;
@@ -143,14 +145,14 @@ public class AvailableDictionaryServlet extends HttpServlet {
         returnList.add(new SqlParameter
         (
                  SqlType.VARCHAR
-                ,(paramValue != null ? paramValue : "")
+                ,(paramValue != null ? URLDecoder.decode(paramValue,"UTF-8") : "")
                 ,3
         ));
         paramValue = request.getParameter("CreatorSearchTerm");
         returnList.add(new SqlParameter
         (
                  SqlType.VARCHAR
-                ,(paramValue != null ? paramValue : "")
+                ,(paramValue != null ? URLDecoder.decode(paramValue,"UTF-8") : "")
                 ,4
         ));
         

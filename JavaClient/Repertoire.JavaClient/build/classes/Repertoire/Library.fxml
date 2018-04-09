@@ -27,12 +27,12 @@
       </MenuBar>
       <ScrollPane layoutX="109.0" layoutY="127.0" prefHeight="231.0" prefViewportHeight="189.0" prefViewportWidth="549.0" prefWidth="565.0">
          <content>
-            <VBox />
+            <VBox fx:id="entryBox" />
          </content>
       </ScrollPane>
-      <Button fx:id="searchBtn" layoutX="109.0" layoutY="88.0" mnemonicParsing="false" onAction="#doDictionarySearch" text="Search" textAlignment="CENTER" />
       <ChoiceBox fx:id="pageSizeBox" layoutX="185.0" layoutY="88.0" prefHeight="25.0" prefWidth="53.0" />
       <TextField fx:id="dictionaryNameField" layoutX="254.0" layoutY="88.0" promptText="Dictionary Name..." />
       <TextField fx:id="authorNameField" layoutX="451.0" layoutY="88.0" promptText="Published By..." />
+      <Button fx:id="searchBtn" layoutX="109.0" layoutY="88.0" mnemonicParsing="false" onAction="#searchBtnPressed" text="Search" textAlignment="CENTER" />
    </children>
 </AnchorPane>

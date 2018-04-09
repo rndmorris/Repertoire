@@ -7,6 +7,7 @@ package Repertoire.Shared.EntityLists;
 
 import Repertoire.Shared.Entities.Entity;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,23 +18,28 @@ import javax.xml.bind.annotation.XmlAccessorType;
  * @param <EntityType>
  */
 @XmlAccessorType(XmlAccessType.NONE)
-public abstract class EntityList<EntityType extends Entity>{
-    protected List<EntityType> contents = null;
-    public EntityList()
+public abstract class EntityList<EntityType extends Entity> extends ArrayList<EntityType>{
+    protected abstract List<EntityType> getContents();
+    public void replaceAndAppendRange(int startIndex, Iterable<EntityType> replaceFrom)
     {
-        this(new ArrayList<EntityType>());
-    }
-    public EntityList(List<EntityType> contents)
-    {
-        setContents(contents);
-    }
-    public abstract List<EntityType> getContents();
-    public final void setContents(List<EntityType> value)
-    {
-        if (value == null)
+        if (0 > startIndex || startIndex > size())
         {
-            throw new IllegalArgumentException("parameter \"value\" cannot be null.");
+            throw new IllegalArgumentException();
         }
-        contents = value;
+        Iterator<EntityType> iter = replaceFrom.iterator();
+        EntityType nextEntity;
+        while ((nextEntity = iter.next()) != null)
+        {
+            if (size() <= startIndex)
+            {
+                add(nextEntity);
+            }
+            else
+            {
+                this.set(startIndex, nextEntity);
+            }
+            
+            startIndex++;
+        }
     }
 }

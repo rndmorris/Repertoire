@@ -22,7 +22,6 @@ public class AvailableDictionarySqlMapper implements ISqlMapper<AvailableDiction
     public AvailableDictionaryList MapEntityListFromResultSet(ResultSet rs) throws SQLException
     {
         AvailableDictionaryList list = new AvailableDictionaryList();
-        List<AvailableDictionary> availableDictionaries = new ArrayList<>();
         
         while (rs.next())
         {
@@ -38,10 +37,8 @@ public class AvailableDictionarySqlMapper implements ISqlMapper<AvailableDiction
             row.setDictionaryId(rs.getLong("DictionaryId"));
             row.setVersionId(rs.getLong("VersionId"));
             
-            availableDictionaries.add(row);
+            list.add(row);
         }
-        
-        list.setContents(availableDictionaries);
         
         return list;
     }    
