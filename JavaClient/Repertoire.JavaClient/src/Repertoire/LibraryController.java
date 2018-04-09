@@ -8,17 +8,11 @@ package Repertoire;
 import Repertoire.Shared.Entities.AvailableDictionary;
 import Repertoire.Shared.EntityLists.AvailableDictionaryList;
 import Repertoire.Shared.Mapping.Xml.AvailableDictionaryXmlMapper;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,7 +26,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Path;
 import javax.xml.bind.JAXBException;
 
 /**
