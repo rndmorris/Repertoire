@@ -45,6 +45,7 @@ public class GameController implements Initializable, ControlledScreen {
     private ArrayList<Button> btns = new ArrayList<>();
     private Stack<Card> cardsToGuess = new Stack<>();
     private int correct;
+    private MediaPlayer mediaPlayer;
     
 
     /**
@@ -81,6 +82,10 @@ public class GameController implements Initializable, ControlledScreen {
        btn21.setVisible(false);
        btn30.setVisible(false);
        btn31.setVisible(false);
+       
+       String cardClick = "240776__f4ngy__card-flip.wav";
+       Media cardFlip = new Media(new File(cardClick).toURI().toString());
+       mediaPlayer = new MediaPlayer(cardFlip);
        
       
         
@@ -215,17 +220,20 @@ public class GameController implements Initializable, ControlledScreen {
     void mastDeckClicked(ActionEvent event) {
 
         //Refresh Screen
+        myController.refreshScreen(Program.screen3ID, Program.screen3File);
+        /*
         myController.unloadScreen(Program.screen3ID);
         myController.loadScreen(Program.screen3ID, Program.screen3File);
-
+        */
         //Set Screen
         myController.setScreen(Program.screen3ID);
+        
     }
 
     @FXML
     void unmastDeckClicked(ActionEvent event) {
         
-        String cardClick = "240776__f4ngy__card-flip.wav";
+        
         
         Random rand = new Random();
         variableIndex = rand.nextInt(4);
@@ -233,8 +241,6 @@ public class GameController implements Initializable, ControlledScreen {
         correct = rand.nextInt(6);
         
 
-        Media cardFlip = new Media(new File(cardClick).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(cardFlip);
         mediaPlayer.play(); 
                 
         try {

@@ -92,11 +92,14 @@ public class Dictionary {
 
         }
         
+        if (Program.newUser) {
         //set user unmastered deck to newly initialized dictionary
+        
         Program.user.setUnmastered(set);
         
         //set working game deck to newly initialized dictionary (should be a deck)
         GameController.deck = cards;
+        }
 
         return true;
 

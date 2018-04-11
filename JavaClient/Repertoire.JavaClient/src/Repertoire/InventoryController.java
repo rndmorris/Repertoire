@@ -47,6 +47,7 @@ public class InventoryController implements Initializable, ControlledScreen {
             temp = Program.user.getMastered().get(Integer.toString(i)).getCard();
 
             gridPane.add(temp, colCount % 3, rowCount);
+            System.out.println(Program.user.getMastCount());
 
             colCount++;
             if (colCount % 3 == 0) {

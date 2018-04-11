@@ -23,7 +23,7 @@ public class User implements Serializable {
     private ProcessState currentProcessState;
     
    //File to serialize object to
-    static String fileName = "applicationState.ser";
+    private String userFileName;/* = "applicationState.ser"; */
     
     enum ProcessState {
         READ_DONE,
@@ -33,16 +33,13 @@ public class User implements Serializable {
         
     }
     
-    public String getFileName() {
-        return fileName;
-    }
     
     private ArrayList<Dictionary> libraries = new ArrayList<>();
     
     private HashMap<String, Card> Unmastered = new HashMap<>();
     private HashMap<String, Card> Mastered = new HashMap<>();
     
-    public String accountName;
+    public String id;
     public String username;
     private int unmastCount;
     private int mastCount = 0;
@@ -55,18 +52,30 @@ public class User implements Serializable {
         
     }
     
-    public User(String name, String username) {
-        this.accountName = name;
+    public User(String username, String id) {
+        this.id = id;
         this.username = username;
+        setFileName();
+        System.out.println(userFileName);
+        
+        
     }
     
     public User(String name, String username, HashMap<String, Card> set) {
-        this.accountName = name;
+        this.id = name;
         this.username = username;
         this.Unmastered = set;
     }
     
 
+    public void setFileName() {
+        userFileName = username + ".ser";
+    }
+    
+    public String getFileName() {
+        return userFileName;
+    }
+   
     
     
     public void initNewLib(HashMap<String, Card> set) {

@@ -54,6 +54,7 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button layoutX="657.0" layoutY="146.0" mnemonicParsing="false" onAction="#onLoadData" text="LoadData" />
    
     </children>
     <opaqueInsets>
