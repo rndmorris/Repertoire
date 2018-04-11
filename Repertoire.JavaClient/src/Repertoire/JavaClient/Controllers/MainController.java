@@ -94,72 +94,73 @@ public class MainController implements Initializable, ControlledScreen {
 
     @FXML
     void libraryClicked(ActionEvent event) {
-        myController.setScreen(Program.screen6ID);
+        myController.setScreen("Library");
     }
 
     @FXML
     void settingsClicked(ActionEvent event) {
-        myController.setScreen(Program.screen7ID);
+        myController.setScreen("Settings");
     }
 
     @FXML
     void masterClicked(ActionEvent event) {
-        myController.setScreen(Program.screen2ID);
+        myController.setScreen("Game");
     }
 
     @FXML
     void deckClicked(ActionEvent event) {
-        myController.refreshScreen(Program.screen3ID, Program.screen3File);
-        myController.setScreen(Program.screen3ID);
+        myController.refreshScreen("Inventory", myController.getScreenMap().get("Inventory"));
+        myController.setScreen("Inventory");
     }
 
     @FXML
     void profileClicked(ActionEvent event) {
-        myController.setScreen(Program.screen4ID);
+        myController.setScreen("Profile");
     }
 
     @FXML
     void studyClicked(ActionEvent event) {
-        myController.setScreen(Program.screen5ID);
+        myController.setScreen("Study");
     }
     
     //note to remove redundant menu buttons below later
     
         @FXML
     void playMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen2ID);
+        myController.setScreen("Game");
     }
 
     @FXML
     void deckMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen3ID);
+        myController.setScreen("Inventory");
     }
 
     @FXML
     void profileMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen4ID);
+        myController.setScreen("Profile");
     }
 
     @FXML
     void studyMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen5ID);
+        myController.setScreen("Study");
     }
 
     @FXML
     void libraryMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen6ID);
+        myController.setScreen("Library");
     }
 
     @FXML
     void settingsMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen7ID);
+        myController.setScreen("Settings");
     }
     
         @FXML
     void onLoadData(ActionEvent event) {
         Dictionary test = new Dictionary();
+        URL testFile = getClass().getResource("/assets/testdata/testDictionary.json");
         try {
-        test.dataInit(Program.testFile);
+        test.dataInit(testFile);
         }catch (Exception e)
         {
             System.out.println(e.getMessage());

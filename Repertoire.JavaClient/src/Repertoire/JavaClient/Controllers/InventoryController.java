@@ -71,32 +71,32 @@ public class InventoryController implements Initializable, ControlledScreen {
 
     @FXML
     void mainMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen1ID);
+        myController.setScreen("Main");
     }
 
     @FXML
     void gameMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen2ID);
+        myController.setScreen("Game");
     }
 
     @FXML
     void profileMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen4ID);
+        myController.setScreen("Profile");
     }
 
     @FXML
     void studyMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen5ID);
+        myController.setScreen("Study");
     }
 
     @FXML
     void libraryMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen6ID);
+        myController.setScreen("Library");
     }
 
     @FXML
     void settingsMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen7ID);
+        myController.setScreen("Settings");
     }
 
     @FXML

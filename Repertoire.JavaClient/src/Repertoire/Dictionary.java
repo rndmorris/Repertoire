@@ -10,6 +10,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -42,7 +44,7 @@ public class Dictionary {
 
     }
 
-    public boolean dataInit(String name) {
+    public boolean dataInit(URL name) {
 
         JSONParser parser = new JSONParser();
         HashMap<String, Card> set = new HashMap<>(); //unmastered 
@@ -50,7 +52,7 @@ public class Dictionary {
         int count = 0;
         try {
 
-            JSONObject object = (JSONObject) parser.parse(new FileReader(name));
+            JSONObject object = (JSONObject) parser.parse(new InputStreamReader(name.openStream()));
 
             JSONArray array = (JSONArray) object.get("kanji");
 

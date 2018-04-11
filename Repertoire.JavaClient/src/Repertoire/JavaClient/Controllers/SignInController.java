@@ -78,7 +78,7 @@ public class SignInController implements Initializable, ControlledScreen{
     
     @FXML
     void createAccountClicked(ActionEvent event) {
-        myController.setScreen(Program.screen9ID);
+        myController.setScreen("Register");
     }
 
     @FXML
@@ -87,7 +87,7 @@ public class SignInController implements Initializable, ControlledScreen{
         if(authenticatePassword()) {
         System.out.println("tester");
         loadAccount(accountToLoad);
-        myController.setScreen(Program.screen1ID);
+        myController.setScreen("Main");
         System.out.println("tester");
         }
         else {

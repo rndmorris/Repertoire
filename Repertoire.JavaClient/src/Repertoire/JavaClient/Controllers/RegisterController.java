@@ -74,7 +74,7 @@ public class RegisterController implements Initializable, ControlledScreen {
             
         }
             
-        myController.setScreen(Program.screen1ID);
+        myController.setScreen("Main");
     }
     
     public boolean checkUsername() {

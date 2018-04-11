@@ -14,6 +14,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.LoadException;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
@@ -28,11 +29,40 @@ public class ScreensController extends StackPane {
     
     private HashMap<String, Node> screens = new HashMap<>();
     
+    public HashMap<String,String> screenMap = new HashMap<>();
+    public HashMap<String,String> getScreenMap() {
+        return screenMap;
+    }
     
     public ScreensController() {
         super();
+        buildScreenMap();
+        registerScreens();
     }
-    
+    private void buildScreenMap()
+    {
+        String FXMLRoot = "/Repertoire/JavaClient/FXMLs/";
+        screenMap.put("Main",FXMLRoot+"Main.fxml");
+        screenMap.put("Game",FXMLRoot+"Game.fxml");
+        screenMap.put("Inventory",FXMLRoot+"Inventory.fxml");
+        screenMap.put("Profile",FXMLRoot+"Profile.fxml");
+        screenMap.put("Study",FXMLRoot+"Study.fxml");
+        screenMap.put("Library",FXMLRoot+"Library.fxml");
+        screenMap.put("Settings",FXMLRoot+"Settings.fxml");
+        screenMap.put("SignIn",FXMLRoot+"SignIn.fxml");
+        screenMap.put("Register",FXMLRoot+"Register.fxml");
+    }
+    private void registerScreens() {
+        loadScreen("Main",screenMap.get("Main"));
+        loadScreen("Game",screenMap.get("Game"));
+        loadScreen("Inventory",screenMap.get("Inventory"));
+        loadScreen("Profile",screenMap.get("Profile"));
+        loadScreen("Study",screenMap.get("Study"));
+        loadScreen("Library",screenMap.get("Library"));
+        loadScreen("Settings",screenMap.get("Settings"));
+        loadScreen("SignIn",screenMap.get("SignIn"));
+        loadScreen("Register",screenMap.get("Register"));
+    }
     
     
     //Add the screen to the collection
@@ -50,9 +80,16 @@ public class ScreensController extends StackPane {
     public boolean loadScreen(String name, String resource) {
         
         try{
-            
             FXMLLoader screenLoader = new FXMLLoader(getClass().getResource(resource));
-            Parent loadScreen = (Parent) screenLoader.load();
+            Parent loadScreen = null;
+            try {
+                loadScreen = (Parent) screenLoader.load();
+            }
+            catch (LoadException | IllegalStateException e)
+            {
+                boolean t = true;
+            }
+            
             ControlledScreen screenController = ((ControlledScreen) screenLoader.getController());
             screenController.setScreenParent(this);
             addScreen(name, loadScreen);

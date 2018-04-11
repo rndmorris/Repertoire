@@ -8,11 +8,14 @@ package Repertoire.JavaClient.Controllers;
 import Repertoire.Card;
 import Repertoire.Program;
 import java.io.File;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,6 +27,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Sphere;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -85,8 +89,13 @@ public class GameController implements Initializable, ControlledScreen {
        btn30.setVisible(false);
        btn31.setVisible(false);
        
-       String cardClick = "240776__f4ngy__card-flip.wav";
-       Media cardFlip = new Media(new File(cardClick).toURI().toString());
+       URL cardClick = getClass().getResource("/assets/audio/240776__f4ngy__card-flip.wav");
+       Media cardFlip = null;
+        try {
+            cardFlip = new Media(cardClick.toURI().toString());
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+        }
        mediaPlayer = new MediaPlayer(cardFlip);
        
       
@@ -190,45 +199,45 @@ public class GameController implements Initializable, ControlledScreen {
 
     @FXML
     void mainMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen1ID);
+        myController.setScreen("Main");
     }
 
     @FXML
     void deckMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen3ID);
+        myController.setScreen("Inventory");
     }
 
     @FXML
     void profileMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen4ID);
+        myController.setScreen("Profile");
     }
 
     @FXML
     void studyMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen5ID);
+        myController.setScreen("Study");
     }
 
     @FXML
     void libraryMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen6ID);
+        myController.setScreen("Library");
     }
 
     @FXML
     void settingsMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen7ID);
+        myController.setScreen("Settings");
     }
 
     @FXML
     void mastDeckClicked(ActionEvent event) {
 
         //Refresh Screen
-        myController.refreshScreen(Program.screen3ID, Program.screen3File);
+        myController.refreshScreen("Inventory", myController.getScreenMap().get("Inventory"));
         /*
-        myController.unloadScreen(Program.screen3ID);
-        myController.loadScreen(Program.screen3ID, Program.screen3File);
+        myController.unloadScreen("Inventory");
+        myController.loadScreen("Inventory", Program.screen3File);
         */
         //Set Screen
-        myController.setScreen(Program.screen3ID);
+        myController.setScreen("Inventory");
         
     }
 
@@ -244,9 +253,9 @@ public class GameController implements Initializable, ControlledScreen {
         
 
         mediaPlayer.play(); 
+        mediaPlayer.seek(Duration.ZERO);
                 
-        try {
-            
+                    
             // Set and Display Card
             randomKey = Program.user.getRandomKey();
             temp = Program.user.getUnmastered().get(randomKey);          
@@ -297,15 +306,7 @@ public class GameController implements Initializable, ControlledScreen {
             deck.add(temp);
             
 
-        } catch (IllegalArgumentException e) {
 
-            errorLabel.setText("Out of Cards!");
-            System.out.println(e.getMessage());
-
-        } catch (Exception e) {
-            errorLabel.setText("Error... See terminal for more info");
-            System.out.println(e.getMessage());
-        }
     }
     
     public String variableToTest(Card card) {

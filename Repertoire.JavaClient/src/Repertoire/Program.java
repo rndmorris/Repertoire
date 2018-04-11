@@ -34,32 +34,13 @@ public class Program extends Application  {
     
     
     
-    public static String screen1ID = "Main";
-    public static String screen1File = "Main.fxml";
-    public static String screen2ID = "Game";
-    public static String screen2File = "Game.fxml";
-    public static String screen3ID = "Inventory";
-    public static String screen3File = "Inventory.fxml";
-    public static String screen4ID = "Profile";
-    public static String screen4File = "Profile.fxml";
-    public static String screen5ID = "Study";
-    public static String screen5File = "Study.fxml";
-    public static String screen6ID = "Library";
-    public static String screen6File = "Library.fxml";
-    public static String screen7ID = "Settings";
-    public static String screen7File = "Settings.fxml";
-    public static String screen8ID = "SignIn";
-    public static String screen8File = "SignIn.fxml";
-    public static String screen9ID = "Register";
-    public static String screen9File = "Register.fxml";
+    
+
     
     public static String startScreen = "SignIn";
     
     final int initHeight = 450;
     final int initWidth = 800;
-    
-    //Test file for JSON
-    public static String testFile = "src\\Repertoire\\testDictionary.json";
     
     //Usernames .ser file
     public static String usernamesFile = "usernames.ser";
@@ -80,7 +61,7 @@ public class Program extends Application  {
             user =  (User)SerializationUtils.deserialize(fis);
             
             System.out.println(user.getMastCount());
-            fis.close();
+//            fis.close();
           
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
@@ -93,17 +74,6 @@ public class Program extends Application  {
         ScreensController mainContainer = new ScreensController();
         mainContainer.setPrefHeight(initHeight);
         mainContainer.setPrefWidth(initWidth);
-        
-        
-        mainContainer.loadScreen(screen1ID, screen1File);
-        mainContainer.loadScreen(screen2ID, screen2File);
-        mainContainer.loadScreen(screen3ID, screen3File);
-        mainContainer.loadScreen(screen4ID, screen4File);
-        mainContainer.loadScreen(screen5ID, screen5File);
-        mainContainer.loadScreen(screen6ID, screen6File);
-        mainContainer.loadScreen(screen7ID, screen7File);
-        mainContainer.loadScreen(screen8ID, screen8File);
-        mainContainer.loadScreen(screen9ID, screen9File);
         
         if(newUser)startScreen = "Register";
         System.out.println(startScreen);
@@ -118,7 +88,7 @@ public class Program extends Application  {
         scale.yProperty().bind(root.heightProperty().divide(initHeight));
         root.getTransforms().add(scale);
         
-        String css = Program.class.getResource("RepTheme.css").toExternalForm();
+        String css = Program.class.getResource("/assets/css/RepTheme.css").toExternalForm();
         //scene.getStylesheets().add(css);
         
         // stage.setTitle("Repertoire");
@@ -131,32 +101,16 @@ public class Program extends Application  {
         // Set listener for .setRoot
         scene.rootProperty().addListener(new ChangeListener<Parent>() {
             @Override
-                public void changed(ObservableValue<? extends Parent> arg0, Parent oldValue, Parent newValue){
-                    scene.rootProperty().removeListener(this);
-                    scene.setRoot(root);
-                    ((Region)newValue).setPrefWidth(initWidth);
-                    ((Region)newValue).setPrefHeight(initHeight);
-                    root.getChildren().clear();
-                    root.getChildren().add(newValue);
-                    scene.rootProperty().addListener(this);
-        }
-    });
-        
-        
-      
-        //stage.setFullScreen(true);
-        
-        
-        //Testing JSON file for validity
-       /* Dictionary test = new Dictionary();
-        try {
-        test.dataInit(testFile);
-        }catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
-        System.out.println(System.getProperty("user.dir"));
-        */
+            public void changed(ObservableValue<? extends Parent> arg0, Parent oldValue, Parent newValue){
+                scene.rootProperty().removeListener(this);
+                scene.setRoot(root);
+                ((Region)newValue).setPrefWidth(initWidth);
+                ((Region)newValue).setPrefHeight(initHeight);
+                root.getChildren().clear();
+                root.getChildren().add(newValue);
+                scene.rootProperty().addListener(this);
+            }
+        });
         
     }
 

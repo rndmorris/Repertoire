@@ -34,32 +34,32 @@ public class SettingsController implements Initializable, ControlledScreen {
     
     @FXML
     void mainMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen1ID);
+        myController.setScreen("Main");
     }
 
     @FXML
     void gameMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen2ID);
+        myController.setScreen("Game");
     }
 
     @FXML
     void deckMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen3ID);
+        myController.setScreen("Inventory");
     }
 
     @FXML
     void profileMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen4ID);
+        myController.setScreen("Profile");
     }
 
     @FXML
     void studyMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen5ID);
+        myController.setScreen("Study");
     }
 
     @FXML
     void libraryMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen6ID);
+        myController.setScreen("Library");
     }
     
 }

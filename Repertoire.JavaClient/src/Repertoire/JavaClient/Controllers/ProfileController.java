@@ -6,11 +6,15 @@
 package Repertoire.JavaClient.Controllers;
 
 import Repertoire.Program;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 
 /**
  * FXML Controller class
@@ -35,32 +39,32 @@ public class ProfileController implements Initializable, ControlledScreen {
     
     @FXML
     void mainMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen1ID);
+        myController.setScreen("Main");
     }
 
     @FXML
     void gameMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen2ID);
+        myController.setScreen("Game");
     }
 
     @FXML
     void deckMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen3ID);
+        myController.setScreen("Inventory");
     }
 
     @FXML
     void studyMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen5ID);
+        myController.setScreen("Study");
     }
 
     @FXML
     void libraryMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen6ID);
+        myController.setScreen("Library");
     }
 
     @FXML
     void settingsMenuItem(ActionEvent event) {
-        myController.setScreen(Program.screen7ID);
+        myController.setScreen("Settings");
     }
     
 }
