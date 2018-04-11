@@ -3,10 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/rndmorris/GitRepos/Repertoire/JavaClient/Repertoire.JavaClient/src/Repertoire/testDictionary.json</file>
+            <file>file:/home/rndmorris/GitRepos/Repertoire/JavaClient/Repertoire.JavaClient/src/Repertoire/User.java</file>
+            <file>file:/home/rndmorris/GitRepos/Repertoire/JavaClient/Repertoire.JavaClient/src/Repertoire/LoginScreen.fxml</file>
+            <file>file:/home/rndmorris/GitRepos/Repertoire/JavaClient/Repertoire.JavaClient/src/Repertoire/Game.fxml</file>
             <file>file:/home/rndmorris/GitRepos/Repertoire/JavaClient/Repertoire.JavaClient/src/Repertoire/LibraryController.java</file>
             <file>file:/home/rndmorris/GitRepos/Repertoire/JavaClient/Repertoire.JavaClient/src/Repertoire/Program.java</file>
             <file>file:/home/rndmorris/GitRepos/Repertoire/JavaClient/Repertoire.JavaClient/src/Repertoire/Library.fxml</file>
+            <file>file:/home/rndmorris/GitRepos/Repertoire/JavaClient/Repertoire.JavaClient/src/Repertoire/ControlledScreen.java</file>
+            <file>file:/home/rndmorris/GitRepos/Repertoire/JavaClient/Repertoire.JavaClient/src/Repertoire/Dictionary.java</file>
+            <file>file:/home/rndmorris/GitRepos/Repertoire/JavaClient/Repertoire.JavaClient/src/Repertoire/LoginScreenController.java</file>
             <file>file:/home/rndmorris/GitRepos/Repertoire/JavaClient/Repertoire.JavaClient/src/Repertoire/MainController.java</file>
+            <file>file:/home/rndmorris/GitRepos/Repertoire/JavaClient/Repertoire.JavaClient/src/Repertoire/GameController.java</file>
         </group>
     </open-files>
 </project-private>
