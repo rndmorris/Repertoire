@@ -5,19 +5,14 @@
  */
 package Repertoire;
 
+import Repertoire.JavaClient.Controllers.ScreensController;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ResourceBundle.Control;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.transform.Scale;
@@ -25,7 +20,6 @@ import javafx.stage.Stage;
 import org.apache.commons.lang.SerializationUtils;
 //import org.json.JSONArray;
 //import org.json.JSONException;
-import org.json.simple.parser.ParseException;
 
 /**
  *

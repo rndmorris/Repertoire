@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class UserAccounts implements Serializable{
     
-    String usernames[] = new String[6];
+    public String usernames[] = new String[6];
     int size = 0;
     
     public void UserAccounts(){

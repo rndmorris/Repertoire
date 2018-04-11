@@ -5,6 +5,7 @@
  */
 package Repertoire;
 
+import Repertoire.JavaClient.Controllers.GameController;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

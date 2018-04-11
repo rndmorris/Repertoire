@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Repertoire.JavaClient.Controllers.InventoryController">
+    <children>
+<MenuBar layoutX="284.0" layoutY="56.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+  <menus>
+    <Menu mnemonicParsing="false" text="File">
+      <items>
+        <MenuItem mnemonicParsing="false" onAction="#mainMenuItem" text="Main" />
+            <MenuItem mnemonicParsing="false" onAction="#gameMenuItem" text="Play" />
+            <MenuItem mnemonicParsing="false" onAction="#profileMenuItem" text="Profile" />
+            <MenuItem mnemonicParsing="false" onAction="#studyMenuItem" text="Study" />
+            <MenuItem mnemonicParsing="false" onAction="#libraryMenuItem" text="Library" />
+            <MenuItem mnemonicParsing="false" onAction="#settingsMenuItem" text="Settings" />
+      </items>
+    </Menu>
+  </menus>
+</MenuBar>
+      <ScrollPane layoutX="16.0" layoutY="121.0" prefHeight="285.0" prefViewportHeight="250.0" prefViewportWidth="209.0" prefWidth="727.0">
+         <content>
+            <GridPane fx:id="gridPane" alignment="CENTER" hgap="50.0" layoutX="466.0" layoutY="100.0" minHeight="285.0" minWidth="209.0" prefWidth="725.0" vgap="50.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="200.0" valignment="CENTER" vgrow="ALWAYS" />
+              </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Button layoutX="14.0" layoutY="65.0" mnemonicParsing="false" onAction="#testButtonOnAction" prefHeight="51.0" prefWidth="96.0" text="Test" />
+</children>
+</AnchorPane>
