@@ -6,6 +6,7 @@
 package Repertoire;
 
 import com.sun.glass.ui.Application;
+import java.io.FileOutputStream;
 
 import javafx.event.ActionEvent;
 import java.net.URL;
@@ -17,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.apache.commons.lang.SerializationUtils;
 
 /**
  * FXML Controller class
@@ -48,6 +50,43 @@ public class MainController implements Initializable, ControlledScreen {
     
     @FXML
     void exitClicked(ActionEvent event) {
+        
+        //Save currentUser ,, will have to save at switching between users too
+        try {
+            
+            
+            
+            String fileName = Program.user.getFileName();
+            
+            //New file output stream for the file
+            FileOutputStream fos = new FileOutputStream(fileName);
+            
+            //Serialize String
+           SerializationUtils.serialize(Program.user, fos);
+            fos.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        //Save usernames
+        
+        try {
+            
+            
+            
+            String fileName = Program.usernamesFile;
+            
+            //New file output stream for the file
+            FileOutputStream fos = new FileOutputStream(fileName);
+            
+            //Serialize String
+           SerializationUtils.serialize(Program.accounts, fos);
+            fos.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        
         System.exit(0);
     }
 
@@ -68,6 +107,7 @@ public class MainController implements Initializable, ControlledScreen {
 
     @FXML
     void deckClicked(ActionEvent event) {
+        myController.refreshScreen(Program.screen3ID, Program.screen3File);
         myController.setScreen(Program.screen3ID);
     }
 
@@ -111,6 +151,18 @@ public class MainController implements Initializable, ControlledScreen {
     @FXML
     void settingsMenuItem(ActionEvent event) {
         myController.setScreen(Program.screen7ID);
+    }
+    
+        @FXML
+    void onLoadData(ActionEvent event) {
+        Dictionary test = new Dictionary();
+        try {
+        test.dataInit(Program.testFile);
+        }catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(System.getProperty("user.dir"));
     }
     
     

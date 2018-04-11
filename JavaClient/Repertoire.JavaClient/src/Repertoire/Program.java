@@ -5,6 +5,8 @@
  */
 package Repertoire;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ResourceBundle.Control;
 import javafx.application.Application;
@@ -20,6 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import org.apache.commons.lang.SerializationUtils;
 //import org.json.JSONArray;
 //import org.json.JSONException;
 import org.json.simple.parser.ParseException;
@@ -30,7 +33,11 @@ import org.json.simple.parser.ParseException;
  */
 public class Program extends Application  {
     
-    public static User user = new User("Account1", "Tucker");
+    public static UserAccounts accounts = new UserAccounts();
+    public static boolean newUser = false;
+    
+    public static User user = new User("Username", "ID");
+    
     
     
     public static String screen1ID = "Main";
@@ -52,17 +59,42 @@ public class Program extends Application  {
     public static String screen9ID = "Register";
     public static String screen9File = "Register.fxml";
     
+    public static String startScreen = "SignIn";
+    
     final int initHeight = 450;
     final int initWidth = 800;
     
     //Test file for JSON
-    public String testFile = "src\\Repertoire\\testDictionary.json";
+    public static String testFile = "src\\Repertoire\\testDictionary.json";
+    
+    //Usernames .ser file
+    public static String usernamesFile = "usernames.ser";
     
     
             
     
     @Override
     public void start(Stage stage) {
+        
+        deserialize();
+        /*
+        try {
+            //Open FileInputStream to the file
+            FileInputStream fis = new FileInputStream(User.fileName);
+            
+            //Deserialize and cast into String
+            user =  (User)SerializationUtils.deserialize(fis);
+            
+            System.out.println(user.getMastCount());
+            fis.close();
+          
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("First Time User!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        */
         
         ScreensController mainContainer = new ScreensController();
         mainContainer.setPrefHeight(initHeight);
@@ -79,8 +111,9 @@ public class Program extends Application  {
         mainContainer.loadScreen(screen8ID, screen8File);
         mainContainer.loadScreen(screen9ID, screen9File);
         
-        
-        mainContainer.setScreen(screen8ID);
+        if(newUser)startScreen = "Register";
+        System.out.println(startScreen);
+        mainContainer.setScreen(startScreen);
         
         Pane root = new Pane();     //was GroupLayout
         root.getChildren().addAll(mainContainer);
@@ -121,7 +154,7 @@ public class Program extends Application  {
         
         
         //Testing JSON file for validity
-        Dictionary test = new Dictionary();
+       /* Dictionary test = new Dictionary();
         try {
         test.dataInit(testFile);
         }catch (Exception e)
@@ -129,7 +162,7 @@ public class Program extends Application  {
             System.out.println(e.getMessage());
         }
         System.out.println(System.getProperty("user.dir"));
-        
+        */
         
     }
 
@@ -141,6 +174,32 @@ public class Program extends Application  {
         launch(args);
     }
     
+    
+    public void deserialize() {
+        
+        try {
+            //Open FileInputStream to the file
+            FileInputStream fis = new FileInputStream(usernamesFile);
+            
+            //Deserialize and cast into String
+            accounts =  (UserAccounts)SerializationUtils.deserialize(fis);
+            for (int i = 0; i < 6; i++){
+            System.out.println(accounts.usernames[i]);
+        }
+            fis.close();
+            
+            
+          
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("First Time User!");
+            newUser = true;
+            accounts.setCurrentUser("0");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     
     
     

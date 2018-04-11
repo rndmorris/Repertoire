@@ -59,7 +59,8 @@ public class ScreensController extends StackPane {
             return true;
             
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            //System.out.println(/*ex.getMessage()*/);
+            ex.printStackTrace(System.out);
             return false;
         }
     }
@@ -100,6 +101,7 @@ public class ScreensController extends StackPane {
             return true;
         } else {
             System.out.println("The screen cannot be set because it has not been loaded.");
+            
             return false;
         } 
         }
@@ -112,6 +114,13 @@ public class ScreensController extends StackPane {
         } else {
             return true;
         }
+    }
+    
+    public boolean refreshScreen(String name, String resource) {
+        boolean result = true;
+        if(!unloadScreen(name))result = false;
+        if(!loadScreen(name, resource))result = false;
+        return result;
     }
     
         

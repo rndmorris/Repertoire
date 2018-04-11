@@ -8,7 +8,9 @@ package Repertoire;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.Stack;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,6 +39,14 @@ public class GameController implements Initializable, ControlledScreen {
     private String definition = "Definition";
     private int masterCount;
     private String randomKey;
+    private int variableIndex;
+    public static ArrayList<Card> deck = new ArrayList<>();
+    private int deckSize;
+    private ArrayList<Button> btns = new ArrayList<>();
+    private Stack<Card> cardsToGuess = new Stack<>();
+    private int correct;
+    private MediaPlayer mediaPlayer;
+    
 
     /**
      * Initializes the controller class.
@@ -58,8 +68,47 @@ public class GameController implements Initializable, ControlledScreen {
         meaningLabel.setText(definition);
         readingOneLabel.setText(reading1);
         readingTwoLabel.setText(reading2);
+        
+       btns.add(btn10);
+       btns.add(btn11);
+       btns.add(btn20);
+       btns.add(btn21);
+       btns.add(btn30);
+       btns.add(btn31);
+       
+       btn10.setVisible(false);
+       btn11.setVisible(false);
+       btn20.setVisible(false);
+       btn21.setVisible(false);
+       btn30.setVisible(false);
+       btn31.setVisible(false);
+       
+       String cardClick = "240776__f4ngy__card-flip.wav";
+       Media cardFlip = new Media(new File(cardClick).toURI().toString());
+       mediaPlayer = new MediaPlayer(cardFlip);
+       
+      
+        
 
     }
+    
+    @FXML
+    private Button btn10;
+    
+    @FXML
+    private Button btn11;
+    
+    @FXML
+    private Button btn20;
+    
+    @FXML
+    private Button btn21;
+    
+    @FXML
+    private Button btn30;
+    
+    @FXML
+    private Button btn31;
 
     @FXML
     private Sphere diffSphere1;
@@ -171,26 +220,34 @@ public class GameController implements Initializable, ControlledScreen {
     void mastDeckClicked(ActionEvent event) {
 
         //Refresh Screen
+        myController.refreshScreen(Program.screen3ID, Program.screen3File);
+        /*
         myController.unloadScreen(Program.screen3ID);
         myController.loadScreen(Program.screen3ID, Program.screen3File);
-
+        */
         //Set Screen
         myController.setScreen(Program.screen3ID);
+        
     }
 
     @FXML
     void unmastDeckClicked(ActionEvent event) {
         
-        String cardClick = "240776__f4ngy__card-flip.wav";
+        
+        
+        Random rand = new Random();
+        variableIndex = rand.nextInt(4);
+        System.out.println("variableIndex at top: ------------- " + variableIndex);
+        correct = rand.nextInt(6);
+        
 
-        Media cardFlip = new Media(new File(cardClick).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(cardFlip);
         mediaPlayer.play(); 
                 
         try {
-
+            
+            // Set and Display Card
             randomKey = Program.user.getRandomKey();
-            temp = Program.user.getUnmastered().get(randomKey);
+            temp = Program.user.getUnmastered().get(randomKey);          
 
             character.setText(temp.getCharacter());
             readingOne.setText(temp.getReadingOne());
@@ -213,6 +270,30 @@ public class GameController implements Initializable, ControlledScreen {
             }
 
             displayMastery(temp.getMasteryLevel());
+            
+            //set and display possible answers
+            deck.remove(temp);
+            btns.get(correct).setText(variableToTest(temp));
+            btns.get(correct).setVisible(true);
+            
+            for(int i = 0; i < deck.size(); i++) {
+                System.out.println(i + "    variable: " + variableToTest(deck.get(i)));
+            }
+            System.out.println();
+            
+            
+            for (int i = 0; i < 6; i++) {
+                if (i == correct) continue;
+                Card tempCard = deck.remove(rand.nextInt(deck.size()));
+                cardsToGuess.push(tempCard);
+                btns.get(i).setText(variableToTest(tempCard));
+                btns.get(i).setVisible(true);
+            }
+            
+            deck.addAll(cardsToGuess);
+            cardsToGuess.clear();
+            deck.add(temp);
+            
 
         } catch (IllegalArgumentException e) {
 
@@ -224,7 +305,109 @@ public class GameController implements Initializable, ControlledScreen {
             System.out.println(e.getMessage());
         }
     }
+    
+    public String variableToTest(Card card) {
+        String testVariable = null;
+        
+        switch (variableIndex) {
+            
+            case 0 : 
+                testVariable = card.getCharacter();
+                break;
+            case 1 :
+                testVariable = card.getReadingOne();
+                break;
+            case 2 :
+                testVariable = card.getReadingTwo();
+                break;
+            case 3 :
+                testVariable = card.getMeaning();
+                break;
+                
+    
+    }
+        return testVariable;
+    }
+    
+    public void answerCorrect() {
+        
+        try {
+            temp.setMasteryLevel((masterCount = temp.getMasteryLevel() + 1));
+            if (masterCount == 5) {
+                int cardKey;
+                Program.user.getUnmastered().remove(randomKey);
+                cardKey = Program.user.getMastCount();
+                Program.user.getMastered().put(Integer.toString(cardKey), temp);
+                Program.user.setMastCount(cardKey + 1);
 
+                errorLabel.setText("Card Mastered!");
+                errorLabel.setVisible(true);
+
+            } else {
+
+                errorLabel.setText("Correct!");
+                errorLabel.setVisible(true);
+
+            }
+
+            hideCard();
+
+            for (int i = 0; i < temp.getDifficulty(); i++) {
+                diffValues.get(i).setVisible(false);
+            }
+
+            temp = null;
+
+        } catch (NullPointerException e) {
+            errorLabel.setText("Please draw a card");
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            errorLabel.setText("Error... See terminal for more info");
+            System.out.println(e.getMessage());
+        }
+        
+    }
+    
+    public void answerIncorrect() {
+        
+        try {
+
+            temp.setMasteryLevel(0);
+
+            hideCard();
+
+            for (int i = 0; i < temp.getDifficulty(); i++) {
+                diffValues.get(i).setVisible(false);
+            }
+
+            errorLabel.setText("Incorrect!");
+            errorLabel.setVisible(true);
+
+            temp = null;
+
+        } catch (NullPointerException e) {
+            errorLabel.setText("Please draw a card");
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            errorLabel.setText("Error... See terminal for more info");
+            System.out.println(e.getMessage());
+        }
+        
+    }
+    
+    public void checkAnswer(int guess) {
+        //boolean result = false;
+       // if (guess == correct)result = true;
+        if (btns.get(guess).getText().equals(btns.get(correct).getText())) {
+            //result = true;
+            answerCorrect();
+        }else {
+            answerIncorrect();
+        }
+        
+       
+    }
+/*
     @FXML
     void yesOnAction(ActionEvent event) {
         try {
@@ -288,6 +471,37 @@ public class GameController implements Initializable, ControlledScreen {
             errorLabel.setText("Error... See terminal for more info");
             System.out.println(e.getMessage());
         }
+    }
+    */
+      @FXML
+    void guess10OnAction(ActionEvent event) {
+        checkAnswer(0);
+
+    }
+    
+      @FXML
+    void guess11OnAction(ActionEvent event) {
+        checkAnswer(1);
+    }
+    
+      @FXML
+    void guess20OnAction(ActionEvent event) {
+        checkAnswer(2);
+    }
+    
+      @FXML
+    void guess21OnAction(ActionEvent event) {
+        checkAnswer(3);
+    }
+    
+      @FXML
+    void guess30OnAction(ActionEvent event) {
+        checkAnswer(4);
+    }
+    
+      @FXML
+    void guess31OnAction(ActionEvent event) {
+        checkAnswer(5);
     }
 
     public void hideCard() {

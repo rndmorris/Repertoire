@@ -7,21 +7,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Repertoire.SignInController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Repertoire.SignInController">
    <children>
       <Label layoutX="56.0" layoutY="34.0" text="Sign In">
          <font>
             <Font size="33.0" />
          </font>
       </Label>
-      <Label layoutX="56.0" layoutY="107.0" text="Username">
+      <Label fx:id="lastUser" layoutX="56.0" layoutY="107.0" text="Username">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
       <Label layoutX="56.0" layoutY="158.0" text="Enter Password:" />
-      <TextField layoutX="56.0" layoutY="200.0" />
       <Button layoutX="229.0" layoutY="361.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="125.0" text="Switch User">
          <font>
             <Font size="18.0" />
@@ -33,5 +31,7 @@
          </font>
       </Button>
       <Button layoutX="55.0" layoutY="266.0" mnemonicParsing="false" onAction="#signInClicked" text="Submit" />
+      <Label fx:id="errorLabel" layoutX="177.0" layoutY="275.0" prefHeight="35.0" prefWidth="174.0" />
+      <PasswordField fx:id="passField" layoutX="55.0" layoutY="200.0" />
    </children>
 </AnchorPane>
