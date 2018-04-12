@@ -17,6 +17,7 @@ CREATE TABLE DictionaryDefinition (
 	,Description VARCHAR(2048) DEFAULT ''
 	,VisibilitySettingId TINYINT NOT NULL
 	,OwnerUserId BIGINT NOT NULL
+	,IconUrl VARCHAR(256) DEFAULT ''
 	,ModifiedOn TIMESTAMP NOT NULL
 	,ModifiedByUserId BIGINT NOT NULL
 	,PRIMARY KEY (Id)
@@ -26,6 +27,7 @@ CREATE TABLE DictionaryVersion (
 	,DictionaryDefinitionId BIGINT NOT NULL
 	,FilePath VARCHAR(255)
 	,Version INT NOT NULL
+	,DisplayVersion VARCHAR(16) NOT NULL
 	,ModifiedOn TIMESTAMP NOT NULL
 	,ModifiedByUserId BIGINT NOT NULL
 	,PRIMARY KEY (Id)
