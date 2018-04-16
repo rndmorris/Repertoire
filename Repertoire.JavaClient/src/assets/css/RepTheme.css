@@ -9,9 +9,12 @@ and open the template in the editor.
 */
 
  #AnchorPane {
-    -fx-background-image: url('black-background-texture-pattern-light-480x270.jpg');
+/*    -fx-background-image: url('black-background-texture-pattern-light-480x270.jpg');*/
 }
 
+.no-padding {
+    -fx-padding : 0 0 0 0;
+}
 
 /*#AnchorPane {
     -fx-background-color: rgb(225, 228, 203);
@@ -19,18 +22,6 @@ and open the template in the editor.
 }
 */
 
-
-
-.button {
-    -fx-font-family: "Arial";
-    -fx-font-size: 30px;
-    -fx-font-weight: bold;
-    /* -fx-background-color: lightskyblue; */
-    -fx-background-image: url('cardBack.jpg');
-    -fx-background-size: cover, auto;
-    -fx-background-insets: -10,-10;
-
-} 
 #c {
     -fx-background-image: null ;
     -fx-background-color: blue ;
@@ -40,4 +31,14 @@ and open the template in the editor.
 
 .Rectangle {
     -fx-background-image: url('cardBack.jpg');
+}
+
+.button-group-h-left {
+    -fx-background-radius: 15 0 0 15;
+}
+.button-group-h-center {
+    -fx-background-radius: 0 0 0 0;
+}
+.button-group-h-right {
+    -fx-background-radius: 0 15 15 0;
 }

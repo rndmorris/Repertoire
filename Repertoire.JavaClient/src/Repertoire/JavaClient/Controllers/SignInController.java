@@ -8,6 +8,7 @@ package Repertoire.JavaClient.Controllers;
 import Repertoire.Program;
 import Repertoire.User;
 import static Repertoire.Program.user;
+import Repertoire.Shared.Hashing;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -39,8 +40,6 @@ public class SignInController implements Initializable, ControlledScreen{
     String usernameToDisplay;
     String accountToLoad;
     private String password;
-    private String passEncoded;
-    private MessageDigest digest;
     /**
      * Initializes the controller class.
      */
@@ -122,8 +121,7 @@ public class SignInController implements Initializable, ControlledScreen{
     
     public boolean authenticatePassword() throws NoSuchAlgorithmException {
         boolean b = false;
-        digest = MessageDigest.getInstance("SHA-256"); 
-        passEncoded = Base64.getEncoder().encodeToString(digest.digest(passField.getText().getBytes(StandardCharsets.UTF_8)));
+        String passEncoded = Hashing.Sha256ToBase64(passField.getText());
         if (passEncoded.equals(password))b = true;
         return b;
     }

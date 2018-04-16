@@ -5,27 +5,34 @@
  */
 package Repertoire.JavaClient.Controllers;
 
+import Repertoire.Dictionaries.InstalledDictionaryManager;
 import Repertoire.Program;
 import Repertoire.Shared.Entities.AvailableDictionary;
 import Repertoire.Shared.EntityLists.AvailableDictionaryList;
-import Repertoire.Shared.Mapping.Xml.AvailableDictionaryXmlMapper;
+import Repertoire.Shared.Mapping.Xml.AvailableDictionaryListXmlMapper;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javax.xml.bind.JAXBException;
 
@@ -37,37 +44,48 @@ import javax.xml.bind.JAXBException;
 public class LibraryController implements Initializable, ControlledScreen {
 
     ScreensController myController;
-    @FXML
-    Button searchBtn;
-    @FXML
-    ChoiceBox pageSizeBox;
-    @FXML
-    TextField dictionaryNameField;
-    @FXML
-    TextField authorNameField;
-    
-    @FXML
-    VBox entryBox;
     
     AvailableDictionaryList loadedEntries;
-    SearchParams parameters;
+    SearchParams curParams;
+    
+    @FXML
+    Button buttonInstalled;
+    @FXML
+    Button buttonFindNew;
+    @FXML
+    Pane paneInstalled;
+    
+    @FXML
+    VBox vboxInstalled;
+    @FXML
+    Pane paneFindNew;
+    @FXML
+    VBox vboxFindNew;
+    
+    @FXML
+    ChoiceBox pageSize;
+    @FXML
+    TextField searchTerm;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pageSizeBox.setValue("10");
-        pageSizeBox.getItems().addAll("10","25","50","100");
+        paneInstalled.setVisible(false);
+        paneFindNew.setVisible(false);
+        setPaneInstalled();
+        
+        pageSize.getItems().addAll(10,25,50,100);
+        pageSize.setValue(10);
+        
     }   
     
     @Override
     public void setScreenParent(ScreensController screenParent) {
         myController = screenParent;
     }
-    
-    @FXML
-    private GridPane gridPane;
+
     
     @FXML
     void mainMenuItem(ActionEvent event) {
@@ -102,13 +120,14 @@ public class LibraryController implements Initializable, ControlledScreen {
     
     @FXML
     void searchBtnPressed(ActionEvent ae) throws UnsupportedEncodingException, MalformedURLException, JAXBException {
-        int pageSize = Integer.parseInt((String)pageSizeBox.getValue());
-        String nameSearchTerm = dictionaryNameField.getText();
-        String authorSearchTerm = authorNameField.getText();
-        parameters = new SearchParams(pageSize, nameSearchTerm, authorSearchTerm);
+        int pageSizeVal = (int)pageSize.getValue();
+        String nameSearchTerm = searchTerm.getText();
+        String authorSearchTerm = searchTerm.getText();
+        curParams = new SearchParams(pageSizeVal, nameSearchTerm, authorSearchTerm);
         
-        loadedEntries = search(parameters);
-        displayEntryElements(parameters.getPageOffset()*parameters.getPageSize(),parameters.getPageSize());
+        loadedEntries = search(curParams);
+        List<AvailableDictionary> sublist = loadedEntries.subList(curParams.getPageOffset()*curParams.getPageSize(),(curParams.getPageOffset()*curParams.getPageSize())+curParams.getPageSize());
+        setDisplayElements(vboxFindNew,sublist);
     }
     
     AvailableDictionaryList search(SearchParams parameters) throws UnsupportedEncodingException, MalformedURLException, JAXBException
@@ -128,37 +147,85 @@ public class LibraryController implements Initializable, ControlledScreen {
             buildUrl.append("&CreatorSearchTerm=").append(URLEncoder.encode(parameters.getAuthorSearchTerm(), "UTF-8"));
         }
         
-        //String encodedString = URLEncoder.encode(buildUrl.toString(), "UTF-8");
         URL url = new URL(buildUrl.toString());
         
-        return new AvailableDictionaryXmlMapper().entityListFromUrl(url);
+        return new AvailableDictionaryListXmlMapper().entityListFromUrl(url);
     }
     
-    void displayEntryElements(int startIndex, int count) throws MalformedURLException
-    {
-        entryBox.getChildren().clear();
-        if ((0 <= startIndex && startIndex <= loadedEntries.size()) && (0 < count))
-        {
-            for (int index = startIndex; index < startIndex + count - 1 && index < loadedEntries.size(); index++)
-            {
-                AvailableDictionary entry = loadedEntries.get(index);
-                HBox entryRow = new HBox();
-                File imageFile = new File("dictionaryIcon.png");
-                Image image = new Image(imageFile.toURI().toURL().toString());
-                ImageView imageView = new ImageView(image);
-                imageView.setPreserveRatio(true);
-                imageView.setFitHeight(64);
-                imageView.setFitWidth(64);
-                GridPane labels = new GridPane();
-                Label name = new Label(entry.getDictionaryName());
-                labels.add(name,0,0);
-                Label author = new Label("by " + entry.getCreatedBy());
-                labels.add(author,0,1);
-                entryRow.getChildren().addAll(imageView,labels);
-                entryBox.getChildren().add(entryRow);
+    private void setDisplayElements(VBox outputBox, List<AvailableDictionary> list) {
+        outputBox.getChildren().clear();
+        for (AvailableDictionary dict : list) {
+            BorderPane entryRow = new BorderPane();
+            entryRow.getStyleClass().clear();
+            entryRow.getStyleClass().add("no-padding");
+            
+            ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/assets/img/dictionaryPlaceholderIcon.png")));
+            image.setPreserveRatio(true);
+            image.setFitHeight(64);
+            image.setFitWidth(64);
+            entryRow.setLeft(image);
+            entryRow.setMaxWidth(outputBox.getWidth()-10);
+            
+            GridPane labels = new GridPane();
+            Label name = new Label(dict.getDictionaryName());
+            labels.add(name,0,0);
+            Label author = new Label("by " + dict.getCreatedBy());
+            labels.add(author,0,1);
+            
+            entryRow.setCenter(labels);
+            
+            HBox buttonSet = new HBox();
+            if (InstalledDictionaryManager.dictionaryIsInstalled(dict)) {
+                ImageView loadImg = new ImageView(new Image(getClass().getResourceAsStream("/assets/img/loadDictionary.png")));
+                loadImg.setFitHeight(48);
+                loadImg.setFitWidth(48);
+                Button loadButton = new Button("",loadImg);
+                buttonSet.getChildren().add(loadButton);
             }
+            else {
+                ImageView loadImg = new ImageView(new Image(getClass().getResourceAsStream("/assets/img/downloadDictionary.png")));
+                loadImg.setFitHeight(48);
+                loadImg.setFitWidth(48);
+                Button downloadBtn = new Button("",loadImg);
+                downloadBtn.setOnAction(e -> {
+                    InstalledDictionaryManager.installDictionary(dict);
+                });
+                buttonSet.getChildren().add(downloadBtn);
+            }
+            entryRow.setRight(buttonSet);
+            
+            outputBox.getChildren().add(entryRow);
         }
-
+    }
+    
+    @FXML
+    private void buttonInstalledPressed(ActionEvent ae) {
+        setPaneInstalled();
+    }
+    private void setPaneInstalled() {
+        enablePaneOptionButtons();
+        buttonInstalled.setDisable(true);
+        hidePanes();
+        paneInstalled.setVisible(true);
+        setDisplayElements(vboxInstalled,InstalledDictionaryManager.getList());
+    }
+    @FXML
+    private void buttonFindNewPressed(ActionEvent ae) {
+        setPaneFindNew();
+    }
+    private void setPaneFindNew() {
+        enablePaneOptionButtons();
+        buttonFindNew.setDisable(true);
+        hidePanes();
+        paneFindNew.setVisible(true);
+    }
+    private void enablePaneOptionButtons() {
+        buttonInstalled.setDisable(false);
+        buttonFindNew.setDisable(false);
+    }
+    private void hidePanes() {
+        paneInstalled.setVisible(false);
+        paneFindNew.setVisible(false);
     }
     
     final class SearchParams

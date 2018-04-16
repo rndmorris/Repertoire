@@ -23,7 +23,7 @@ PREPARE stmt FROM "
 			,CurrentVersion
 	FROM AvailableDictionary
 	WHERE	DictionaryName LIKE CONCAT('%',?,'%')
-	AND		CreatedBy LIKE CONCAT('%',?,'%')
+	OR		CreatedBy LIKE CONCAT('%',?,'%')
 	LIMIT ?, ?";
 	EXECUTE stmt USING @p_NameSearchTerm, @p_CreatorSearchTerm, @p_rowOffset, @p_PageSize;
 	DEALLOCATE PREPARE stmt;

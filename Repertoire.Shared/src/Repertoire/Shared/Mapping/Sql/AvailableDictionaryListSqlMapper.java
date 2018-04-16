@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author rndmorris
  */
-public class AvailableDictionarySqlMapper implements ISqlMapper<AvailableDictionaryList> {
+public class AvailableDictionaryListSqlMapper implements ISqlMapper<AvailableDictionaryList> {
     
     @Override
     public AvailableDictionaryList MapEntityListFromResultSet(ResultSet rs) throws SQLException
