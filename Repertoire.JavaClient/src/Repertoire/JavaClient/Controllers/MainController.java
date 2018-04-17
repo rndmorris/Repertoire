@@ -104,6 +104,10 @@ public class MainController implements Initializable, ControlledScreen {
 
     @FXML
     void masterClicked(ActionEvent event) {
+        //Refresh Screen
+        myController.refreshScreen("Game", myController.getScreenMap().get("Game"));
+        
+        //Set Screen
         myController.setScreen("Game");
     }
 

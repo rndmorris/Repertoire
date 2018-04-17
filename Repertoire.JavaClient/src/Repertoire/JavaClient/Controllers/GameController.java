@@ -61,6 +61,8 @@ public class GameController implements Initializable, ControlledScreen {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
+        deck = Program.user.getReadOnlyDecks().get(Program.user.getActiveDeck());
+        
         diffValues.add(diffSphere1);
         diffValues.add(diffSphere2);
         diffValues.add(diffSphere3);
@@ -258,7 +260,7 @@ public class GameController implements Initializable, ControlledScreen {
                     
             // Set and Display Card
             randomKey = Program.user.getRandomKey();
-            temp = Program.user.getUnmastered().get(randomKey);          
+            temp = (Card)Program.user.getUnmastered().get(Integer.toString(0)).get(randomKey);          
 
             character.setText(temp.getCharacter());
             readingOne.setText(temp.getReadingOne());
@@ -295,6 +297,7 @@ public class GameController implements Initializable, ControlledScreen {
             
             for (int i = 0; i < 6; i++) {
                 if (i == correct) continue;
+                System.out.println(deck.size());
                 Card tempCard = deck.remove(rand.nextInt(deck.size()));
                 cardsToGuess.push(tempCard);
                 btns.get(i).setText(variableToTest(tempCard));
@@ -339,12 +342,14 @@ public class GameController implements Initializable, ControlledScreen {
             if (masterCount == 5) {
                 int cardKey;
                 Program.user.getUnmastered().remove(randomKey);
-                cardKey = Program.user.getMastCount();
+                cardKey = Program.user.getMastCount(0);
                 Program.user.getMastered().put(Integer.toString(cardKey), temp);
-                Program.user.setMastCount(cardKey + 1);
+                Program.user.setMastCount(0, cardKey + 1);
 
                 errorLabel.setText("Card Mastered!");
                 errorLabel.setVisible(true);
+                
+                
 
             } else {
 

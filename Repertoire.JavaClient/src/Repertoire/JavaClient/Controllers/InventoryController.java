@@ -43,18 +43,18 @@ public class InventoryController implements Initializable, ControlledScreen {
     public void update() {
         colCount = 0;
         rowCount = 0;
-        for (int i = 0; i < Program.user.getMastCount(); i++) {
+        for (int i = 0; i < Program.user.getMastCount(0); i++) {
             Group temp;
             temp = Program.user.getMastered().get(Integer.toString(i)).getCard();
 
             gridPane.add(temp, colCount % 3, rowCount);
-            System.out.println(Program.user.getMastCount());
+            System.out.println(Program.user.getMastCount(0));
 
             colCount++;
             if (colCount % 3 == 0) {
                 rowCount++;
             }
-            if (Program.user.getMastCount() > 3) {
+            if (Program.user.getMastCount(0) > 3) {
                 gridPane.setPadding(pad);
             }
 
@@ -102,7 +102,7 @@ public class InventoryController implements Initializable, ControlledScreen {
     @FXML
     void testButtonOnAction(ActionEvent event) {
 
-        for (int i = 0; i < Program.user.getMastCount(); i++) {
+        for (int i = 0; i < Program.user.getMastCount(0); i++) {
             Group temp;
             temp = Program.user.getMastered().get(Integer.toString(i)).getCard();
 

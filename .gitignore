@@ -24,3 +24,4 @@ Repertoire.Shared/dist/*
 Repertoire.JavaClient/nbproject/*
 *.ser
 !ThirdParty/**
+/Repertoire.JavaClient/dist/

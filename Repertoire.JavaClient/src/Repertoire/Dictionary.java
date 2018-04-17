@@ -39,6 +39,10 @@ public class Dictionary {
     private final String case8 = "null8";
     private final String case9 = "null9";
     public static ObservableList<Card> data = FXCollections.observableArrayList();
+    private int unmastCount;
+    private int mastCount;
+    private HashMap<String, Card> temp;
+    private ArrayList<Card> deck;
 
     public Dictionary() {
 
@@ -84,7 +88,7 @@ public class Dictionary {
                 count++;
             }
 
-            Program.user.setUnmastCount(count);
+            Program.user.setUnmastCount(0, count);
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
 
@@ -97,11 +101,33 @@ public class Dictionary {
         
         if (Program.newUser) {
         //set user unmastered deck to newly initialized dictionary
+        int num = 0;
+        int deckNum = 0;
+        for (int i = 0; i < set.size() ; i++) {
+        if (i == (Program.user.getDefaultDeckSize() - 1) || deckNum == 0) {
+            temp = new HashMap<>();
+            deck = new ArrayList<>();
+            unmastCount = 0;
+            mastCount = 0;
+            
+            Program.user.putUnmastered(Integer.toString(deckNum), temp);
+            Program.user.putReadOnlyDecks(Integer.toString(deckNum), deck);
+            Program.user.addMastCount(mastCount);
+            Program.user.addUnmastCount(unmastCount);
+            deckNum++;
+            System.out.println("*******************");
+        }
+        System.out.println("###################");
+        System.out.println(i);
+        Program.user.getUnmastered().get(Integer.toString(deckNum - 1)).put(set.get(Integer.toString(i)).getCharacter(),set.get(Integer.toString((i))));
+        Program.user.getReadOnlyDecks().get(Integer.toString(deckNum - 1)).add(set.get(Integer.toString(i)));
         
-        Program.user.setUnmastered(set);
+        System.out.println(i);
+        }
         
         //set working game deck to newly initialized dictionary (should be a deck)
-        GameController.deck = cards;
+        if (Program.newUser)Program.user.setActiveDeck(0);
+        //GameController.deck = cards;
         }
 
         return true;
