@@ -7,19 +7,13 @@ package Repertoire.Dictionaries;
 
 import Repertoire.Shared.Entities.AvailableDictionary;
 import Repertoire.Shared.EntityLists.AvailableDictionaryList;
-import Repertoire.Shared.Hashing;
-import Repertoire.Shared.Mapping.Xml.AvailableDictionaryListXmlMapper;
-import Repertoire.Shared.Mapping.Xml.AvailableDictionaryXmlMapper;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
@@ -35,30 +29,33 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author rndmorris
  */
-@XmlRootElement(name="installedDictionaries")
+@XmlRootElement(name = "installedDictionaries")
 @XmlAccessorType(XmlAccessType.NONE)
-public class InstalledDictionaryManager{
-   
+public class InstalledDictionaryManager {
+
     private static InstalledDictionaryManager instance;
     private static File saveFile = new File("masterList.xml");
     private static File installFolder = new File("data");
+
     public static InstalledDictionaryManager get() {
         if (instance == null) {
             if (saveFile.exists()) {
                 loadFromFile();
-            }
-            else {
+            } else {
                 instance = new InstalledDictionaryManager();
             }
         }
         return instance;
     }
+
     public static void installDictionary(AvailableDictionary dict) {
         get().pInstallDictionary(dict);
     }
+
     public static void uninstallDictionary(AvailableDictionary dict) {
         get().pUninstallDictionary(dict);
     }
+
     public static void loadFromFile() {
         JAXBContext context = null;
         try {
@@ -75,11 +72,12 @@ public class InstalledDictionaryManager{
         }
 
         try {
-            instance = (InstalledDictionaryManager)unmarshaller.unmarshal(saveFile);
+            instance = (InstalledDictionaryManager) unmarshaller.unmarshal(saveFile);
         } catch (JAXBException ex) {
             Logger.getLogger(InstalledDictionaryManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public static void saveToFile() {
         JAXBContext context = null;
         try {
@@ -99,54 +97,56 @@ public class InstalledDictionaryManager{
         } catch (JAXBException ex) {
             Logger.getLogger(InstalledDictionaryManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } 
+    }
+
     public static boolean dictionaryIsInstalled(AvailableDictionary dict) {
         return get().pDictionaryIsInstalled(dict);
     }
-    private boolean pDictionaryIsInstalled(AvailableDictionary dict) {
-        return list.contains(dict);
-    }
+
+
     public static AvailableDictionaryList getList() {
         return get().pGetList();
     }
-    private AvailableDictionaryList pGetList() {
-        return list;
-    }
-    @XmlElement(name="dictionaryId")
+
+    @XmlElement(name = "dictionaryId")
     private AvailableDictionaryList list;
-    
-    private InstalledDictionaryManager()
-    {
+
+    private InstalledDictionaryManager() {
         if (!installFolder.exists()) {
             installFolder.mkdirs();
         }
         list = new AvailableDictionaryList();
     }
-    
+    private boolean pDictionaryIsInstalled(AvailableDictionary dict) {
+        return list.contains(dict);
+    }
+    private AvailableDictionaryList pGetList() {
+        return list;
+    }
+
     private void pInstallDictionary(AvailableDictionary dict) {
-        int dictIdHash = ((Long)dict.getDictionaryId()).hashCode();
+        int dictIdHash = ((Long) dict.getDictionaryId()).hashCode();
         File dictFolder = new File(installFolder.getAbsolutePath() + File.separator + dictIdHash);
-        
-        if (dictFolder.exists())
-        {
+
+        if (dictFolder.exists()) {
             recursiveDelete(dictFolder);
         }
-        
+
         dictFolder.mkdirs();
         try {
-            downloadDictionary(dict,dictFolder);
+            downloadDictionary(dict, dictFolder);
         } catch (IOException ex) {
             Logger.getLogger(InstalledDictionaryManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if (!list.contains(dict))
-        {
+
+        if (!list.contains(dict)) {
             list.add(dict);
         }
         saveToFile();
     }
+
     private void downloadDictionary(AvailableDictionary dict, File dictFolder) throws MalformedURLException, IOException {
-        URL url = new URL("http://localhost:8080/Downloads?dictId="+dict.getDictionaryId());
+        URL url = new URL("http://localhost:8080/Downloads?dictId=" + dict.getDictionaryId());
         URLConnection conn = url.openConnection();
         InputStream in = conn.getInputStream();
         FileOutputStream fos = new FileOutputStream(new File(dictFolder.getAbsolutePath() + File.separator + "data.json"));
@@ -162,22 +162,20 @@ public class InstalledDictionaryManager{
         fos.flush();
         fos.close();
     }
-    
+
     private void pUninstallDictionary(AvailableDictionary dict) {
-        File dictFolder = new File(installFolder.getAbsolutePath() + File.separator + ((Long)dict.getDictionaryId()).hashCode());
+        File dictFolder = new File(installFolder.getAbsolutePath() + File.separator + ((Long) dict.getDictionaryId()).hashCode());
         recursiveDelete(dictFolder);
         list.remove(dict);
     }
-    
-    private void recursiveDelete(File file)
-    {
-        if (file.isDirectory())
-        {
+
+    private void recursiveDelete(File file) {
+        if (file.isDirectory()) {
             for (File child : file.listFiles()) {
                 recursiveDelete(child);
             }
         }
         file.delete();
     }
-    
+
 }

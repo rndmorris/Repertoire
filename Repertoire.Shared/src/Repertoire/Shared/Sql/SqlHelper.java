@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -84,5 +86,15 @@ public class SqlHelper {
             }
         }
     }
-    
+    public static ResultSet ExecuteQuery(Connection useConnection, String query, List<SqlParameter> parameters) throws SQLException {
+        PreparedStatement statement = null;
+        try {
+            statement = useConnection.prepareStatement(query);
+            PopulatePreparedStatement(statement,parameters);
+            statement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(SqlHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return statement.getResultSet();
+    }
 }

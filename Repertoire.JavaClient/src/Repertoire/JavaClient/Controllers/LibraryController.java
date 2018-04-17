@@ -126,7 +126,12 @@ public class LibraryController implements Initializable, ControlledScreen {
         curParams = new SearchParams(pageSizeVal, nameSearchTerm, authorSearchTerm);
         
         loadedEntries = search(curParams);
-        List<AvailableDictionary> sublist = loadedEntries.subList(curParams.getPageOffset()*curParams.getPageSize(),(curParams.getPageOffset()*curParams.getPageSize())+curParams.getPageSize());
+        int leftBound = curParams.getPageOffset() * curParams.getPageSize();
+        int rightBound = curParams.getPageOffset() * curParams.getPageSize() + curParams.getPageSize();
+        if (rightBound > loadedEntries.size()){
+            rightBound = loadedEntries.size() -1;
+        }
+        List<AvailableDictionary> sublist = loadedEntries.subList(leftBound,rightBound);
         setDisplayElements(vboxFindNew,sublist);
     }
     
