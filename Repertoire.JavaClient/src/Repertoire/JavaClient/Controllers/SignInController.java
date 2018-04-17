@@ -103,11 +103,11 @@ public class SignInController implements Initializable, ControlledScreen{
             //Deserialize and cast into String
             Program.user =  (User)SerializationUtils.deserialize(fis);
             
-            System.out.println(user.getMastCount());
+            System.out.println(user.getMastCount(0));
             fis.close();
             
             System.out.println("Successful");
-            System.out.println(user.getMastCount());
+            System.out.println(user.getMastCount(0));
           
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());

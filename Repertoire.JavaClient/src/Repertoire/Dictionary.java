@@ -39,6 +39,12 @@ public class Dictionary {
     private final String case8 = "null8";
     private final String case9 = "null9";
     public static ObservableList<Card> data = FXCollections.observableArrayList();
+    private int unmastCount;
+    private int mastCount;
+    private HashMap<String, Card> tempMast;
+    private HashMap<String, Card> tempUnMast;
+    private ArrayList<Card> deck;
+    public static boolean dataLoaded = false;
 
     public Dictionary() {
 
@@ -83,25 +89,65 @@ public class Dictionary {
 
                 count++;
             }
-
-            Program.user.setUnmastCount(count);
+            
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
 
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             System.out.println(e.getMessage());
-        } catch (ParseException e) {
-            System.out.println(e.getMessage());
-
         }
         
+        
         if (Program.newUser) {
+        
+            
         //set user unmastered deck to newly initialized dictionary
-        
-        Program.user.setUnmastered(set);
-        
+        int num = 0;
+        int deckNum = 0;
+        for (int i = 0; i < set.size() ; i++) {
+        if (i % (Program.user.getDefaultDeckSize()) == 0) {
+            
+            
+            
+            tempUnMast = new HashMap<>();
+            tempMast = new HashMap<>();
+            deck = new ArrayList<>();
+            unmastCount = 0;
+            mastCount = 0;
+            
+            System.out.println("Number of Decks: " + (deckNum + 1));
+            System.out.println("Loop #: " + i);
+            Program.user.putUnmastered(Integer.toString(deckNum), tempUnMast);
+            Program.user.putMastered(Integer.toString(deckNum), tempMast);
+            Program.user.putReadOnlyDecks(Integer.toString(deckNum), deck);
+            Program.user.addMastCount(mastCount);
+            Program.user.addUnmastCount(unmastCount);
+            deckNum++;
+            System.out.println("*******************");
+        }
+        System.out.println("#########INSERT CARD##########");
+        System.out.println("");
+        Program.user.getUnmastered().get(Integer.toString(deckNum - 1)).put(set.get(Integer.toString(i)).getCharacter(),set.get(Integer.toString((i))));
+        Program.user.getReadOnlyDecks().get(Integer.toString(deckNum - 1)).add(set.get(Integer.toString(i))); // % defaultDeckSize?
+        System.out.println("Just put in ReadOnlyDeck: " + set.get(Integer.toString(i)).getCharacter());
+        System.out.println("Number of Cards in Deck " + (deckNum - 1) + " = " + Program.user.getUnmastered().get(Integer.toString(deckNum - 1)).size());
+        }
+        /* Tester for Read Only Decks
+        for (int i = 0; i < 3; i++) {
+            HashMap<String, ArrayList<Card>> decks = Program.user.getReadOnlyDecks();
+            for (int k = 0; k < decks.get(Integer.toString(i)).size(); k++) {
+                System.out.println("Deck #" + i + "     Card #" + k + "  = " + decks.get(Integer.toString(i)).get(k).getCharacter());
+                
+            }
+        }
+        */
+        System.out.println("Done within loading data");
         //set working game deck to newly initialized dictionary (should be a deck)
-        GameController.deck = cards;
+        if (Program.newUser) {
+            Program.user.setActiveDeck(0);
+            Program.newUser = false;
+        }
+        //GameController.deck = cards;
         }
 
         return true;
