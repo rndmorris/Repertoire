@@ -38,7 +38,7 @@ public class User implements Serializable {
     private HashMap<String, HashMap> sets = new HashMap<>();
     private HashMap<String, HashMap<String, Card>> Unmastered = new HashMap<>();
     private HashMap<String, HashMap<String, Card>> Mastered = new HashMap<>();
-    private HashMap<String, ArrayList> readOnlyDecks = new HashMap<>();
+    private HashMap<String, ArrayList<Card>> readOnlyDecks = new HashMap<>();
     
     private int defaultDeckSize = 3;
     private HashMap<String, Card> temp;
@@ -129,7 +129,7 @@ public class User implements Serializable {
         return Unmastered;
     }
     
-    public HashMap<String, ArrayList> getReadOnlyDecks() {
+    public HashMap<String, ArrayList<Card>> getReadOnlyDecks() {
         return readOnlyDecks;
     }
 

@@ -126,13 +126,22 @@ public class Dictionary {
             System.out.println("*******************");
         }
         System.out.println("#########INSERT CARD##########");
-        System.out.println(i);
+        System.out.println("");
         Program.user.getUnmastered().get(Integer.toString(deckNum - 1)).put(set.get(Integer.toString(i)).getCharacter(),set.get(Integer.toString((i))));
-        Program.user.getReadOnlyDecks().get(Integer.toString(deckNum - 1)).add(set.get(Integer.toString(i)));
+        Program.user.getReadOnlyDecks().get(Integer.toString(deckNum - 1)).add(set.get(Integer.toString(i))); // % defaultDeckSize?
         System.out.println("Just put in ReadOnlyDeck: " + set.get(Integer.toString(i)).getCharacter());
         System.out.println("Number of Cards in Deck " + (deckNum - 1) + " = " + Program.user.getUnmastered().get(Integer.toString(deckNum - 1)).size());
         }
-        System.out.println("Done");
+        /* Tester for Read Only Decks
+        for (int i = 0; i < 3; i++) {
+            HashMap<String, ArrayList<Card>> decks = Program.user.getReadOnlyDecks();
+            for (int k = 0; k < decks.get(Integer.toString(i)).size(); k++) {
+                System.out.println("Deck #" + i + "     Card #" + k + "  = " + decks.get(Integer.toString(i)).get(k).getCharacter());
+                
+            }
+        }
+        */
+        System.out.println("Done within loading data");
         //set working game deck to newly initialized dictionary (should be a deck)
         if (Program.newUser) {
             Program.user.setActiveDeck(0);
