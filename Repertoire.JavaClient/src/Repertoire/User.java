@@ -36,14 +36,14 @@ public class User implements Serializable {
     
     //private ArrayList<Dictionary> libraries = new ArrayList<>();
     private HashMap<String, HashMap> sets = new HashMap<>();
-    private HashMap<String, HashMap> Unmastered = new HashMap<>();
-    private HashMap<String, Card> Mastered = new HashMap<>();
+    private HashMap<String, HashMap<String, Card>> Unmastered = new HashMap<>();
+    private HashMap<String, HashMap<String, Card>> Mastered = new HashMap<>();
     private HashMap<String, ArrayList> readOnlyDecks = new HashMap<>();
     
     private int defaultDeckSize = 3;
     private HashMap<String, Card> temp;
     
-    private String activeDeck;
+    private String activeDeck = "0";
     
     public String id;
     public String username;
@@ -67,7 +67,7 @@ public class User implements Serializable {
         
     }
     
-    public User(String name, String username, HashMap<String, HashMap> set) {
+    public User(String name, String username, HashMap<String, HashMap<String, Card>> set) {
         this.id = name;
         this.username = username;
         this.Unmastered = set;
@@ -114,7 +114,7 @@ public class User implements Serializable {
     
     public String getRandomKey() {
         
-                System.out.println(Unmastered.get(Integer.toString(0)).size());
+                System.out.println(Unmastered.get(Integer.toString(0)).toString());
               randomKey = (String) Unmastered.get(Integer.toString(0)).keySet().toArray()
                [new Random().nextInt(Unmastered.get(Integer.toString(0)).keySet().toArray().length)]; //Doesn't Work right
        return randomKey; 
@@ -125,7 +125,7 @@ public class User implements Serializable {
      * @param id
      * @return the Unmastered
      */
-    public HashMap<String, HashMap> getUnmastered() {
+    public HashMap<String, HashMap<String, Card>> getUnmastered() {
         return Unmastered;
     }
     
@@ -148,15 +148,16 @@ public class User implements Serializable {
     /**
      * @return the Mastered
      */
-    public HashMap<String, Card> getMastered() {
+    public HashMap<String, HashMap<String, Card>> getMastered() {
         return Mastered;
     }
 
     /**
-     * @param Mastered the Mastered to set
+     * @param id
+     * @param deck
      */
-    public void setMastered(HashMap<String, Card> Mastered) {
-        this.Mastered = Mastered;
+    public void putMastered(String id, HashMap<String, Card> deck) {
+        this.Mastered.put(id, deck);
     }
     
     

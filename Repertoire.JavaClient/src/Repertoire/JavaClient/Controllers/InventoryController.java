@@ -6,7 +6,10 @@
 package Repertoire.JavaClient.Controllers;
 
 import Repertoire.Program;
+import Repertoire.Card;
+import Repertoire.Dictionary;
 import java.net.URL;
+import java.util.HashMap;
 
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -27,6 +30,7 @@ public class InventoryController implements Initializable, ControlledScreen {
     static int colCount = 0;
     static int rowCount = 0;
     private Insets pad = new Insets(50, 0, 0, 0);
+    private int masteredCount;
 
     /**
      * Initializes the controller class.
@@ -34,7 +38,9 @@ public class InventoryController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        update();
+        if(!Program.newUser)
+            System.out.println("Not new User!!!");
+            update();
         // Must be run at switching of screens vvvvvvvvvv
         // Draw All Mastered Cards
 
@@ -43,9 +49,21 @@ public class InventoryController implements Initializable, ControlledScreen {
     public void update() {
         colCount = 0;
         rowCount = 0;
-        for (int i = 0; i < Program.user.getMastCount(0); i++) {
+        try {
+        masteredCount = Program.user.getMastCount(0);
+        } catch (IndexOutOfBoundsException ex) {
+            System.out.println("New User!");
+            return;
+        }
+        for (int i = 0; i < masteredCount; i++) {
+            Card c;
             Group temp;
-            temp = Program.user.getMastered().get(Integer.toString(i)).getCard();
+            
+            c = Program.user.getMastered().get(Integer.toString(0)).get(Integer.toString(i));
+            System.out.println(c.toString());
+            temp = c.getCard();
+            //temp = Program.user.getMastered().get(Integer.toString(0)).get(Integer.toString(i)).getCard();
+           
 
             gridPane.add(temp, colCount % 3, rowCount);
             System.out.println(Program.user.getMastCount(0));
@@ -103,8 +121,11 @@ public class InventoryController implements Initializable, ControlledScreen {
     void testButtonOnAction(ActionEvent event) {
 
         for (int i = 0; i < Program.user.getMastCount(0); i++) {
+            Card c;
             Group temp;
-            temp = Program.user.getMastered().get(Integer.toString(i)).getCard();
+            c = Program.user.getMastered().get(Integer.toString(0)).get(Integer.toString(i));
+            temp = c.getCard();
+            //temp = Program.user.getMastered().get(Integer.toString(0)).get(Integer.toString(i)).getCard();
 
             getGridPane().add(temp, colCount % 3, rowCount);
 
