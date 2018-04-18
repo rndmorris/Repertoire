@@ -22,8 +22,9 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 Repertoire.Shared/dist/**
-Repertoire.JavaClient/nbproject/private/
-Repertoire.Shared/nbproject/private/
+Repertoire.JavaClient/nbproject/private/**
+Repertoire.JavaClient/build/**
+Repertoire.Shared/nbproject/private/**
 Repertoire.Shared/build/**
 *.ser
 !ThirdParty/**
