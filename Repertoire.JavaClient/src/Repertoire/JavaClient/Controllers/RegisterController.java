@@ -7,6 +7,7 @@ package Repertoire.JavaClient.Controllers;
 
 
 import Repertoire.Program;
+import Repertoire.Shared.Hashing;
 import Repertoire.User;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -30,14 +31,6 @@ public class RegisterController implements Initializable, ControlledScreen {
 
     
     ScreensController myController;
-    
-    private String nameOfUser;
-    private String id;
-    private MessageDigest digest;
-    private String passEncoded;
-    private String cPassEncoded;
-    private String passApproved;
-    
     
     /**
      * Initializes the controller class.
@@ -66,10 +59,10 @@ public class RegisterController implements Initializable, ControlledScreen {
      @FXML
     void submitClicked(ActionEvent event) throws NoSuchAlgorithmException {
         if(checkUsername() && checkPassword()) {
-            nameOfUser = username.getText();
-            id = Integer.toString(Program.accounts.getSize());
+            String nameOfUser = username.getText();
+            String id = Integer.toString(Program.accounts.getSize());
             Program.user = new User(nameOfUser, id);
-            Program.accounts.addUser(nameOfUser, passApproved, id);
+            Program.accounts.addUser(nameOfUser, Hashing.Sha256ToBase64(password.getText()), id);
             
             
         }
@@ -95,14 +88,12 @@ public class RegisterController implements Initializable, ControlledScreen {
     
     public boolean checkPassword() throws NoSuchAlgorithmException {
         boolean result = false;
-        digest = MessageDigest.getInstance("SHA-256");
-        passEncoded = Base64.getEncoder().encodeToString(digest.digest(password.getText().getBytes(StandardCharsets.UTF_8)));
-        cPassEncoded = Base64.getEncoder().encodeToString(digest.digest(confirmPassword.getText().getBytes(StandardCharsets.UTF_8)));
+        String passEncoded = Hashing.Sha256ToBase64(password.getText());
+        String cPassEncoded = Hashing.Sha256ToBase64(confirmPassword.getText());
         
         if(passEncoded.equals(cPassEncoded))
         {
-        result = true;
-        passApproved = passEncoded;
+            result = true;
         }
         else errorLabel.setText("Passwords do not match");
         return result;

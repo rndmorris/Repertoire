@@ -6,8 +6,8 @@
 package RepertoireWebAPI.Servlets;
 
 import Repertoire.Shared.EntityLists.AvailableDictionaryList;
-import Repertoire.Shared.Mapping.Sql.AvailableDictionarySqlMapper;
-import Repertoire.Shared.Mapping.Xml.AvailableDictionaryXmlMapper;
+import Repertoire.Shared.Mapping.Sql.AvailableDictionaryListSqlMapper;
+import Repertoire.Shared.Mapping.Xml.AvailableDictionaryListXmlMapper;
 import Repertoire.Shared.Sql.RepertoireDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -63,8 +63,8 @@ public class AvailableDictionaryServlet extends HttpServlet {
             
             ResultSet rs = SqlHelper.CallStoredProcedure(connection,"rprtr_AvailableDictionary_Select", sqlParams);
             
-            AvailableDictionaryList list = new AvailableDictionarySqlMapper().MapEntityListFromResultSet(rs);
-            String xml = new AvailableDictionaryXmlMapper().stringFromEntityList(list);
+            AvailableDictionaryList list = new AvailableDictionaryListSqlMapper().MapEntityListFromResultSet(rs);
+            String xml = new AvailableDictionaryListXmlMapper().stringFromEntityList(list);
             try (PrintWriter out = response.getWriter()) {
                 out.print(xml);
             }

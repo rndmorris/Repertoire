@@ -87,8 +87,7 @@ public class ScreensController extends StackPane {
             }
             catch (LoadException | IllegalStateException e)
             {
-                boolean t = true;
-                e.printStackTrace(System.out);
+                e.printStackTrace(System.err);
             }
             
             ControlledScreen screenController = ((ControlledScreen) screenLoader.getController());

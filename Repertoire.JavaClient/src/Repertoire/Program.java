@@ -89,9 +89,9 @@ public class Program extends Application  {
         root.getTransforms().add(scale);
         
         String css = Program.class.getResource("/assets/css/RepTheme.css").toExternalForm();
-        //scene.getStylesheets().add(css);
+        scene.getStylesheets().add(css);
         
-        // stage.setTitle("Repertoire");
+         stage.setTitle("Repertoire");
         // stage.getIcons()
         
         stage.setScene(scene);
