@@ -28,7 +28,7 @@ import org.json.simple.parser.ParseException;
  */
 public class Dictionary {
 
-    public String file = "testDictionary.JSON";
+    public String file = "presentationDictionary.JSON";
     private final String case1 = "hiragana";
     private final String case2 = "katakana";
     private final String case3 = "jlptn5";
