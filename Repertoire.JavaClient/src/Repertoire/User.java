@@ -40,7 +40,7 @@ public class User implements Serializable {
     private HashMap<String, HashMap<String, Card>> Mastered = new HashMap<>();
     private HashMap<String, ArrayList<Card>> readOnlyDecks = new HashMap<>();
     
-    private int defaultDeckSize = 3;
+    private int defaultDeckSize = 10;
     private HashMap<String, Card> temp;
     
     private String activeDeck;

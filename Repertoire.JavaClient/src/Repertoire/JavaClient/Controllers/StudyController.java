@@ -55,6 +55,11 @@ public class StudyController implements Initializable, ControlledScreen {
     }
     
     @FXML
+        void onBack(ActionEvent event) {
+           myController.setScreen("Main");
+    }
+        
+    @FXML
     void mainMenuItem(ActionEvent event) {
         myController.setScreen("Main");
     }

@@ -117,13 +117,14 @@ public class Card implements Serializable{
         Button b = new Button();
         
         b.setPrefSize(160,200);
+        b.setStyle("-fx-background-color: rgb(105,145,170);");
         
         Button c = new Button (character);
         
         c.setId("c");
         c.setStyle("-fx-arc-height: 100;");
         c.setStyle("-fx-arc-width: 100;");
-        c.setStyle("-fx-background-color: blue;");
+        c.setStyle("-fx-background-color: rgb(240,244,255);");
         
         
         

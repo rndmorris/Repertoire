@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -111,6 +112,9 @@ public class Program extends Application  {
                 scene.rootProperty().addListener(this);
             }
         });
+        
+        
+        stage.setFullScreen(true);
         
     }
 

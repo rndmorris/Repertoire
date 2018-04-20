@@ -162,7 +162,7 @@ public class MainController implements Initializable, ControlledScreen {
         @FXML
     void onLoadData(ActionEvent event) {
         Dictionary test = new Dictionary();
-        URL testFile = getClass().getResource("/assets/testdata/testDictionary.json");
+        URL testFile = getClass().getResource("/assets/testdata/presentationDictionary.json");
         try {
         test.dataInit(testFile);
         }catch (Exception e)

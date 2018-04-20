@@ -87,6 +87,11 @@ public class InventoryController implements Initializable, ControlledScreen {
     public void setScreenParent(ScreensController screenParent) {
         myController = screenParent;
     }
+    
+    @FXML
+        void onBack(ActionEvent event) {
+           myController.setScreen("Main");
+    }
 
     @FXML
     private GridPane gridPane;

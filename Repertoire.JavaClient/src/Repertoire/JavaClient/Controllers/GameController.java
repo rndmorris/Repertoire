@@ -499,6 +499,12 @@ public class GameController implements Initializable, ControlledScreen {
         }
     }
     */
+    
+        @FXML
+    void onBack(ActionEvent event) {
+           myController.setScreen("Main");
+    }
+    
       @FXML
     void guess10OnAction(ActionEvent event) {
         checkAnswer(0);
