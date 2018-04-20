@@ -61,7 +61,7 @@ public class GameController implements Initializable, ControlledScreen {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        deck = Program.user.getReadOnlyDecks().get(String.valueOf(Program.user.getActiveDeck()));
+        deck = Program.user.getReadOnlyDecks().get(Program.user.getActiveDeckString());
         
         
         diffValues.add(diffSphere1);
@@ -268,7 +268,7 @@ public class GameController implements Initializable, ControlledScreen {
                 errorLabel.setVisible(true);
                 return;
             }
-            temp = (Card)Program.user.getUnmastered().get(Integer.toString(0)).get(randomKey);          
+            temp = (Card)Program.user.getUnmastered().get(Program.user.getActiveDeckString()).get(randomKey);          
 
             character.setText(temp.getCharacter());
             readingOne.setText(temp.getReadingOne());
@@ -355,14 +355,14 @@ public class GameController implements Initializable, ControlledScreen {
             if (masterCount == 5) {
                 System.out.println("00000000000000000000000");
                 int cardKey;
-                Card c = Program.user.getUnmastered().get(Integer.toString(0)).remove(randomKey);
+                Card c = Program.user.getUnmastered().get(Program.user.getActiveDeckString()).remove(randomKey);
                 System.out.println(c.toString());
                 
-                cardKey = Program.user.getMastCount(0);
+                cardKey = Program.user.getMastCount(Program.user.getActiveDeckInt());
                 System.out.println(cardKey);
                 
-                Program.user.getMastered().get(Integer.toString(0)).put(Integer.toString(cardKey), temp);
-                Program.user.setMastCount(0, cardKey + 1);
+                Program.user.getMastered().get(Program.user.getActiveDeckString()).put(Integer.toString(cardKey), temp);
+                Program.user.setMastCount(Program.user.getActiveDeckInt(), cardKey + 1);
 
                 errorLabel.setText("Card Mastered!");
                 errorLabel.setVisible(true);

@@ -43,7 +43,7 @@ public class User implements Serializable {
     private int defaultDeckSize = 3;
     private HashMap<String, Card> temp;
     
-    private String activeDeck = "0";
+    private String activeDeck;
     
     public String id;
     public String username;
@@ -61,6 +61,7 @@ public class User implements Serializable {
     public User(String username, String id) {
         this.id = id;
         this.username = username;
+        this.activeDeck = "0";
         setFileName();
         System.out.println(userFileName);
         
@@ -79,8 +80,12 @@ public class User implements Serializable {
         return this.defaultDeckSize;
     }
     
-    public String getActiveDeck() {
+    public String getActiveDeckString() {
         return activeDeck;
+    }
+    
+    public int getActiveDeckInt() {
+        return Integer.parseInt(activeDeck);
     }
     
     public void setActiveDeck(int i) {
