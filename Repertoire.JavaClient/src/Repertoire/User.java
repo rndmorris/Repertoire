@@ -44,9 +44,10 @@ public class User implements Serializable {
     private HashMap<String, Card> temp;
     
     private String activeDeck;
+    private Card firstMastered;
     
     public String id;
-    public String username;
+    private String username;
     private ArrayList unmastCount = new ArrayList();
     private ArrayList mastCount = new ArrayList();
     
@@ -99,6 +100,10 @@ public class User implements Serializable {
     
     public String getFileName() {
         return userFileName;
+    }
+    
+    public String getUsername() {
+        return username;
     }
    
     
@@ -195,6 +200,7 @@ public class User implements Serializable {
     
     public void setMastCount(int index, int count) {
         this.mastCount.set(index, count);
+        System.out.println(mastCount.get(index));
     }
 
     /**
@@ -202,5 +208,13 @@ public class User implements Serializable {
      */
     public void addMastCount(int mastCount) {
         this.mastCount.add(mastCount);
+    }
+    
+    public void setFirstMastered(Card card) {
+        this.firstMastered = card;
+    }
+    
+    public Card getFirstMastered() {
+        return firstMastered;
     }
 }

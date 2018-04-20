@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -52,6 +53,8 @@ public class GameController implements Initializable, ControlledScreen {
     private Stack<Card> cardsToGuess = new Stack<>();
     private int correct;
     private MediaPlayer mediaPlayer;
+    private String variableToTest;
+    private boolean cheat;
     
 
     /**
@@ -62,7 +65,7 @@ public class GameController implements Initializable, ControlledScreen {
         // TODO
 
         deck = Program.user.getReadOnlyDecks().get(Program.user.getActiveDeckString());
-        
+        cheat = false;
         
         diffValues.add(diffSphere1);
         diffValues.add(diffSphere2);
@@ -105,6 +108,9 @@ public class GameController implements Initializable, ControlledScreen {
         
 
     }
+    
+    @FXML
+    private ToggleButton bCheat;
     
     @FXML
     private Button btn10;
@@ -198,6 +204,18 @@ public class GameController implements Initializable, ControlledScreen {
 
     public void setScreenParent(ScreensController screenParent) {
         myController = screenParent;
+    }
+    
+    @FXML
+    void onCheat(ActionEvent event) {
+        if(cheat) {
+            cheat = false;
+            bCheat.setSelected(false);
+        } else {
+            cheat = true;
+            bCheat.setSelected(true);
+        }
+        
     }
 
     @FXML
@@ -297,6 +315,8 @@ public class GameController implements Initializable, ControlledScreen {
             btns.get(correct).setText(variableToTest(temp));
             btns.get(correct).setVisible(true);
             
+            if(!cheat)hideAnswer(variableToTest);
+            
             for(int i = 0; i < deck.size(); i++) {
                 System.out.println(i + "    variable: " + variableToTest(deck.get(i)));
             }
@@ -332,15 +352,19 @@ public class GameController implements Initializable, ControlledScreen {
             
             case 0 : 
                 testVariable = card.getCharacter();
+                variableToTest = "character";
                 break;
             case 1 :
                 testVariable = card.getReadingOne();
+                variableToTest = "readingOne";
                 break;
             case 2 :
                 testVariable = card.getReadingTwo();
+                variableToTest = "readingTwo";
                 break;
             case 3 :
                 testVariable = card.getMeaning();
+                variableToTest = "meaning";
                 break;
                 
     
@@ -353,6 +377,7 @@ public class GameController implements Initializable, ControlledScreen {
         try {
             temp.setMasteryLevel((masterCount = temp.getMasteryLevel() + 1));
             if (masterCount == 5) {
+                if (Program.user.getMastered().get(Program.user.getActiveDeckString()).isEmpty()) Program.user.setFirstMastered(temp);
                 System.out.println("00000000000000000000000");
                 int cardKey;
                 Card c = Program.user.getUnmastered().get(Program.user.getActiveDeckString()).remove(randomKey);
@@ -363,6 +388,7 @@ public class GameController implements Initializable, ControlledScreen {
                 
                 Program.user.getMastered().get(Program.user.getActiveDeckString()).put(Integer.toString(cardKey), temp);
                 Program.user.setMastCount(Program.user.getActiveDeckInt(), cardKey + 1);
+                System.out.println(" Cards Owned should be- " +Program.user.getMastCount(Program.user.getActiveDeckInt()));
 
                 errorLabel.setText("Card Mastered!");
                 errorLabel.setVisible(true);
@@ -432,6 +458,25 @@ public class GameController implements Initializable, ControlledScreen {
         }
         
        
+    }
+    
+    public void hideAnswer(String variable) {
+        
+        switch (variable) {
+            
+            case "character" :
+                character.setText("");
+                break;
+            case "readingOne" :
+                readingOne.setText("");
+                break;
+            case "readingTwo" :
+                readingTwo.setText("");
+                break;
+            case "meaning" :
+                meaning.setText("");
+                break;
+        }
     }
 /*
     @FXML
@@ -597,7 +642,7 @@ public class GameController implements Initializable, ControlledScreen {
             case 1:
                 xp1.setWidth(270);
                 xp1.setLayoutX(265);
-                xp1.setFill(Color.DARKGREEN);
+                xp1.setFill(Color.AQUA);
                 xp1.setOpacity(1);
 
                 xp2.setWidth(260);
@@ -624,12 +669,12 @@ public class GameController implements Initializable, ControlledScreen {
             case 2:
                 xp1.setWidth(270);
                 xp1.setLayoutX(265);
-                xp1.setFill(Color.DARKGREEN);
+                xp1.setFill(Color.AQUA);
                 xp1.setOpacity(1);
 
                 xp2.setWidth(270);
                 xp2.setLayoutX(265);
-                xp2.setFill(Color.DARKGREEN);
+                xp2.setFill(Color.AQUA);
                 xp2.setOpacity(1);
 
                 xp3.setWidth(260);
@@ -651,17 +696,17 @@ public class GameController implements Initializable, ControlledScreen {
             case 3:
                 xp1.setWidth(270);
                 xp1.setLayoutX(265);
-                xp1.setFill(Color.DARKGREEN);
+                xp1.setFill(Color.AQUA);
                 xp1.setOpacity(1);
 
                 xp2.setWidth(270);
                 xp2.setLayoutX(265);
-                xp2.setFill(Color.DARKGREEN);
+                xp2.setFill(Color.AQUA);
                 xp2.setOpacity(1);
 
                 xp3.setWidth(270);
                 xp3.setLayoutX(265);
-                xp3.setFill(Color.DARKGREEN);
+                xp3.setFill(Color.AQUA);
                 xp3.setOpacity(1);
 
                 xp4.setWidth(260);
@@ -678,22 +723,22 @@ public class GameController implements Initializable, ControlledScreen {
             case 4:
                 xp1.setWidth(270);
                 xp1.setLayoutX(265);
-                xp1.setFill(Color.DARKGREEN);
+                xp1.setFill(Color.AQUA);
                 xp1.setOpacity(1);
 
                 xp2.setWidth(270);
                 xp2.setLayoutX(265);
-                xp2.setFill(Color.DARKGREEN);
+                xp2.setFill(Color.AQUA);
                 xp2.setOpacity(1);
 
                 xp3.setWidth(270);
                 xp3.setLayoutX(265);
-                xp3.setFill(Color.DARKGREEN);
+                xp3.setFill(Color.AQUA);
                 xp3.setOpacity(1);
 
                 xp4.setWidth(270);
                 xp4.setLayoutX(265);
-                xp4.setFill(Color.DARKGREEN);
+                xp4.setFill(Color.AQUA);
                 xp4.setOpacity(1);
 
                 xp5.setWidth(260);
@@ -705,27 +750,27 @@ public class GameController implements Initializable, ControlledScreen {
             case 5:
                 xp1.setWidth(270);
                 xp1.setLayoutX(265);
-                xp1.setFill(Color.DARKGREEN);
+                xp1.setFill(Color.AQUA);
                 xp1.setOpacity(1);
 
                 xp2.setWidth(270);
                 xp2.setLayoutX(265);
-                xp2.setFill(Color.DARKGREEN);
+                xp2.setFill(Color.AQUA);
                 xp2.setOpacity(1);
 
                 xp3.setWidth(270);
                 xp3.setLayoutX(265);
-                xp3.setFill(Color.DARKGREEN);
+                xp3.setFill(Color.AQUA);
                 xp3.setOpacity(1);
 
                 xp4.setWidth(270);
                 xp4.setLayoutX(265);
-                xp4.setFill(Color.DARKGREEN);
+                xp4.setFill(Color.AQUA);
                 xp4.setOpacity(1);
 
                 xp5.setWidth(270);
                 xp5.setLayoutX(265);
-                xp5.setFill(Color.DARKGREEN);
+                xp5.setFill(Color.AQUA);
                 xp5.setOpacity(1);
                 break;
 

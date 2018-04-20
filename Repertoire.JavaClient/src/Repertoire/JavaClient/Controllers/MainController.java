@@ -119,6 +119,9 @@ public class MainController implements Initializable, ControlledScreen {
 
     @FXML
     void profileClicked(ActionEvent event) {
+        myController.refreshScreen("Profile", myController.getScreenMap().get("Profile"));
+        
+        //Set Screen
         myController.setScreen("Profile");
     }
 
