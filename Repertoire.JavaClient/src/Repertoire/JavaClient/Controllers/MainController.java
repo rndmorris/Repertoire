@@ -161,7 +161,6 @@ public class MainController implements Initializable, ControlledScreen {
     
         @FXML
     void onLoadData(ActionEvent event) {
-        
     }
     
     

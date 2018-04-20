@@ -7,22 +7,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Repertoire.JavaClient.Controllers.RegisterController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" styleClass="background-group-linear-gradient" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Repertoire.JavaClient.Controllers.RegisterController">
    <children>
-      <TextField fx:id="username" layoutX="279.0" layoutY="95.0" prefHeight="51.0" prefWidth="298.0" />
-      <ComboBox layoutX="279.0" layoutY="330.0" prefHeight="51.0" prefWidth="298.0" promptText="Pas" />
-      <Label layoutX="58.0" layoutY="103.0" text="Username:" />
-      <Label layoutX="59.0" layoutY="182.0" text="Password:" />
-      <Label layoutX="58.0" layoutY="260.0" text="Confirm Password:" />
-      <Button layoutX="635.0" layoutY="330.0" mnemonicParsing="false" onAction="#submitClicked" text="Submit" />
-      <Label layoutX="59.0" layoutY="338.0" text="Experience Level:" />
-      <Label layoutX="59.0" layoutY="32.0" text="Account Registration">
+      <TextField fx:id="username" layoutX="279.0" layoutY="95.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="58.0" layoutY="103.0" text="Username:" textFill="#f0f4ff" />
+      <Label layoutX="59.0" layoutY="182.0" text="Password:" textFill="#f0f4ff" />
+      <Label layoutX="58.0" layoutY="260.0" text="Confirm Password:" textFill="#f0f4ff" />
+      <Label layoutX="59.0" layoutY="32.0" text="Account Registration" textFill="#f0f4ff">
          <font>
             <Font size="32.0" />
          </font>
       </Label>
       <PasswordField fx:id="password" layoutX="279.0" layoutY="174.0" />
       <PasswordField fx:id="confirmPassword" layoutX="279.0" layoutY="252.0" />
-      <Label fx:id="errorLabel" layoutX="58.0" layoutY="382.0" text="Label" />
+      <Button defaultButton="true" layoutX="59.0" layoutY="332.0" mnemonicParsing="false" onAction="#submitClicked" styleClass="button-group-main-menu" text="Submit" />
+      <Label fx:id="errorLabel" layoutX="207.0" layoutY="332.0" text="         " textFill="#f0f4ff" />
    </children>
 </AnchorPane>
