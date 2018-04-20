@@ -31,6 +31,7 @@ public class InventoryController implements Initializable, ControlledScreen {
     static int rowCount = 0;
     private Insets pad = new Insets(50, 0, 0, 0);
     private int masteredCount;
+    private int activeDeckInt;
 
     /**
      * Initializes the controller class.
@@ -41,6 +42,9 @@ public class InventoryController implements Initializable, ControlledScreen {
         if(!Program.newUser)
             System.out.println("Not new User!!!");
             update();
+            activeDeckInt = Program.user.getActiveDeckInt();
+            
+        
         // Must be run at switching of screens vvvvvvvvvv
         // Draw All Mastered Cards
 
@@ -50,7 +54,7 @@ public class InventoryController implements Initializable, ControlledScreen {
         colCount = 0;
         rowCount = 0;
         try {
-        masteredCount = Program.user.getMastCount(0);
+        masteredCount = Program.user.getMastCount(activeDeckInt);
         } catch (IndexOutOfBoundsException ex) {
             System.out.println("New User!");
             return;
@@ -59,20 +63,20 @@ public class InventoryController implements Initializable, ControlledScreen {
             Card c;
             Group temp;
             
-            c = Program.user.getMastered().get(Integer.toString(0)).get(Integer.toString(i));
+            c = Program.user.getMastered().get(Program.user.getActiveDeckString()).get(Integer.toString(i));
             System.out.println(c.toString());
             temp = c.getCard();
             //temp = Program.user.getMastered().get(Integer.toString(0)).get(Integer.toString(i)).getCard();
            
 
             gridPane.add(temp, colCount % 3, rowCount);
-            System.out.println(Program.user.getMastCount(0));
+            System.out.println(Program.user.getMastCount(activeDeckInt));
 
             colCount++;
             if (colCount % 3 == 0) {
                 rowCount++;
             }
-            if (Program.user.getMastCount(0) > 3) {
+            if (Program.user.getMastCount(activeDeckInt) > 3) {
                 gridPane.setPadding(pad);
             }
 
@@ -125,10 +129,10 @@ public class InventoryController implements Initializable, ControlledScreen {
     @FXML
     void testButtonOnAction(ActionEvent event) {
 
-        for (int i = 0; i < Program.user.getMastCount(0); i++) {
+        for (int i = 0; i < activeDeckInt; i++) {
             Card c;
             Group temp;
-            c = Program.user.getMastered().get(Integer.toString(0)).get(Integer.toString(i));
+            c = Program.user.getMastered().get(Program.user.getActiveDeckString()).get(Integer.toString(i));
             temp = c.getCard();
             //temp = Program.user.getMastered().get(Integer.toString(0)).get(Integer.toString(i)).getCard();
 

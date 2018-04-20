@@ -19,7 +19,7 @@
       <Rectangle fill="#00000066" height="60.0" layoutX="270.0" layoutY="220.0" stroke="#00000066" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="260.0" fx:id="xp3" />
       <Rectangle fill="#00000066" height="60.0" layoutX="270.0" layoutY="280.0" stroke="#00000066" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="260.0" fx:id="xp2" />
       <Rectangle fill="#00000066" height="55.0" layoutX="270.0" layoutY="340.0" stroke="#00000066" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="260.0" fx:id="xp1" />
-      <Rectangle fill="DARKGREEN" height="15.0" layoutX="265.0" layoutY="395.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="270.0" fx:id="xp0" />
+      <Rectangle fill="AQUA" height="15.0" layoutX="265.0" layoutY="395.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="270.0" fx:id="xp0" />
       <Button fx:id="mainDisplay" layoutX="275.0" layoutY="100.0" mnemonicParsing="false" prefHeight="300.0" prefWidth="250.0" styleClass="button-group-big-card" visible="false" />
       <Button fx:id="character" graphicTextGap="0.0" layoutX="300.0" layoutY="125.0" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="125.0" prefWidth="200.0" styleClass="button-group-display" text="Text" visible="false">
          <font>
@@ -57,6 +57,7 @@
       <Button fx:id="btn30" layoutX="14.0" layoutY="200.0" mnemonicParsing="false" onAction="#guess30OnAction" prefHeight="51.0" prefWidth="109.0" styleClass="button-group-options" text="Button" />
       <Button fx:id="btn20" layoutX="14.0" layoutY="150.0" mnemonicParsing="false" onAction="#guess20OnAction" prefHeight="51.0" prefWidth="109.0" styleClass="button-group-options" text="Button" />
       <Button layoutX="4.0" layoutY="2.0" mnemonicParsing="false" onAction="#onBack" styleClass="button-group-back-button" text="Back" textFill="#f0f4ff" />
+      <ToggleButton fx:id="bCheat" layoutX="692.0" layoutY="385.0" mnemonicParsing="false" onAction="#onCheat" prefHeight="51.0" prefWidth="81.0" styleClass="button-group-back-button" text="Cheat" textFill="#f0f4ff" />
      
    </children>
 </AnchorPane>
