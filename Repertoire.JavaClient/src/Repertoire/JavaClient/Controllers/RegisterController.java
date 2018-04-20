@@ -64,10 +64,10 @@ public class RegisterController implements Initializable, ControlledScreen {
             Program.user = new User(nameOfUser, id);
             Program.accounts.addUser(nameOfUser, Hashing.Sha256ToBase64(password.getText()), id);
             
-            
-        }
-            
+                
         myController.setScreen("Main");
+        }
+        
     }
     
     public boolean checkUsername() {
