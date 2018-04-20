@@ -49,7 +49,7 @@ public class User implements Serializable {
     public String id;
     private String username;
     private ArrayList unmastCount = new ArrayList();
-    private ArrayList mastCount = new ArrayList();
+    private ArrayList<String> mastCount = new ArrayList();
     
     String randomKey;
     Random random = new Random();
@@ -195,11 +195,12 @@ public class User implements Serializable {
      * @return the mastCount
      */
     public int getMastCount(int index) {
-        return (int) mastCount.get(index);
+        return  Integer.parseInt(mastCount.get(index));
     }
     
     public void setMastCount(int index, int count) {
-        this.mastCount.set(index, count);
+        String s = Integer.toString(count);
+        this.mastCount.set(index, s);
         System.out.println(mastCount.get(index));
     }
 
@@ -207,7 +208,7 @@ public class User implements Serializable {
      * @param mastCount the mastCount to set
      */
     public void addMastCount(int mastCount) {
-        this.mastCount.add(mastCount);
+        this.mastCount.add(Integer.toString(mastCount));
     }
     
     public void setFirstMastered(Card card) {
