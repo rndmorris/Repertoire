@@ -9,8 +9,13 @@ import Repertoire.Shared.Sql.RepertoireDB;
 import Repertoire.Shared.Sql.SqlHelper;
 import Repertoire.Shared.Sql.SqlParameter;
 import Repertoire.Shared.Sql.SqlType;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,19 +49,17 @@ public class DictionaryDownloadServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        if (request.getParameter("dictId") != null) {
+        if (request.getParameter("versionId") != null) {
             List<SqlParameter> params = new ArrayList<>();
             params.add(
                 new SqlParameter(
                         SqlType.INTEGER,
                         Integer.parseInt(request.getParameter("versionId"))
-                        , 0));
+                        , 1));
             
             StringBuilder query = new StringBuilder();
             query
-                    .append("SELECT VisibilitySettingId")
-                    .append("FROM DictionaryDefinition")
-                    .append("WHERE Id = ? LIMIT 1;");
+                    .append("SELECT VisibilitySettingId FROM DictionaryDefinition JOIN DictionaryVersion ON  DictionaryDefinition.Id = DictionaryVersion.DictionaryDefinitionId WHERE  DictionaryVersion.Id = ? LIMIT 1;");
 
             ServletContext context = getServletContext();
             String dbUrl = context.getInitParameter("repertoireDBUrl");
@@ -75,7 +79,20 @@ public class DictionaryDownloadServlet extends HttpServlet {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             }
             else {
-                
+                File fileObj = new File("/home/rndmorris/GitRepos/Repertoire/Repertoire.WebAPI/deckVersions/deck.json");
+                ServletOutputStream writer;
+                try (InputStream file = fileObj.toURI().toURL().openStream()) {
+                    writer = response.getOutputStream();
+                    response.setContentType("application/octet-stream;charset=UTF-8");
+                    response.setHeader("Content-Disposition", "attachment; filename=\"dictionary.json\"");
+                    byte[] buffer = new byte[4096];
+                    int bytesRead = -1;
+                    while ((bytesRead = file.read(buffer)) != -1)
+                    {
+                        writer.write(buffer, 0, bytesRead);
+                    }
+                }
+                writer.close();
             }
         }
         

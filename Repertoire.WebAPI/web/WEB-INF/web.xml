@@ -18,7 +18,7 @@
     </context-param>
     <context-param>
         <param-name>repertoireDBPassword</param-name>
-        <param-value>testPassword</param-value>
+        <param-value>netbeans</param-value>
     </context-param>
     <session-config>
         <session-timeout>

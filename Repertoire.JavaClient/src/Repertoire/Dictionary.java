@@ -47,7 +47,7 @@ public class Dictionary {
     public static boolean dataLoaded = false;
 
     public Dictionary() {
-
+        
     }
 
     public boolean dataInit(URL name) {
@@ -98,7 +98,7 @@ public class Dictionary {
         }
         
         
-        if (Program.newUser) {
+//        if (Program.newUser) {
         
             
         //set user unmastered deck to newly initialized dictionary
@@ -124,7 +124,7 @@ public class Dictionary {
             Program.user.addUnmastCount(unmastCount);
             deckNum++;
             System.out.println("*******************");
-        }
+//        }
         System.out.println("#########INSERT CARD##########");
         System.out.println("");
         Program.user.getUnmastered().get(Integer.toString(deckNum - 1)).put(set.get(Integer.toString(i)).getCharacter(),set.get(Integer.toString((i))));
@@ -143,10 +143,10 @@ public class Dictionary {
         */
         System.out.println("Done within loading data");
         //set working game deck to newly initialized dictionary (should be a deck)
-        if (Program.newUser) {
+//        if (Program.newUser) {
             Program.user.setActiveDeck(0);
             Program.newUser = false;
-        }
+//        }
         //GameController.deck = cards;
         }
 

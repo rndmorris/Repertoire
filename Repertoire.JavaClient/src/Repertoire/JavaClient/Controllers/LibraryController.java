@@ -6,9 +6,11 @@
 package Repertoire.JavaClient.Controllers;
 
 import Repertoire.Dictionaries.InstalledDictionaryManager;
+import Repertoire.Dictionary;
 import Repertoire.Program;
 import Repertoire.Shared.Entities.AvailableDictionary;
 import Repertoire.Shared.EntityLists.AvailableDictionaryList;
+import Repertoire.Shared.Hashing;
 import Repertoire.Shared.Mapping.Xml.AvailableDictionaryListXmlMapper;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -72,13 +74,12 @@ public class LibraryController implements Initializable, ControlledScreen {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        paneInstalled.setVisible(false);
-        paneFindNew.setVisible(false);
-        setPaneInstalled();
-        
         pageSize.getItems().addAll(10,25,50,100);
         pageSize.setValue(10);
         
+        paneInstalled.setVisible(false);
+        paneFindNew.setVisible(false);
+        //setPaneInstalled();
     }   
     
     @Override
@@ -185,7 +186,26 @@ public class LibraryController implements Initializable, ControlledScreen {
                 loadImg.setFitHeight(48);
                 loadImg.setFitWidth(48);
                 Button loadButton = new Button("",loadImg);
+                loadButton.setOnAction(e -> {
+                    Dictionary test = new Dictionary();
+                    try {
+                        File testFile = new File("/home/rndmorris/GitRepos/Repertoire/Repertoire.JavaClient/data/"+Hashing.Sha256ToBase16(dict.getDictionaryId())+"/dictionary.json");
+                        test.dataInit(testFile.toURI().toURL());
+                    }catch (Exception ex)
+                    {
+                        ex.printStackTrace(System.err);
+                    }
+                });
+                ImageView delImg = new ImageView(new Image(getClass().getResourceAsStream("/assets/img/deleteDictionary.png")));
+                delImg.setFitHeight(48);
+                delImg.setFitWidth(48);
+                Button delButton = new Button("",delImg);
+                delButton.setOnAction(e -> {
+                    InstalledDictionaryManager.uninstallDictionary(dict);
+                    setPaneInstalled();
+                });
                 buttonSet.getChildren().add(loadButton);
+                buttonSet.getChildren().add(delButton);
             }
             else {
                 ImageView loadImg = new ImageView(new Image(getClass().getResourceAsStream("/assets/img/downloadDictionary.png")));

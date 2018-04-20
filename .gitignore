@@ -26,6 +26,11 @@ Repertoire.JavaClient/nbproject/private/**
 Repertoire.JavaClient/build/**
 Repertoire.Shared/nbproject/private/**
 Repertoire.Shared/build/**
+Repertoire.WebAPI/nbproject/private/**
+Repertoire.WebAPI/build/**
 *.ser
 !ThirdParty/**
 /Repertoire.JavaClient/dist/
+Repertoire.JavaClient/data/**
+Repertoire.JavaClient/masterList.xml
+Repertoire.WebAPI/deckVersions/**

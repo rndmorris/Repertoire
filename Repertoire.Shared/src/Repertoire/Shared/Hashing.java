@@ -8,7 +8,6 @@ package Repertoire.Shared;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.Base64;
 
 /**
@@ -20,6 +19,7 @@ public class Hashing {
         MessageDigest digest = null;
         try {
             digest = MessageDigest.getInstance("SHA-256");
+            digest.reset();
         } catch (NoSuchAlgorithmException nsae) {
             nsae.printStackTrace(System.err);
         }
@@ -30,5 +30,20 @@ public class Hashing {
     }
     public static String Sha256ToBase64(Long input) {
         return Hashing.Sha256ToBase64(input.toString());
+    }
+    public static String Sha256ToBase16(String input) {
+        byte[] bytes = getDigest().digest(input.getBytes(StandardCharsets.UTF_8));
+        return ToBase16(bytes);
+    }
+    public static String Sha256ToBase16(Long input) {
+        return Sha256ToBase16(input.toString());
+    }
+    
+    private static String ToBase16(byte[] input) {
+        StringBuilder output = new StringBuilder();
+        for (byte b : input) {
+            output.append(String.format("%02X", b));
+        }
+        return output.toString();
     }
 }
