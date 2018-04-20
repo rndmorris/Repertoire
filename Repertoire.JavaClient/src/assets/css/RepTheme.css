@@ -99,10 +99,13 @@ and open the template in the editor.
 
 .button-group-h-left {
     -fx-background-radius: 15 0 0 15;
+    -fx-background-color: rgb(240,244,255);
 }
 .button-group-h-center {
     -fx-background-radius: 0 0 0 0;
+    -fx-background-color: rgb(240,244,255);
 }
 .button-group-h-right {
     -fx-background-radius: 0 15 15 0;
+    -fx-background-color: rgb(240,244,255);
 }

@@ -82,6 +82,12 @@ public class LibraryController implements Initializable, ControlledScreen {
         //setPaneInstalled();
     }   
     
+    
+    @FXML
+        void onBack(ActionEvent event) {
+           myController.setScreen("Main");
+    }
+    
     @Override
     public void setScreenParent(ScreensController screenParent) {
         myController = screenParent;
