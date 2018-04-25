@@ -5,9 +5,8 @@
  */
 package Repertoire.JavaClient.Controllers;
 
-import Repertoire.Dictionaries.InstalledDictionaryManager;
+import Repertoire.Dictionaries.LibraryManager;
 import Repertoire.Dictionary;
-import Repertoire.Program;
 import Repertoire.Shared.Entities.AvailableDictionary;
 import Repertoire.Shared.EntityLists.AvailableDictionaryList;
 import Repertoire.Shared.Hashing;
@@ -17,17 +16,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -79,7 +75,7 @@ public class LibraryController implements Initializable, ControlledScreen {
         
         paneInstalled.setVisible(false);
         paneFindNew.setVisible(false);
-        //setPaneInstalled();
+        setPaneInstalled();
     }   
     
     
@@ -187,27 +183,20 @@ public class LibraryController implements Initializable, ControlledScreen {
             entryRow.setCenter(labels);
             
             HBox buttonSet = new HBox();
-            if (InstalledDictionaryManager.dictionaryIsInstalled(dict)) {
+            if (LibraryManager.dictionaryIsInstalled(dict)) {
                 ImageView loadImg = new ImageView(new Image(getClass().getResourceAsStream("/assets/img/loadDictionary.png")));
                 loadImg.setFitHeight(48);
                 loadImg.setFitWidth(48);
                 Button loadButton = new Button("",loadImg);
                 loadButton.setOnAction(e -> {
-                    Dictionary test = new Dictionary();
-                    try {
-                        File testFile = new File("/home/rndmorris/GitRepos/Repertoire/Repertoire.JavaClient/data/"+Hashing.Sha256ToBase16(dict.getDictionaryId())+"/dictionary.json");
-                        test.dataInit(testFile.toURI().toURL());
-                    }catch (Exception ex)
-                    {
-                        ex.printStackTrace(System.err);
-                    }
+                    LibraryManager.loadDictionary(dict);
                 });
                 ImageView delImg = new ImageView(new Image(getClass().getResourceAsStream("/assets/img/deleteDictionary.png")));
                 delImg.setFitHeight(48);
                 delImg.setFitWidth(48);
                 Button delButton = new Button("",delImg);
                 delButton.setOnAction(e -> {
-                    InstalledDictionaryManager.uninstallDictionary(dict);
+                    LibraryManager.uninstallDictionary(dict);
                     setPaneInstalled();
                 });
                 buttonSet.getChildren().add(loadButton);
@@ -219,7 +208,7 @@ public class LibraryController implements Initializable, ControlledScreen {
                 loadImg.setFitWidth(48);
                 Button downloadBtn = new Button("",loadImg);
                 downloadBtn.setOnAction(e -> {
-                    InstalledDictionaryManager.installDictionary(dict);
+                    LibraryManager.installDictionary(dict);
                 });
                 buttonSet.getChildren().add(downloadBtn);
             }
@@ -238,7 +227,7 @@ public class LibraryController implements Initializable, ControlledScreen {
         buttonInstalled.setDisable(true);
         hidePanes();
         paneInstalled.setVisible(true);
-        setDisplayElements(vboxInstalled,InstalledDictionaryManager.getList());
+        setDisplayElements(vboxInstalled,LibraryManager.getLIST());
     }
     @FXML
     private void buttonFindNewPressed(ActionEvent ae) {

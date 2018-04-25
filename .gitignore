@@ -31,6 +31,6 @@ Repertoire.WebAPI/build/**
 *.ser
 !ThirdParty/**
 /Repertoire.JavaClient/dist/
-Repertoire.JavaClient/data/**
+Repertoire.JavaClient/installedDictionaries/**
 Repertoire.JavaClient/masterList.xml
 Repertoire.WebAPI/deckVersions/**
