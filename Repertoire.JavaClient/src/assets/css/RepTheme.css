@@ -37,7 +37,7 @@ and open the template in the editor.
 }
 
 .background-group-linear-gradient {
-    -fx-background-color: linear-gradient(to top,black, rgb(85,98,112))
+    -fx-background-color: linear-gradient(to top,black, rgb(110,35,135))
 }
 
 .button-group-card-back {
@@ -51,7 +51,7 @@ and open the template in the editor.
 }
 
 .button-group-big-card{
-    -fx-background-color: rgb(105,145,170);
+    -fx-background-color: rgb(190,160,250);
     -fx-border-color:black;
     -fx-border-width: 0 3 3 0;
     
@@ -88,6 +88,9 @@ and open the template in the editor.
 .button-group-display {
     -fx-background-color: rgb(240,244,255);
     -fx-font: 48px "Gruppo";
+    -fx-border-color: black;
+    -fx-border-width: 5;
+    
 
     
 }
@@ -96,10 +99,13 @@ and open the template in the editor.
 
 .button-group-h-left {
     -fx-background-radius: 15 0 0 15;
+    -fx-background-color: rgb(240,244,255);
 }
 .button-group-h-center {
     -fx-background-radius: 0 0 0 0;
+    -fx-background-color: rgb(240,244,255);
 }
 .button-group-h-right {
     -fx-background-radius: 0 15 15 0;
+    -fx-background-color: rgb(240,244,255);
 }

@@ -43,12 +43,13 @@ public class User implements Serializable {
     private int defaultDeckSize = 10;
     private HashMap<String, Card> temp;
     
-    private String activeDeck = "0";
+    private String activeDeck;
+    private Card firstMastered;
     
     public String id;
-    public String username;
+    private String username;
     private ArrayList unmastCount = new ArrayList();
-    private ArrayList mastCount = new ArrayList();
+    private ArrayList<String> mastCount = new ArrayList();
     
     String randomKey;
     Random random = new Random();
@@ -61,6 +62,7 @@ public class User implements Serializable {
     public User(String username, String id) {
         this.id = id;
         this.username = username;
+        this.activeDeck = "0";
         setFileName();
         System.out.println(userFileName);
         
@@ -79,8 +81,12 @@ public class User implements Serializable {
         return this.defaultDeckSize;
     }
     
-    public String getActiveDeck() {
+    public String getActiveDeckString() {
         return activeDeck;
+    }
+    
+    public int getActiveDeckInt() {
+        return Integer.parseInt(activeDeck);
     }
     
     public void setActiveDeck(int i) {
@@ -94,6 +100,10 @@ public class User implements Serializable {
     
     public String getFileName() {
         return userFileName;
+    }
+    
+    public String getUsername() {
+        return username;
     }
    
     
@@ -185,17 +195,27 @@ public class User implements Serializable {
      * @return the mastCount
      */
     public int getMastCount(int index) {
-        return (int) mastCount.get(index);
+        return  Integer.parseInt(mastCount.get(index));
     }
     
     public void setMastCount(int index, int count) {
-        this.mastCount.set(index, count);
+        String s = Integer.toString(count);
+        this.mastCount.set(index, s);
+        System.out.println(mastCount.get(index));
     }
 
     /**
      * @param mastCount the mastCount to set
      */
     public void addMastCount(int mastCount) {
-        this.mastCount.add(mastCount);
+        this.mastCount.add(Integer.toString(mastCount));
+    }
+    
+    public void setFirstMastered(Card card) {
+        this.firstMastered = card;
+    }
+    
+    public Card getFirstMastered() {
+        return firstMastered;
     }
 }
