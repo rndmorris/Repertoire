@@ -478,72 +478,7 @@ public class GameController implements Initializable, ControlledScreen {
                 break;
         }
     }
-/*
-    @FXML
-    void yesOnAction(ActionEvent event) {
-        try {
-            temp.setMasteryLevel((masterCount = temp.getMasteryLevel() + 1));
-            if (masterCount == 5) {
-                int cardKey;
-                Program.user.getUnmastered().remove(randomKey);
-                cardKey = Program.user.getMastCount();
-                Program.user.getMastered().put(Integer.toString(cardKey), temp);
-                Program.user.setMastCount(cardKey + 1);
 
-                errorLabel.setText("Card Mastered!");
-                errorLabel.setVisible(true);
-
-            } else {
-
-                errorLabel.setText("Correct!");
-                errorLabel.setVisible(true);
-
-            }
-
-            hideCard();
-
-            for (int i = 0; i < temp.getDifficulty(); i++) {
-                diffValues.get(i).setVisible(false);
-            }
-
-            temp = null;
-
-        } catch (NullPointerException e) {
-            errorLabel.setText("Please draw a card");
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
-            errorLabel.setText("Error... See terminal for more info");
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @FXML
-    void noOnAction(ActionEvent event) {
-
-        try {
-
-            temp.setMasteryLevel(0);
-
-            hideCard();
-
-            for (int i = 0; i < temp.getDifficulty(); i++) {
-                diffValues.get(i).setVisible(false);
-            }
-
-            errorLabel.setText("Incorrect!");
-            errorLabel.setVisible(true);
-
-            temp = null;
-
-        } catch (NullPointerException e) {
-            errorLabel.setText("Please draw a card");
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
-            errorLabel.setText("Error... See terminal for more info");
-            System.out.println(e.getMessage());
-        }
-    }
-    */
     
         @FXML
     void onBack(ActionEvent event) {
