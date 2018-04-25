@@ -5,10 +5,7 @@
  */
 package Repertoire;
 
-import Repertoire.JavaClient.Controllers.GameController;
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -26,31 +23,19 @@ import org.json.simple.parser.ParseException;
  *
  * @author Tucker
  */
-public class Dictionary {
+public final class Dictionary {
 
-    public String file = "presentationDictionary.JSON";
-    private final String case1 = "hiragana";
-    private final String case2 = "katakana";
-    private final String case3 = "jlptn5";
-    private final String case4 = "jlptn4";
-    private final String case5 = "jlptn3";
-    private final String case6 = "jlptn2";
-    private final String case7 = "jlptn1";
-    private final String case8 = "null8";
-    private final String case9 = "null9";
     public static ObservableList<Card> data = FXCollections.observableArrayList();
-    private int unmastCount;
-    private int mastCount;
-    private HashMap<String, Card> tempMast;
-    private HashMap<String, Card> tempUnMast;
-    private ArrayList<Card> deck;
+    private static int unmastCount;
+    private static int mastCount;
+    private static HashMap<String, Card> tempMast;
+    private static HashMap<String, Card> tempUnMast;
+    private static ArrayList<Card> deck;
     public static boolean dataLoaded = false;
 
-    public Dictionary() {
-        
-    }
-
-    public boolean dataInit(URL name) {
+    private Dictionary() {}
+    
+    public static boolean dataInit(URL name) {
 
         JSONParser parser = new JSONParser();
         HashMap<String, Card> set = new HashMap<>(); //unmastered 
@@ -95,12 +80,9 @@ public class Dictionary {
 
         } catch (IOException | ParseException e) {
             System.out.println(e.getMessage());
-        }
-        
-        
+        }  
 //        if (Program.newUser) {
-        
-            
+
         //set user unmastered deck to newly initialized dictionary
         int num = 0;
         int deckNum = 0;
@@ -132,15 +114,6 @@ public class Dictionary {
         System.out.println("Just put in ReadOnlyDeck: " + set.get(Integer.toString(i)).getCharacter());
         System.out.println("Number of Cards in Deck " + (deckNum - 1) + " = " + Program.user.getUnmastered().get(Integer.toString(deckNum - 1)).size());
         }
-        /* Tester for Read Only Decks
-        for (int i = 0; i < 3; i++) {
-            HashMap<String, ArrayList<Card>> decks = Program.user.getReadOnlyDecks();
-            for (int k = 0; k < decks.get(Integer.toString(i)).size(); k++) {
-                System.out.println("Deck #" + i + "     Card #" + k + "  = " + decks.get(Integer.toString(i)).get(k).getCharacter());
-                
-            }
-        }
-        */
         System.out.println("Done within loading data");
         //set working game deck to newly initialized dictionary (should be a deck)
 //        if (Program.newUser) {
@@ -154,37 +127,37 @@ public class Dictionary {
 
     }
 
-    public int convertDifficulty(String category) {
+    public static int convertDifficulty(String category) {
 
         int value = 0;
 
         switch (category) {
 
-            case case1:
+            case "hiragana":
                 value = 1;
                 break;
-            case case2:
+            case "katakana":
                 value = 2;
                 break;
-            case case3:
+            case "jlptn5":
                 value = 3;
                 break;
-            case case4:
+            case "jlptn4":
                 value = 4;
                 break;
-            case case5:
+            case "jlptn3":
                 value = 5;
                 break;
-            case case6:
+            case "jlptn2":
                 value = 6;
                 break;
-            case case7:
+            case "jlptn1":
                 value = 7;
                 break;
-            case case8:
+            case "null8":
                 value = 8;
                 break;
-            case case9:
+            case "null9":
                 value = 9;
                 break;
 

@@ -103,4 +103,18 @@ public class AvailableDictionary extends Entity {
         CurrentVersion = value;
     }
     
+    @Override
+    public boolean equals(Object obj) {
+        boolean output = false;
+        
+        if (obj != null && obj instanceof AvailableDictionary) {
+            AvailableDictionary dict = (AvailableDictionary) obj;
+            if (this.getDictionaryId() == dict.getDictionaryId())
+            {
+                output = true;
+            }
+        }
+        
+        return output;
+    }
 }

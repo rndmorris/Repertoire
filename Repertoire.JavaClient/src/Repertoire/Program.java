@@ -5,6 +5,7 @@
  */
 package Repertoire;
 
+import Repertoire.Dictionaries.LibraryManager;
 import Repertoire.JavaClient.Controllers.ScreensController;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,7 +28,7 @@ import org.apache.commons.lang.SerializationUtils;
  * @author Tucker
  */
 public class Program extends Application  {
-    
+
     public static UserAccounts accounts = new UserAccounts();
     public static boolean newUser = false;
     
@@ -51,7 +52,7 @@ public class Program extends Application  {
     
     @Override
     public void start(Stage stage) {
-        
+        LibraryManager.loadListFromFile();
         deserialize();
         /*
         try {
@@ -114,7 +115,7 @@ public class Program extends Application  {
         });
         
         
-        stage.setFullScreen(true);
+//        stage.setFullScreen(true);
         
     }
 

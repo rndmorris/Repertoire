@@ -9,13 +9,9 @@ import Repertoire.Shared.Sql.RepertoireDB;
 import Repertoire.Shared.Sql.SqlHelper;
 import Repertoire.Shared.Sql.SqlParameter;
 import Repertoire.Shared.Sql.SqlType;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -47,56 +43,8 @@ public class DictionaryDownloadServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
-        if (request.getParameter("versionId") != null) {
-            List<SqlParameter> params = new ArrayList<>();
-            params.add(
-                new SqlParameter(
-                        SqlType.INTEGER,
-                        Integer.parseInt(request.getParameter("versionId"))
-                        , 1));
-            
-            StringBuilder query = new StringBuilder();
-            query
-                    .append("SELECT VisibilitySettingId FROM DictionaryDefinition JOIN DictionaryVersion ON  DictionaryDefinition.Id = DictionaryVersion.DictionaryDefinitionId WHERE  DictionaryVersion.Id = ? LIMIT 1;");
-
-            ServletContext context = getServletContext();
-            String dbUrl = context.getInitParameter("repertoireDBUrl");
-            String dbUser = context.getInitParameter("repertoireDBUsername");
-            String dbPass = context.getInitParameter("repertoireDBPassword");
-
-            RepertoireDB db = new RepertoireDB(dbUrl);
-            Connection conn = db.getConnection(dbUser, dbPass);
-            
-            ResultSet rs = SqlHelper.ExecuteQuery(conn,query.toString(),params);
-            int visibilitySetting = -1;
-            while (rs.next())
-            {
-                visibilitySetting = rs.getInt("VisibilitySettingId");
-            }
-            if (visibilitySetting == -1) {
-                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            }
-            else {
-                File fileObj = new File("/home/rndmorris/GitRepos/Repertoire/Repertoire.WebAPI/deckVersions/deck.json");
-                ServletOutputStream writer;
-                try (InputStream file = fileObj.toURI().toURL().openStream()) {
-                    writer = response.getOutputStream();
-                    response.setContentType("application/octet-stream;charset=UTF-8");
-                    response.setHeader("Content-Disposition", "attachment; filename=\"dictionary.json\"");
-                    byte[] buffer = new byte[4096];
-                    int bytesRead = -1;
-                    while ((bytesRead = file.read(buffer)) != -1)
-                    {
-                        writer.write(buffer, 0, bytesRead);
-                    }
-                }
-                writer.close();
-            }
-        }
-        
-        
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
+        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -111,10 +59,55 @@ public class DictionaryDownloadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(DictionaryDownloadServlet.class.getName()).log(Level.SEVERE, null, ex);
+        if (request.getParameter("versionId") != null) {
+            try {
+                List<SqlParameter> params = new ArrayList<>();
+                params.add(
+                        new SqlParameter(
+                                SqlType.INTEGER,
+                                Integer.parseInt(request.getParameter("versionId"))
+                                , 1));
+                
+                StringBuilder query = new StringBuilder();
+                query
+                        .append("SELECT VisibilitySettingId FROM DictionaryDefinition JOIN DictionaryVersion ON  DictionaryDefinition.Id = DictionaryVersion.DictionaryDefinitionId WHERE  DictionaryVersion.Id = ? LIMIT 1;");
+                
+                ServletContext context = getServletContext();
+                String dbUrl = context.getInitParameter("repertoireDBUrl");
+                String dbUser = context.getInitParameter("repertoireDBUsername");
+                String dbPass = context.getInitParameter("repertoireDBPassword");
+                
+                RepertoireDB db = new RepertoireDB(dbUrl);
+                Connection conn = db.getConnection(dbUser, dbPass);
+                
+                ResultSet rs = SqlHelper.ExecuteQuery(conn,query.toString(),params);
+                int visibilitySetting = -1;
+                while (rs.next())
+                {
+                    visibilitySetting = rs.getInt("VisibilitySettingId");
+                }
+                if (visibilitySetting == -1) {
+                    response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                }
+                else {
+                    File fileObj = new File("/home/rndmorris/GitRepos/Repertoire/Repertoire.WebAPI/deckVersions/deck.json");
+                    ServletOutputStream writer;
+                    try (InputStream file = fileObj.toURI().toURL().openStream()) {
+                        writer = response.getOutputStream();
+                        response.setContentType("application/octet-stream;charset=UTF-8");
+                        response.setHeader("Content-Disposition", "attachment; filename=\"dictionary.json\"");
+                        byte[] buffer = new byte[4096];
+                        int bytesRead = -1;
+                        while ((bytesRead = file.read(buffer)) != -1)
+                        {
+                            writer.write(buffer, 0, bytesRead);
+                        }
+                    }
+                    writer.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DictionaryDownloadServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -129,11 +122,7 @@ public class DictionaryDownloadServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(DictionaryDownloadServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

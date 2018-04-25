@@ -5,9 +5,7 @@
  */
 package Repertoire.JavaClient.Controllers;
 
-import Repertoire.Dictionary;
 import Repertoire.Program;
-import com.sun.glass.ui.Application;
 import java.io.FileOutputStream;
 
 import javafx.event.ActionEvent;
@@ -17,9 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import org.apache.commons.lang.SerializationUtils;
 
 /**
@@ -151,16 +147,13 @@ public class MainController implements Initializable, ControlledScreen {
 
     @FXML
     void libraryMenuItem(ActionEvent event) {
+        myController.refreshScreen("Library", myController.getScreenMap().get("Library"));
         myController.setScreen("Library");
     }
 
     @FXML
     void settingsMenuItem(ActionEvent event) {
         myController.setScreen("Settings");
-    }
-    
-        @FXML
-    void onLoadData(ActionEvent event) {
     }
     
     
