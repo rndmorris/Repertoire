@@ -36,7 +36,7 @@ public class AvailableDictionaryListSqlMapper implements ISqlMapper<AvailableDic
             row.setFileUpdatedOn(rs.getTimestamp("FileUpdatedOn"));
             row.setDictionaryId(rs.getLong("DictionaryId"));
             row.setVersionId(rs.getLong("VersionId"));
-            
+            row.setFilePath(rs.getString("FilePath"));
             list.add(row);
         }
         

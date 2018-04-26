@@ -34,3 +34,4 @@ Repertoire.WebAPI/build/**
 Repertoire.JavaClient/installedDictionaries/**
 Repertoire.JavaClient/masterList.xml
 Repertoire.WebAPI/deckVersions/**
+/Repertoire.WebAPI/dist/

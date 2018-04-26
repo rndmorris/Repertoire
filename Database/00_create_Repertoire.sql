@@ -59,6 +59,7 @@ CREATE VIEW Repertoire.AvailableDictionary AS
 			,def.ModifiedOn AS 'DefinitionUpdatedOn'
 			,ver.ModifiedOn AS 'FileUpdatedOn'
 			,ver.Id AS 'VersionId'
+			,ver.FilePath AS 'FilePath'
 			,ver.Version AS 'CurrentVersion'
 	FROM LatestDictionaryVersion AS ver
 	LEFT JOIN (DictionaryDefinition AS def) ON (def.Id = ver.DictionaryDefinitionId)

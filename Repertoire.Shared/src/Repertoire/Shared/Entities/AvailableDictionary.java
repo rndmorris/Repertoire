@@ -29,6 +29,7 @@ public class AvailableDictionary extends Entity {
     private Timestamp FileUpdatedOn;
     private long VersionId;
     private int CurrentVersion;
+    private String FilePath;
     
     public long getDictionaryId()
     {
@@ -103,18 +104,12 @@ public class AvailableDictionary extends Entity {
         CurrentVersion = value;
     }
     
-    @Override
-    public boolean equals(Object obj) {
-        boolean output = false;
-        
-        if (obj != null && obj instanceof AvailableDictionary) {
-            AvailableDictionary dict = (AvailableDictionary) obj;
-            if (this.getDictionaryId() == dict.getDictionaryId())
-            {
-                output = true;
-            }
-        }
-        
-        return output;
+    public String getFilePath()
+    {
+        return FilePath;
+    }
+    public void setFilePath(String value)
+    {
+        FilePath = value;
     }
 }

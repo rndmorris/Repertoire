@@ -20,6 +20,7 @@ PREPARE stmt FROM "
 			,DefinitionUpdatedOn
 			,FileUpdatedOn
 			,VersionId
+			,FilePath
 			,CurrentVersion
 	FROM AvailableDictionary
 	WHERE	DictionaryName LIKE CONCAT('%',?,'%')
