@@ -21,16 +21,27 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# All distribution directories
+Repertoire.JavaClient/dist/**
 Repertoire.Shared/dist/**
+Repertoire.WebAPI/dist/**
+
+# All private project settings (What files were open, etc)
 Repertoire.JavaClient/nbproject/private/**
-Repertoire.JavaClient/build/**
 Repertoire.Shared/nbproject/private/**
-Repertoire.Shared/build/**
 Repertoire.WebAPI/nbproject/private/**
+
+# All those stinkin class files
+Repertoire.JavaClient/build/**
+Repertoire.Shared/build/**
 Repertoire.WebAPI/build/**
-*.ser
-!ThirdParty/**
-/Repertoire.JavaClient/dist/
+
+# Data we don't need to track
 Repertoire.JavaClient/installedDictionaries/**
-Repertoire.JavaClient/masterList.xml
 Repertoire.WebAPI/deckVersions/**
+**.ser
+
+# Ensure all third party libraries get included
+!ThirdParty/**
+
