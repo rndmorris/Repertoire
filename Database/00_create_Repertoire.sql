@@ -25,7 +25,7 @@ CREATE TABLE DictionaryDefinition (
 CREATE TABLE DictionaryVersion (
 	 Id BIGINT NOT NULL AUTO_INCREMENT
 	,DictionaryDefinitionId BIGINT NOT NULL
-	,FilePath VARCHAR(255)
+	,FilePath VARCHAR(255) DEFAULT ''
 	,Version INT NOT NULL
 	,DisplayVersion VARCHAR(16) NOT NULL
 	,ModifiedOn TIMESTAMP NOT NULL
@@ -47,6 +47,7 @@ CREATE VIEW Repertoire.LatestDictionaryVersion AS
 			,Id
 			,Version
 			,ModifiedOn
+			,FilePath
 	FROM DictionaryVersion ver1
 	WHERE ver1.Version = (SELECT MAX(Version) FROM DictionaryVersion ver2 WHERE ver1.DictionaryDefinitionId = ver2.DictionaryDefinitionId);
 

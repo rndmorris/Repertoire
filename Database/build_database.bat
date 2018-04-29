@@ -1,4 +1,3 @@
-@SETLOCAL EnableDelayedExpansion EnableExtensions
 @ECHO OFF
 
 set MYSQL=""
@@ -35,5 +34,3 @@ GOTO EXIT
 
 :EXIT
 PAUSE
-
-ENDLOCAL

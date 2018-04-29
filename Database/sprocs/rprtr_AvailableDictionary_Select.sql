@@ -3,15 +3,17 @@ CREATE PROCEDURE rprtr_AvailableDictionary_Select
 (
 	 p_PageOffset INTEGER			-- Page number * page size
 	,p_PageSize INTEGER				-- Page size
-	,p_NameSearchTerm VARCHAR(256)		-- What Dictionary name to look for
-	,p_CreatorSearchTerm VARCHAR(256)	-- What author name to look for
+	,p_SearchTerms VARCHAR(256)		-- Terms to search for
 )
 BEGIN
 SET @p_rowOffset = (p_PageOffset * p_PageSize);
 SET @p_PageOffset = p_PageOffset;
 SET @p_PageSize = p_PageSize;
-SET @p_NameSearchTerm = p_NameSearchTerm;
-SET @p_CreatorSearchTerm = p_CreatorSearchTerm;
+
+
+
+SET @p_NameSearchTerm = p_SearchTerms;
+SET @p_CreatorSearchTerm = p_SearchTerms;
 PREPARE stmt FROM "
 	SELECT	 DictionaryId
 			,DictionaryName
@@ -23,8 +25,8 @@ PREPARE stmt FROM "
 			,FilePath
 			,CurrentVersion
 	FROM AvailableDictionary
-	WHERE	DictionaryName LIKE CONCAT('%',?,'%')
-	OR		CreatedBy LIKE CONCAT('%',?,'%')
+	WHERE	DictionaryName REGEXP ?
+	OR		CreatedBy REGEXP ?
 	LIMIT ?, ?";
 	EXECUTE stmt USING @p_NameSearchTerm, @p_CreatorSearchTerm, @p_rowOffset, @p_PageSize;
 	DEALLOCATE PREPARE stmt;
