@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -59,6 +60,8 @@ public class LibraryController implements Initializable, ControlledScreen {
     Pane paneFindNew;
     @FXML
     VBox vboxFindNew;
+    @FXML
+    ScrollPane scrollpaneFindNew;
     
     @FXML
     ChoiceBox pageSize;
@@ -75,7 +78,6 @@ public class LibraryController implements Initializable, ControlledScreen {
         
         paneInstalled.setVisible(false);
         paneFindNew.setVisible(false);
-        setPaneInstalled();
     }   
     
     
@@ -124,9 +126,8 @@ public class LibraryController implements Initializable, ControlledScreen {
     @FXML
     void searchBtnPressed(ActionEvent ae) throws UnsupportedEncodingException, MalformedURLException, JAXBException {
         int pageSizeVal = (int)pageSize.getValue();
-        String nameSearchTerm = searchTerm.getText();
-        String authorSearchTerm = searchTerm.getText();
-        curParams = new SearchParams(pageSizeVal, nameSearchTerm, authorSearchTerm);
+        String searchTerms = searchTerm.getText();
+        curParams = new SearchParams(pageSizeVal, searchTerms);
         
         loadedEntries = search(curParams);
         int leftBound = curParams.getPageOffset() * curParams.getPageSize();
@@ -136,6 +137,7 @@ public class LibraryController implements Initializable, ControlledScreen {
         }
         List<AvailableDictionary> sublist = loadedEntries.subList(leftBound,rightBound);
         setDisplayElements(vboxFindNew,sublist);
+        scrollpaneFindNew.setVvalue(0.0);
     }
     
     AvailableDictionaryList search(SearchParams parameters) throws UnsupportedEncodingException, MalformedURLException, JAXBException
@@ -146,13 +148,9 @@ public class LibraryController implements Initializable, ControlledScreen {
                 .append("?")
                 .append("PageOffset=").append(parameters.getPageOffset())
                 .append("&PageSize=").append(parameters.getPageSize());
-        if (parameters.getNameSearchTerm().trim().equals("") == false)
+        if (parameters.getSearchTerms().trim().equals("") == false)
         {
-            buildUrl.append("&NameSearchTerm=").append(URLEncoder.encode(parameters.getNameSearchTerm(), "UTF-8"));
-        }
-        if (parameters.getAuthorSearchTerm().trim().equals("") == false)
-        {
-            buildUrl.append("&CreatorSearchTerm=").append(URLEncoder.encode(parameters.getAuthorSearchTerm(), "UTF-8"));
+            buildUrl.append("&SearchTerms=").append(URLEncoder.encode(parameters.getSearchTerms(), "UTF-8"));
         }
         
         URL url = new URL(buildUrl.toString());
@@ -252,15 +250,13 @@ public class LibraryController implements Initializable, ControlledScreen {
     {
         private int pageSize;
         private int pageOffset;
-        private String nameSearchTerm;
-        private String authorSearchTerm;
+        private String searchTerms;
         
-        SearchParams(int pageSize, String nameSearchTerm, String authorSearchTerm)
+        SearchParams(int pageSize, String searchTerms)
         {
             setPageOffset(0);
             setPageSize(pageSize);
-            setNameSearchTerm(nameSearchTerm);
-            setAuthorSearchTerm(authorSearchTerm);
+            setSearchTerms(searchTerms);
         }
         
         public int getPageSize()
@@ -287,21 +283,13 @@ public class LibraryController implements Initializable, ControlledScreen {
             }
             pageOffset = value;
         }
-        public String getNameSearchTerm()
+        public String getSearchTerms()
         {
-            return nameSearchTerm;
+            return searchTerms;
         }
-        private void setNameSearchTerm(String value)
+        private void setSearchTerms(String value)
         {
-            nameSearchTerm = value;
-        }
-        public String getAuthorSearchTerm()
-        {
-            return authorSearchTerm;
-        }
-        private void setAuthorSearchTerm(String value)
-        {
-            authorSearchTerm = value;
+            searchTerms = value;
         }
     }
 }

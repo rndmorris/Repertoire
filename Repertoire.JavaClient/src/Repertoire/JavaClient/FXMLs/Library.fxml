@@ -11,11 +11,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" styleClass="background-group-linear-gradient" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Repertoire.JavaClient.Controllers.LibraryController">
    <children>
+      <Button layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#onBack" styleClass="button-group-back-button" text="Back" textFill="#f0f4ff" />
       <Button fx:id="buttonFindNew" layoutX="400.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonFindNewPressed" prefWidth="80.0" styleClass="button-group-h-right" text="Find New" textAlignment="CENTER" />
       <Button fx:id="buttonInstalled" layoutX="320.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonInstalledPressed" prefWidth="80.0" styleClass="button-group-h-left" text="Installed" textAlignment="CENTER" />
       <Pane fx:id="paneInstalled" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="800.0">
          <children>
-            <ScrollPane layoutX="25.0" layoutY="50.0" prefHeight="325.0" prefWidth="750.0">
+            <ScrollPane hbarPolicy="NEVER" layoutX="25.0" layoutY="50.0" prefHeight="325.0" prefWidth="760.0" vbarPolicy="ALWAYS">
                <content>
                   <AnchorPane>
                      <children>
@@ -28,7 +29,7 @@
       </Pane>
       <Pane fx:id="paneFindNew" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="800.0">
          <children>
-            <ScrollPane layoutX="25.0" layoutY="50.0" prefHeight="325.0" prefWidth="750.0">
+            <ScrollPane fx:id="scrollpaneFindNew" hbarPolicy="NEVER" layoutX="25.0" layoutY="50.0" prefHeight="325.0" prefWidth="760.0" vbarPolicy="ALWAYS">
                <content>
                   <AnchorPane>
                      <children>
@@ -43,6 +44,5 @@
             <Label layoutX="103.0" layoutY="19.0" text="# per page:" />
          </children>
       </Pane>
-      <Button layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#onBack" styleClass="button-group-back-button" text="Back" textFill="#f0f4ff" />
    </children>
 </AnchorPane>
