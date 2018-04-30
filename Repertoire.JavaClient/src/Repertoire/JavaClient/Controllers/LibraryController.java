@@ -135,7 +135,7 @@ public class LibraryController implements Initializable, ControlledScreen {
         if (rightBound > loadedEntries.size()){
             rightBound = loadedEntries.size() -1;
         }
-        List<AvailableDictionary> sublist = loadedEntries.subList(leftBound,rightBound);
+        List<AvailableDictionary> sublist = loadedEntries;
         setDisplayElements(vboxFindNew,sublist);
         scrollpaneFindNew.setVvalue(0.0);
     }

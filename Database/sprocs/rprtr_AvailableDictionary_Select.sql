@@ -25,8 +25,8 @@ PREPARE stmt FROM "
 			,FilePath
 			,CurrentVersion
 	FROM AvailableDictionary
-	WHERE	DictionaryName REGEXP ?
-	OR		CreatedBy REGEXP ?
+	WHERE	DictionaryName LIKE CONCAT('%',?,'%')
+	OR		CreatedBy REGEXP ('%',?'%')
 	LIMIT ?, ?";
 	EXECUTE stmt USING @p_NameSearchTerm, @p_CreatorSearchTerm, @p_rowOffset, @p_PageSize;
 	DEALLOCATE PREPARE stmt;

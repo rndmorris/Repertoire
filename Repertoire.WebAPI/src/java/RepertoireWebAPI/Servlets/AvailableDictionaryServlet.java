@@ -137,14 +137,7 @@ public class AvailableDictionaryServlet extends HttpServlet {
         ));
         paramValue = request.getParameter("SearchTerms");
         if (paramValue != null) {
-            String[] terms = paramValue.split(" ");
-            StringBuilder sb = new StringBuilder();
-            sb.append("^(");
-            for (String term : terms) {
-                sb.append(term).append("|");
-            }
-            sb.replace(sb.length()-1, sb.length(), ")+$");
-            returnList.add(new SqlParameter(SqlType.VARCHAR, sb.toString(), 3));
+            returnList.add(new SqlParameter(SqlType.VARCHAR, paramValue, 3));
         }
         else {
             returnList.add(new SqlParameter(SqlType.VARCHAR, "", 3));
