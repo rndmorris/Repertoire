@@ -54,24 +54,7 @@ public class Program extends Application  {
     public void start(Stage stage) {
         LibraryManager.loadListFromFile();
         deserialize();
-        /*
-        try {
-            //Open FileInputStream to the file
-            FileInputStream fis = new FileInputStream(User.fileName);
-            
-            //Deserialize and cast into String
-            user =  (User)SerializationUtils.deserialize(fis);
-            
-            System.out.println(user.getMastCount());
-//            fis.close();
-          
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("First Time User!");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
+        
         
         ScreensController mainContainer = new ScreensController();
         mainContainer.setPrefHeight(initHeight);

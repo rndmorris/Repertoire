@@ -106,7 +106,8 @@ public final class Dictionary {
             Program.user.addUnmastCount(unmastCount);
             deckNum++;
             System.out.println("*******************");
-//        }
+            
+        }       
         System.out.println("#########INSERT CARD##########");
         System.out.println("");
         Program.user.getUnmastered().get(Integer.toString(deckNum - 1)).put(set.get(Integer.toString(i)).getCharacter(),set.get(Integer.toString((i))));
@@ -121,7 +122,7 @@ public final class Dictionary {
             Program.newUser = false;
 //        }
         //GameController.deck = cards;
-        }
+        
 
         return true;
 
