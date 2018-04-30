@@ -22,7 +22,6 @@ import Repertoire.Shared.Sql.SqlParameter;
 import Repertoire.Shared.Sql.SqlHelper;
 import Repertoire.Shared.Sql.SqlType;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -136,20 +135,22 @@ public class AvailableDictionaryServlet extends HttpServlet {
                         ) : 25)
                 ,2
         ));
-        paramValue = request.getParameter("NameSearchTerm");
-        returnList.add(new SqlParameter
-        (
-                 SqlType.VARCHAR
-                ,(paramValue != null ? URLDecoder.decode(paramValue,"UTF-8") : "")
-                ,3
-        ));
-        paramValue = request.getParameter("CreatorSearchTerm");
-        returnList.add(new SqlParameter
-        (
-                 SqlType.VARCHAR
-                ,(paramValue != null ? URLDecoder.decode(paramValue,"UTF-8") : "")
-                ,4
-        ));
+        paramValue = request.getParameter("SearchTerms");
+        if (paramValue != null) {
+            String[] terms = paramValue.split(" ");
+            StringBuilder sb = new StringBuilder();
+            sb.append("^(");
+            for (String term : terms) {
+                sb.append(term).append("|");
+            }
+            sb.replace(sb.length()-1, sb.length(), ")+$");
+            returnList.add(new SqlParameter(SqlType.VARCHAR, sb.toString(), 3));
+        }
+        else {
+            returnList.add(new SqlParameter(SqlType.VARCHAR, "", 3));
+        }
+        
+        
         
         return returnList;
     }
