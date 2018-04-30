@@ -54,7 +54,7 @@
           <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="657.0" layoutY="146.0" mnemonicParsing="false" onAction="#onLoadData" text="LoadData" />
+      <Button layoutX="657.0" layoutY="146.0" mnemonicParsing="false" text="LoadData" />
    
     </children>
     <opaqueInsets>
