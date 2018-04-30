@@ -120,9 +120,15 @@ public class LibraryManager {
     public static boolean dictionaryIsInstalled(AvailableDictionary dict) {
         boolean output = false;
         for (AvailableDictionary item : LIST) {
-            if (item.equals(dict)) {
-                output = true;
-                break;
+            if (item.getDictionaryId() == dict.getDictionaryId()) {
+                if (item.getVersionId() >= dict.getVersionId())
+                {
+                    output = true;
+                    break;
+                }
+                else {
+                    break;
+                }
             }
         }
         return output;

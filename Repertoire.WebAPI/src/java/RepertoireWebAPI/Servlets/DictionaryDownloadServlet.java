@@ -90,9 +90,8 @@ public class DictionaryDownloadServlet extends HttpServlet {
                     response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 }
                 else {
-                    File fileObj = new File("/home/rndmorris/GitRepos/Repertoire/Repertoire.WebAPI/deckVersions/deck.json");
                     ServletOutputStream writer;
-                    try (InputStream file = fileObj.toURI().toURL().openStream()) {
+                    try (InputStream file = getClass().getResourceAsStream("/deckVersions/deck.json")) {
                         writer = response.getOutputStream();
                         response.setContentType("application/octet-stream;charset=UTF-8");
                         response.setHeader("Content-Disposition", "attachment; filename=\"dictionary.json\"");
