@@ -22,7 +22,6 @@ import Repertoire.Shared.Sql.SqlParameter;
 import Repertoire.Shared.Sql.SqlHelper;
 import Repertoire.Shared.Sql.SqlType;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
