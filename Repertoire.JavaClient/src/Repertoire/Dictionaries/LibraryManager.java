@@ -141,7 +141,7 @@ public class LibraryManager {
     
 
     private static void downloadDictionary(AvailableDictionary dict, File dictFolder) throws MalformedURLException, IOException {
-        URL url = new URL("http://localhost:8080/api/DownloadDictionary?versionId=" + dict.getDictionaryId());
+        URL url = new URL("http://localhost:8080/api/Dictionary/Download?VersionId=" + dict.getDictionaryId());
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
         
         int responseCode = conn.getResponseCode();

@@ -6,12 +6,9 @@
 package Repertoire.JavaClient.Controllers;
 
 import Repertoire.Dictionaries.LibraryManager;
-import Repertoire.Dictionary;
 import Repertoire.Shared.Entities.AvailableDictionary;
 import Repertoire.Shared.EntityLists.AvailableDictionaryList;
-import Repertoire.Shared.Hashing;
 import Repertoire.Shared.Mapping.Xml.AvailableDictionaryListXmlMapper;
-import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -144,7 +141,7 @@ public class LibraryController implements Initializable, ControlledScreen {
     {
         StringBuilder buildUrl = new StringBuilder();
         buildUrl
-                .append("http://localhost:8080/api/AvailableDictionary")
+                .append("http://localhost:8080/api/Dictionary/Available")
                 .append("?")
                 .append("PageOffset=").append(parameters.getPageOffset())
                 .append("&PageSize=").append(parameters.getPageSize());

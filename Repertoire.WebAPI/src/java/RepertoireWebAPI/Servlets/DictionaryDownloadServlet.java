@@ -5,6 +5,7 @@
  */
 package RepertoireWebAPI.Servlets;
 
+import Repertoire.Shared.Sql.Queries.DictionaryVersionVisibilitySqlQuery;
 import Repertoire.Shared.Sql.RepertoireDB;
 import Repertoire.Shared.Sql.SqlHelper;
 import Repertoire.Shared.Sql.SqlParameter;
@@ -31,23 +32,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rndmorris
  */
-@WebServlet(name = "DownloadServlet", urlPatterns = {"/DownloadDictionary"})
-public class DictionaryDownloadServlet extends HttpServlet {
+@WebServlet(name = "DownloadServlet", urlPatterns = {"/Dictionary/Download"})
+public class DictionaryDownloadServlet extends BaseServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
-        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -59,34 +46,17 @@ public class DictionaryDownloadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("versionId") != null) {
+        String versionIdString = request.getParameter("VersionId");
+        if (versionIdString == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+        else {
             try {
-                List<SqlParameter> params = new ArrayList<>();
-                params.add(
-                        new SqlParameter(
-                                SqlType.INTEGER,
-                                Integer.parseInt(request.getParameter("versionId"))
-                                , 1));
-                
-                StringBuilder query = new StringBuilder();
-                query
-                        .append("SELECT VisibilitySettingId FROM DictionaryDefinition JOIN DictionaryVersion ON  DictionaryDefinition.Id = DictionaryVersion.DictionaryDefinitionId WHERE  DictionaryVersion.Id = ? LIMIT 1;");
-                
-                ServletContext context = getServletContext();
-                String dbUrl = context.getInitParameter("repertoireDBUrl");
-                String dbUser = context.getInitParameter("repertoireDBUsername");
-                String dbPass = context.getInitParameter("repertoireDBPassword");
-                
-                RepertoireDB db = new RepertoireDB(dbUrl);
-                Connection conn = db.getConnection(dbUser, dbPass);
-                
-                ResultSet rs = SqlHelper.ExecuteQuery(conn,query.toString(),params);
-                int visibilitySetting = -1;
-                while (rs.next())
-                {
-                    visibilitySetting = rs.getInt("VisibilitySettingId");
-                }
-                if (visibilitySetting == -1) {
+                int visibilitySetting = DictionaryVersionVisibilitySqlQuery.execute(
+                        getSqlConnection(),
+                        Integer.parseInt(versionIdString)
+                );
+                if (visibilitySetting == -1 || visibilitySetting == 2) {
                     response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 }
                 else {
@@ -106,32 +76,9 @@ public class DictionaryDownloadServlet extends HttpServlet {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(DictionaryDownloadServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NumberFormatException ex) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             }
         }
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
