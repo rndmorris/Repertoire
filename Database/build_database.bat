@@ -18,7 +18,6 @@ ECHO Creating the base relations, foreign keys, and views
 
 ECHO Creating functions
 %MYSQL% --user=%MYSQL_USER% --password=%MYSQL_PASSWORD% --database=Repertoire < "%SCRIPT_DIRECTORY%sprocs\rprtr_DictionaryDefinition_AddNew.sql"
-%MYSQL% --user=%MYSQL_USER% --password=%MYSQL_PASSWORD% --database=Repertoire < "%SCRIPT_DIRECTORY%sprocs\rprtr_DictionaryVersion_AddNew.sql"
 %MYSQL% --user=%MYSQL_USER% --password=%MYSQL_PASSWORD% --database=Repertoire < "%SCRIPT_DIRECTORY%sprocs\rprtr_AvailableDictionary_Select.sql"
 
 ECHO Loading test data
