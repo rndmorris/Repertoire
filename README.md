@@ -1,7 +1,18 @@
 # Repertoire <a name="top"></a>
 ## A Digital Flashcard Learning Tool
 
-### Required Software: <a name="required"></a>
+### Table of Contents:
+
+* [Requirements](#required)
+
+* [Download and Setup](#download)
+
+* [Running](#running)
+
+* [Resolving Broken References](#resolving)
+
+
+### Requirements: <a name="required"></a>
 
 * Java 8
 
@@ -36,11 +47,11 @@ git clone https://github.com/rndmorris/Repertoire.git
 
 7. Right click each project (in the order below) and select "Clean and Build"
 
-  a. Repertoire.Shared
+  8. Repertoire.Shared
 
-  b. Repertoire.JavaClient
+  9. Repertoire.JavaClient
 
-  c. Repertoire.WebAPI
+  10. Repertoire.WebAPI
 
 ___
 
