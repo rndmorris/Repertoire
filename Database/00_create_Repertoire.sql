@@ -65,4 +65,5 @@ CREATE VIEW Repertoire.AvailableDictionary AS
 	FROM LatestDictionaryVersion AS ver
 	LEFT JOIN (DictionaryDefinition AS def) ON (def.Id = ver.DictionaryDefinitionId)
 	LEFT JOIN (User AS u) ON (def.OwnerUserId = u.Id)
-	WHERE def.VisibilitySettingId = 0;
+	WHERE def.VisibilitySettingId = 0
+			OR def.VisibilitySettingId = 1;

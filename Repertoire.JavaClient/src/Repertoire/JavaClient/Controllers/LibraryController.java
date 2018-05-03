@@ -192,7 +192,7 @@ public class LibraryController implements Initializable, ControlledScreen {
                 Button delButton = new Button("",delImg);
                 delButton.setOnAction(e -> {
                     LibraryManager.uninstallDictionary(dict);
-                    setPaneInstalled();
+                    setDisplayElements(vboxInstalled,LibraryManager.getLIST());
                 });
                 buttonSet.getChildren().add(loadButton);
                 buttonSet.getChildren().add(delButton);
@@ -204,6 +204,7 @@ public class LibraryController implements Initializable, ControlledScreen {
                 Button downloadBtn = new Button("",loadImg);
                 downloadBtn.setOnAction(e -> {
                     LibraryManager.installDictionary(dict);
+                    setDisplayElements(vboxFindNew,loadedEntries);
                 });
                 buttonSet.getChildren().add(downloadBtn);
             }

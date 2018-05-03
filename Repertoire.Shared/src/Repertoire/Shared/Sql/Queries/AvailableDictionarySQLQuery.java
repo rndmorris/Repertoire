@@ -27,11 +27,18 @@ public class AvailableDictionarySQLQuery {
         AvailableDictionaryList output = null;
         StringBuilder query = new StringBuilder();
         StringBuilder regexp = new StringBuilder();
-        regexp.append("(");
-        for (String term : searchTerms) {
-            regexp.append(term).append('|');
+        if (searchTerms != null && searchTerms.length > 0) {
+            regexp.append("^");
+            for (String term : searchTerms) {
+                regexp.append("(?=.*").append(term).append(")");
+            }
+            regexp.append(".*$");
+//            regexp.replace(regexp.length()-1,regexp.length(),"");
         }
-        regexp.replace(regexp.length()-1,regexp.length(),")");
+        else {
+            regexp.append(".*");
+        }
+        
         query.append("SELECT DictionaryId")
                 .append(",DictionaryName")
                 .append(",CreatedBy")
@@ -42,8 +49,9 @@ public class AvailableDictionarySQLQuery {
                 .append(",FilePath")
                 .append(",CurrentVersion")
                 .append(" FROM AvailableDictionary")
-                .append(" WHERE DictionaryName REGEXP ").append(regexp.toString())
-                .append(" OR    CreatedBy REGEXP ").append(regexp.toString())
+                .append(" WHERE (DictionaryName REGEXP ").append('\'').append(regexp.toString()).append('\'')
+                .append(" OR CreatedBy REGEXP ").append('\'').append(regexp.toString()).append('\'').append(')')
+//                .append(" AND VisibilitySettingId <> 2")
                 .append(" LIMIT ?, ?;");
         List<SqlParameter> params = getParameters(pageOffset, pageSize);
         try {

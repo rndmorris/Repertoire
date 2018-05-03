@@ -68,6 +68,7 @@ public class LibraryManager {
                 break;
             }
         }
+        saveListToFile();
     }
 
     public static void loadDictionary(AvailableDictionary dict) {
