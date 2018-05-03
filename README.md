@@ -47,11 +47,11 @@ git clone https://github.com/rndmorris/Repertoire.git
 
 7. Right click each project (in the order below) and select "Clean and Build"
 
-  8. Repertoire.Shared
+  * Repertoire.Shared
 
-  9. Repertoire.JavaClient
+  * Repertoire.JavaClient
 
-  10. Repertoire.WebAPI
+  * Repertoire.WebAPI
 
 ___
 
