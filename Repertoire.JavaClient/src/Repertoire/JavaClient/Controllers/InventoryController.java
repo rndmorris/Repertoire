@@ -39,11 +39,12 @@ public class InventoryController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        if(!Program.newUser)
+        if(!Program.newUser) {
             System.out.println("Not new User!!!");
             update();
-            activeDeckInt = Program.user.getActiveDeckInt();
-            
+         //************   activeDeckInt = Program.user.getActiveDeckInt();
+            activeDeckInt = Program.user.getSet().getActiveDeckInt();
+        }
         
         // Must be run at switching of screens vvvvvvvvvv
         // Draw All Mastered Cards
@@ -54,29 +55,41 @@ public class InventoryController implements Initializable, ControlledScreen {
         colCount = 0;
         rowCount = 0;
         try {
-        masteredCount = Program.user.getMastCount(activeDeckInt);
-        } catch (IndexOutOfBoundsException ex) {
-            System.out.println("New User!");
+       //************ masteredCount = Program.user.getMastCount(activeDeckInt);
+       System.out.println("MastCount in Inventory: " + Program.user.getSet().getActiveDeck().getMastCount()
+       + "\nMinus one: " + (Program.user.getSet().getActiveDeck().getMastCount() - 1));
+        masteredCount = Program.user.getSet().getActiveDeck().getMastCount();
+
+        }catch (NullPointerException e) {
+            masteredCount = 0;
+            System.out.println(e.getMessage());
+        }
+            catch (IndexOutOfBoundsException ex) {
+            System.out.println("New User-------------!");
             return;
         }
         for (int i = 0; i < masteredCount; i++) {
             Card c;
             Group temp;
             
-            c = Program.user.getMastered().get(Program.user.getActiveDeckString()).get(Integer.toString(i));
+          //**********  c = Program.user.getMastered().get(Program.user.getActiveDeckString()).get(Integer.toString(i));
+            c = Program.user.getSet().getActiveDeck().getMastered().get(Integer.toString(i));
             System.out.println(c.toString());
             temp = c.getCard();
             //temp = Program.user.getMastered().get(Integer.toString(0)).get(Integer.toString(i)).getCard();
            
 
             gridPane.add(temp, colCount % 3, rowCount);
-            System.out.println(Program.user.getMastCount(activeDeckInt));
+            
+            //edited - can be removed
+            System.out.println(Program.user.getSet().getActiveDeck().getMastCount());
 
             colCount++;
             if (colCount % 3 == 0) {
                 rowCount++;
             }
-            if (Program.user.getMastCount(activeDeckInt) > 3) {
+            // if (Program.user.getMastCount(activeDeckInt) > 3) {
+            if (Program.user.getSet().getActiveDeck().getMastCount() > 3) {
                 gridPane.setPadding(pad);
             }
 
@@ -132,7 +145,8 @@ public class InventoryController implements Initializable, ControlledScreen {
         for (int i = 0; i < activeDeckInt; i++) {
             Card c;
             Group temp;
-            c = Program.user.getMastered().get(Program.user.getActiveDeckString()).get(Integer.toString(i));
+          //***********  c = Program.user.getMastered().get(Program.user.getActiveDeckString()).get(Integer.toString(i));
+            c = Program.user.getSet().getActiveDeck().getMastered().get(Integer.toString(i));
             temp = c.getCard();
             //temp = Program.user.getMastered().get(Integer.toString(0)).get(Integer.toString(i)).getCard();
 

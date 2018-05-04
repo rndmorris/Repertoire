@@ -39,8 +39,10 @@ public class ProfileController implements Initializable, ControlledScreen {
         username.setText(Program.user.getUsername());
         try {
         displayFirstCard();
-        cardsOwned.setText(Integer.toString(Program.user.getMastCount(Program.user.getActiveDeckInt())));
-        System.out.println((Program.user.getMastCount(Program.user.getActiveDeckInt())));
+        //*****************cardsOwned.setText(Integer.toString(Program.user.getMastCount(Program.user.getActiveDeckInt())));
+        System.out.println("passed");
+        cardsOwned.setText(Integer.toString(Program.user.getSet().getActiveDeck().getMastCount()));
+        System.out.println("Cards Owned Number: " +(Program.user.getSet().getActiveDeck().getMastCount()));
         } catch (NullPointerException ex) {
             System.out.println(ex.getMessage() + " - NewUser");
             

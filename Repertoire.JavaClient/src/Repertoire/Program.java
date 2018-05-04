@@ -35,10 +35,6 @@ public class Program extends Application  {
     public static User user = new User("Username", "ID");
     
     
-    
-    
-
-    
     public static String startScreen = "SignIn";
     
     final int initHeight = 450;

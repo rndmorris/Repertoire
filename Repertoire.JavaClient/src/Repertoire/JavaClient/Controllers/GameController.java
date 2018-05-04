@@ -64,7 +64,12 @@ public class GameController implements Initializable, ControlledScreen {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        deck = Program.user.getReadOnlyDecks().get(Program.user.getActiveDeckString());
+    //*************    deck = Program.user.getReadOnlyDecks().get(Program.user.getActiveDeckString());
+    try {
+       if(!Program.newUser) deck = Program.user.getSet().getActiveDeck().getReadOnlyDecks();
+    }catch (NullPointerException ex) {
+        System.out.println(ex.getMessage());
+    }
         cheat = false;
         
         diffValues.add(diffSphere1);
@@ -286,8 +291,8 @@ public class GameController implements Initializable, ControlledScreen {
                 errorLabel.setVisible(true);
                 return;
             }
-            temp = (Card)Program.user.getUnmastered().get(Program.user.getActiveDeckString()).get(randomKey);          
-
+          //  temp = (Card)Program.user.getUnmastered().get(Program.user.getActiveDeckString()).get(randomKey);          
+            temp = (Card)Program.user.getSet().getActiveDeck().getUnmastered().get(randomKey);
             character.setText(temp.getCharacter());
             readingOne.setText(temp.getReadingOne());
             readingTwo.setText(temp.getReadingTwo());
@@ -373,22 +378,37 @@ public class GameController implements Initializable, ControlledScreen {
     }
     
     public void answerCorrect() {
-        
+        int cardKey;
         try {
             temp.setMasteryLevel((masterCount = temp.getMasteryLevel() + 1));
             if (masterCount == 5) {
-                if (Program.user.getMastered().get(Program.user.getActiveDeckString()).isEmpty()) Program.user.setFirstMastered(temp);
-                System.out.println("00000000000000000000000");
-                int cardKey;
-                Card c = Program.user.getUnmastered().get(Program.user.getActiveDeckString()).remove(randomKey);
+               //***************** if (Program.user.getMastered().get(Program.user.getActiveDeckString()).isEmpty()) Program.user.setFirstMastered(temp);
+                if (Program.user.getSet().getActiveDeck().getMastered().isEmpty()) {
+                    Program.user.setFirstMastered(temp);
+                    cardKey = 0;
+                    System.out.println("00000000000000000000000");
+                } else {
+                    System.out.println("MastCount in Game: " +Program.user.getSet().getActiveDeck().getMastCount());
+                    cardKey = Program.user.getSet().getActiveDeck().getMastCount();
+                }
+                
+                
+                //****************Card c = Program.user.getUnmastered().get(Program.user.getActiveDeckString()).remove(randomKey);
+                Card c = Program.user.getSet().getActiveDeck().getUnmastered().remove(randomKey);
                 System.out.println(c.toString());
                 
-                cardKey = Program.user.getMastCount(Program.user.getActiveDeckInt());
-                System.out.println(cardKey);
+              //****MAY BE A PROBLEM*********  cardKey = Program.user.getMastCount(Program.user.getActiveDeckInt());
+                //cardKey = Program.user.getSet().getActiveDeck().getMastCount();
+                //System.out.println(cardKey);
                 
-                Program.user.getMastered().get(Program.user.getActiveDeckString()).put(Integer.toString(cardKey), temp);
-                Program.user.setMastCount(Program.user.getActiveDeckInt(), cardKey + 1);
-                System.out.println(" Cards Owned should be- " +Program.user.getMastCount(Program.user.getActiveDeckInt()));
+               //********* Program.user.getMastered().get(Program.user.getActiveDeckString()).put(Integer.toString(cardKey), temp);
+                Program.user.getSet().getActiveDeck().getMastered().put(Integer.toString(cardKey), temp);
+                System.out.println(Program.user.getSet().getActiveDeck().getMastCount());
+             //***********   Program.user.setMastCount(Program.user.getActiveDeckInt(), cardKey + 1);
+              //  Program.user.setMastCount(Program.user.getActiveDeckInt(), cardKey + 1);
+              
+              
+              //System.out.println(" Cards Owned should be- " +Program.user.getMastCount(Program.user.getActiveDeckInt()));
 
                 errorLabel.setText("Card Mastered!");
                 errorLabel.setVisible(true);

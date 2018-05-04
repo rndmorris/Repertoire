@@ -36,9 +36,12 @@ public class User implements Serializable {
     
     //private ArrayList<Dictionary> libraries = new ArrayList<>();
     private HashMap<String, HashMap> sets = new HashMap<>();
-    private HashMap<String, HashMap<String, Card>> Unmastered = new HashMap<>();
-    private HashMap<String, HashMap<String, Card>> Mastered = new HashMap<>();
-    private HashMap<String, ArrayList<Card>> readOnlyDecks = new HashMap<>();
+    private Set set = new Set();
+    
+    // replacements in progress
+    //private HashMap<String, HashMap<String, Card>> Unmastered = new HashMap<>();
+    //private HashMap<String, HashMap<String, Card>> Mastered = new HashMap<>();
+    //private HashMap<String, ArrayList<Card>> readOnlyDecks = new HashMap<>();
     
     private int defaultDeckSize = 10;
     private HashMap<String, Card> temp;
@@ -68,14 +71,22 @@ public class User implements Serializable {
         
         
     }
-    
+    /*
     public User(String name, String username, HashMap<String, HashMap<String, Card>> set) {
         this.id = name;
         this.username = username;
         this.Unmastered = set;
     }
+    */
     
+    public Set getSet() {
+        System.out.println("getSet working");
+        return this.set;
+    }
     
+    public void setSet(Set set) {
+        this.set = set;
+    }
     
     public int getDefaultDeckSize() {
         return this.defaultDeckSize;
@@ -106,27 +117,32 @@ public class User implements Serializable {
         return username;
     }
    
+    /*
     
-    
-    public void initNewLib(HashMap<String, Card> set) {
+    public void initNewLib(HashMap<String, Card> cardSet) {
         int num = 0;
         int deckNum = 0;
         for (int i = 0; i < set.size() ; i++) {
         if (num == defaultDeckSize - 1) {
             temp = new HashMap<>();
             Program.user.putUnmastered(Integer.toString(deckNum), temp);
+            set.getDecks().put(Integer.toString(deckNum), temp);
             deckNum++;
         }
         Program.user.getUnmastered().get(Integer.toString(deckNum - 1)).put(set.get(Integer.toString(i)).getCharacter(),set.get(Integer.toString((i))));
         
         }
     }
+    */
     
     public String getRandomKey() {
         
-                System.out.println(Unmastered.get(Integer.toString(0)).toString());
-              randomKey = (String) Unmastered.get(Integer.toString(0)).keySet().toArray()
-               [new Random().nextInt(Unmastered.get(Integer.toString(0)).keySet().toArray().length)]; //Doesn't Work right
+               // System.out.println(Unmastered.get(Integer.toString(0)).toString());
+                
+          //    randomKey = (String) Unmastered.get(Integer.toString(0)).keySet().toArray()
+          //     [new Random().nextInt(Unmastered.get(Integer.toString(0)).keySet().toArray().length)]; //Doesn't Work right
+                randomKey = (String) set.getActiveDeck().getUnmastered().keySet().toArray()
+                 [new Random().nextInt(set.getActiveDeck().getUnmastered().keySet().toArray().length)];    
        return randomKey; 
         
     }
@@ -134,7 +150,7 @@ public class User implements Serializable {
     /**
      * @param id
      * @return the Unmastered
-     */
+     /
     public HashMap<String, HashMap<String, Card>> getUnmastered() {
         return Unmastered;
     }
@@ -146,7 +162,7 @@ public class User implements Serializable {
     /**
      * @param id
      * @param deck the deck to set
-     */
+     /
     public void putUnmastered(String id,HashMap<String, Card> deck) {
         this.Unmastered.put(id, deck);
     }
@@ -157,7 +173,7 @@ public class User implements Serializable {
 
     /**
      * @return the Mastered
-     */
+     /
     public HashMap<String, HashMap<String, Card>> getMastered() {
         return Mastered;
     }
@@ -165,7 +181,7 @@ public class User implements Serializable {
     /**
      * @param id
      * @param deck
-     */
+     /
     public void putMastered(String id, HashMap<String, Card> deck) {
         this.Mastered.put(id, deck);
     }
@@ -174,7 +190,7 @@ public class User implements Serializable {
 
     /**
      * @return the unmastCount
-     */
+     /
     public int getUnmastCount(int index) {
         return (int) unmastCount.get(index);
     }
@@ -185,7 +201,7 @@ public class User implements Serializable {
 
     /**
      * @param unmastCount the unmastCount to set
-     */
+     /
     public void addUnmastCount(int unmastCount) {
         this.unmastCount.add(unmastCount);
     }
@@ -193,7 +209,7 @@ public class User implements Serializable {
     /**
      * @param index
      * @return the mastCount
-     */
+     /
     public int getMastCount(int index) {
         return  Integer.parseInt(mastCount.get(index));
     }
@@ -206,11 +222,12 @@ public class User implements Serializable {
 
     /**
      * @param mastCount the mastCount to set
-     */
+     /
     public void addMastCount(int mastCount) {
         this.mastCount.add(Integer.toString(mastCount));
     }
     
+    */
     public void setFirstMastered(Card card) {
         this.firstMastered = card;
     }
