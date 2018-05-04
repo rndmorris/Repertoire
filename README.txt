@@ -1,18 +1,7 @@
-# Repertoire <a name="top"></a>
-## A Digital Flashcard Learning Tool
+Repertoire
+A Digital Flashcard Learning Tool
 
-### Table of Contents:
-
-* [Requirements](#required)
-
-* [Download and Setup](#download)
-
-* [Running](#running)
-
-* [Resolving Broken References](#resolving)
-
-
-### Requirements: <a name="required"></a>
+Requirements:
 
 * Java 8
 
@@ -28,14 +17,13 @@
 
 ___
 
-### Download and Setup <a name="download"></a>
+Download and Setup
 
 1. Open your console and navigate to where you want to keep the download
 
 2. Clone the repository to your machine using the command: 
-```bash
-git clone https://github.com/rndmorris/Repertoire.git
-```
+
+	git clone https://github.com/rndmorris/Repertoire.git
 
 3. Start MySQL Server, set up your user account and permissions as needed
 
@@ -43,7 +31,7 @@ git clone https://github.com/rndmorris/Repertoire.git
 
 5. Open all three projects (Repertoire.JavaClient, Repertoire.Shared, and Repertoire.WebAPI) in Netbeans
 
-6. Resolve any broken references, if any occur (See [Resolving Broken References](#resolving))
+6. Resolve any broken references, if any occur (See Resolving Broken References)
 
 7. Right click each project (in the order below) and select "Clean and Build"
 
@@ -55,7 +43,7 @@ git clone https://github.com/rndmorris/Repertoire.git
 
 ___
 
-### Running <a name="running"></a>
+Running
 
 1. Ensure MySQL Server is running
 
@@ -67,7 +55,7 @@ ___
 
 ___
 
-### Resolving Broken References <a name="resolving"></a>
+Resolving Broken References
 
 Sometimes references to projects and libraries will break. Right click a broken project and click the resolve button. Mappings and paths for everything are below:
 

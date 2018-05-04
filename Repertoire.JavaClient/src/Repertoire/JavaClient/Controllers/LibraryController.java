@@ -6,12 +6,9 @@
 package Repertoire.JavaClient.Controllers;
 
 import Repertoire.Dictionaries.LibraryManager;
-import Repertoire.Dictionary;
 import Repertoire.Shared.Entities.AvailableDictionary;
 import Repertoire.Shared.EntityLists.AvailableDictionaryList;
-import Repertoire.Shared.Hashing;
 import Repertoire.Shared.Mapping.Xml.AvailableDictionaryListXmlMapper;
-import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -135,7 +132,7 @@ public class LibraryController implements Initializable, ControlledScreen {
         if (rightBound > loadedEntries.size()){
             rightBound = loadedEntries.size() -1;
         }
-        List<AvailableDictionary> sublist = loadedEntries.subList(leftBound,rightBound);
+        List<AvailableDictionary> sublist = loadedEntries;
         setDisplayElements(vboxFindNew,sublist);
         scrollpaneFindNew.setVvalue(0.0);
     }
@@ -144,7 +141,7 @@ public class LibraryController implements Initializable, ControlledScreen {
     {
         StringBuilder buildUrl = new StringBuilder();
         buildUrl
-                .append("http://localhost:8080/api/AvailableDictionary")
+                .append("http://localhost:8080/api/Dictionary/Available")
                 .append("?")
                 .append("PageOffset=").append(parameters.getPageOffset())
                 .append("&PageSize=").append(parameters.getPageSize());
@@ -195,7 +192,7 @@ public class LibraryController implements Initializable, ControlledScreen {
                 Button delButton = new Button("",delImg);
                 delButton.setOnAction(e -> {
                     LibraryManager.uninstallDictionary(dict);
-                    setPaneInstalled();
+                    setDisplayElements(vboxInstalled,LibraryManager.getLIST());
                 });
                 buttonSet.getChildren().add(loadButton);
                 buttonSet.getChildren().add(delButton);
@@ -207,6 +204,7 @@ public class LibraryController implements Initializable, ControlledScreen {
                 Button downloadBtn = new Button("",loadImg);
                 downloadBtn.setOnAction(e -> {
                     LibraryManager.installDictionary(dict);
+                    setDisplayElements(vboxFindNew,loadedEntries);
                 });
                 buttonSet.getChildren().add(downloadBtn);
             }

@@ -11,7 +11,6 @@ mysql --database=Repertoire --execute="source $SCRIPT_DIRECTORY/00_create_Repert
 
 echo "Creating functions";
 mysql --database=Repertoire --execute="source $SCRIPT_DIRECTORY/sprocs/rprtr_DictionaryDefinition_AddNew.sql;";
-mysql --database=Repertoire --execute="source $SCRIPT_DIRECTORY/sprocs/rprtr_DictionaryVersion_AddNew.sql;";
 mysql --database=Repertoire --execute="source $SCRIPT_DIRECTORY/sprocs/rprtr_AvailableDictionary_Select.sql;";
 
 echo "Loading test data";
