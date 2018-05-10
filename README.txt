@@ -7,7 +7,7 @@ Requirements:
 
 * Netbeans 8.2 or greater
 
-* GlassFish Server 4.1.1 or greaters
+* GlassFish Server 4.1.1 or greater
 
 * MySQL Server 15.1 or greater
 
